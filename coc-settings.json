@@ -49,7 +49,12 @@
     "coc.preferences.formatOnSaveFiletypes": [
         "json"
     ],
-    "clangd.enabled": false,
+    /* snippets */
+    "snippets.ultisnips.directories": [
+        "UltiSnips",
+        "$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/",
+        "$HOME/.config/nvim/myUltiSnips/"
+    ],
     /* language server configurations */
     "languageserver": {
         "ccls": {

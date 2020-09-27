@@ -5,13 +5,20 @@
 "  \___\___/ \___|    |___/\___|\__|\__|_|_| |_|\__, |___/
 "                                               |___/
 
-" ======================== coc-plugs ======================
+" ==============================================
+" ============== COC plugs list ================
+" ==============================================
 let g:coc_global_extensions = [
             \'coc-json',
             \'coc-vimlsp',
             \'coc-explorer',
-            \'coc-clangd'
+            \'coc-clangd',
+            \'coc-snippets'
             \] 
+
+" ==============================================
+" ============== COC recommand vim settings ====
+" ==============================================
 " TextEdit might fail if hidden is not set.
 set hidden
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
@@ -38,7 +45,6 @@ if has('nvim')
 else
   inoremap <silent><expr> <c-l> coc#refresh()
 endif
-
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
 " <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
@@ -85,9 +91,25 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " =================================================
 nnoremap <leader>e :CocCommand explorer<CR>
 
+
 " =================================================
 " ==================== cxx-highlight ==============
 " =================================================
 let g:lsp_cxx_hl_use_text_props = 1
 
-" nnoremap <silent> <leader>y  :<C-u>CocList --normal yank<cr>
+
+" =================================================
+" ==================== coc-snippets ===============
+" =================================================
+" Use <C-l> for trigger snippet expand.
+imap <C-f> <Plug>(coc-snippets-expand)
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-d> <Plug>(coc-snippets-select)
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-d>'
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-s>'
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-d> <Plug>(coc-snippets-expand-jump)
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
