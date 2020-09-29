@@ -3,8 +3,21 @@
 "           \ \ / / | || |\/| | |_) | |
 "           _\ V /  | || |  | |  _ <| |___
 "          (_)\_/  |___|_|  |_|_| \_\\____|
-"
-
+"  |----------------------+-------------------|
+"  | Function             | Key Map           |
+"  |----------------------+-------------------|
+"  | Moving               | h j k l           |
+"  | Speed Navigate       | J K               |
+"  | Quit                 | Q                 |
+"  | Write file           | W                 |
+"  | Open Config File     | <sp>RC            |
+"  | Spell Check          | <sp>SC            |
+"  | Go to file           | gf                |
+"  | Copy to Cilpboard    | Y(in visual mode) |
+"  | splite windows to    | <sp>s[hjkl]       |
+"  | Move curse to window | <c-[hjkl]>        |
+"  | toggle terminal      | <c-t>             |
+"  |----------------------+-------------------|
 " ==============================================
 " ============== Auto loa for first time uses ==
 " ==============================================

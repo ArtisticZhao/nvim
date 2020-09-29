@@ -19,6 +19,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/vim-peekaboo'                    " Show registers
     Plug 'machakann/vim-highlightedyank'
     Plug 'honza/vim-snippets'
+    Plug 'dhruvasagar/vim-table-mode'
 call plug#end()
 
 
