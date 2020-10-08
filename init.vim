@@ -3,23 +3,55 @@
 "           \ \ / / | || |\/| | |_) | |
 "           _\ V /  | || |  | |  _ <| |___
 "          (_)\_/  |___|_|  |_|_| \_\\____|
-"  |----------------------+-------------------|
-"  | Function             | Key Map           |
-"  |----------------------+-------------------|
-"  | Moving               | h j k l           |
-"  | Speed Navigate       | J K               |
-"  | Quit                 | Q                 |
-"  | Write file           | W                 |
-"  | Open Config File     | <sp>RC            |
-"  | Spell Check          | <sp>SC            |
-"  | Go to file           | gf                |
-"  | Copy to Cilpboard    | Y(in visual mode) |
-"  | splite windows to    | <sp>s[hjkl]       |
-"  | Move curse to window | <c-[hjkl]>        |
-"  | toggle terminal      | <c-t>             |
-"  |----------------------+-------------------|
+"
+"
+"
+"      |----------------+---------------------------------------------------+-------------------|
+"      | Category       | Function                                          | Key Map           |
+"      |----------------+---------------------------------------------------+-------------------|
+"      | Navigation     | Navigation                                        | h j k l           |
+"      |                | Speed Navigation                                  | J K               |
+"      |                | next/prev word (split by space or ,._=...)        | w/b               |
+"      |                | next/prev WORD (split only with sp)               | W/B               |
+"      |                | end of word/WORD                                  | e/E               |
+"      |                | jump matchs e.g. { -> }                           | %                 |
+"      |----------------+---------------------------------------------------+-------------------|
+"      | Insertion      | Insert Mode at cursor                             | i                 |
+"      |                | Insert Mode at line header                        | I                 |
+"      |                | Insert Mode after cursor                          | a                 |
+"      |                | Insert Mode at line tail                          | A                 |
+"      |                | Insert Mode with new line below                   | o                 |
+"      |                | Insert Mode with new line above                   | O                 |
+"      |                | Insert Mode at insert before                      | gi                |
+"      |----------------+---------------------------------------------------+-------------------|
+"      |                | replace a char                                    | r                 |
+"      |----------------+---------------------------------------------------+-------------------|
+"      |                | Write file                                        | <c-s>             |
+"      |                | Quit                                              | <c-q>             |
+"      |                | Copy to Cilpboard                                 | Y(in visual mode) |
+"      |                | Paste from Cilpboard                              | P                 |
+"      |                | indent/indent leftward (work in Normal or Visual) | >/<               |
+"      |                | Open Config File                                  | <sp>RC            |
+"      |                | Spell Check                                       | <sp>SC            |
+"      |                | Go to file                                        | gf                |
+"      |                | splite windows to                                 | <sp>s[hjkl]       |
+"      |                | Splited Windows Navigation                        | <c-[hjkl]>        |
+"      |                | toggle terminal                                   | <c-t>             |
+"      |                | snippet jump                                      | <c-e> <c-d>       |
+"      |                | Align                                             | ga                |
+"      |----------------+---------------------------------------------------+-------------------|
+"      | table mode     | toggle table mode                                 | <sp>tm            |
+"      | (use '!'       | table header                                      | !A!B!C!           |
+"      | represent'\|') | Dividing line                                     | !!(insert mode)   |
+"      |                | Delete Column                                     | <l>tdc            |
+"      |                | Insert Column before                              | <l>tiC            |
+"      |                | Insert Column after                               | <l>tic            |
+"      |----------------+---------------------------------------------------+-------------------|
+"
+"
+"
 " ==============================================
-" ============== Auto loa for first time uses ==
+" ============= Auto load for first time uses ==
 " ==============================================
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
 	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -67,10 +99,11 @@ set scrolloff=5
 " ============== Search settings ===============
 " ==============================================
 set hlsearch
-set incsearch
-exec "nohlsearch"
+set incsearch       " search when typing
+exec "nohlsearch" 
 set ignorecase
 set smartcase
+set wrapscan        " tail to head search
 
 
 " ==============================================
@@ -99,17 +132,21 @@ map tx :r !figlet
 noremap <LEADER><CR> :nohlsearch<CR>
 
 " save & quit
-map Q :q<CR>
-map W :w<CR>
+map <c-q> :q<CR>
+map <c-s> :w<CR>
 
 " Copy to system clipboard
 vnoremap Y "+y
+noremap  P "+p
 
 " Indentation
 noremap < <<
 noremap > >>
+" keep visual mode after indent
+vnoremap > >gv
+vnoremap < <gv
 
-" split
+" split window
 map <LEADER>sl :set splitright<CR>:vsplit<CR>
 map <LEADER>sh :set nosplitright<CR>:vsplit<CR>
 map <LEADER>sk :set nosplitbelow<CR>:split<CR>

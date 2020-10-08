@@ -65,3 +65,15 @@ let g:NERDToggleCheckAllLines = 1
 " ==============================================
 map <LEADER>ut :UndotreeToggle<CR>
 
+
+" ==============================================
+" ============== Table Mode ====================
+" ==============================================
+
+
+" ==============================================
+" ============== cxx highlight =================
+" ==============================================
+hi LspCxxHlGroupEnumConstant ctermfg=Magenta guifg=#AD7FA8 cterm=none gui=none
+hi LspCxxHlGroupNamespace ctermfg=Yellow guifg=#BBBB00 cterm=none gui=none
+hi LspCxxHlGroupMemberVariable ctermfg=White guifg=White
