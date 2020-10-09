@@ -15,6 +15,8 @@
 "      |                | next/prev WORD (split only with sp)               | W/B               |
 "      |                | end of word/WORD                                  | e/E               |
 "      |                | jump matchs e.g. { -> }                           | %                 |
+"      |                | Find backward/forward a char                      | f[x]/F[x]         |
+"      |                | Find next/prev f[x]                               | ;/,               |
 "      |----------------+---------------------------------------------------+-------------------|
 "      | Insertion      | Insert Mode at cursor                             | i                 |
 "      |                | Insert Mode at line header                        | I                 |
@@ -73,7 +75,8 @@ filetype indent on
 filetype plugin on
 filetype plugin indent on
 
-
+" open file with last edit postion
+autocmd BufReadPost * normal! g`"
 " ==============================================
 " ============== Indentation & Backspace =======
 " ==============================================
@@ -113,14 +116,14 @@ let mapleader=" "
 
 " 让配置变更立即生效
 " autocmd BufWritePost $MYVIMRC source $MYVIMRC
-noremap R :source $MYVIMRC<CR>
+noremap <c-r> :source $MYVIMRC<CR>
 
 " speed navi
 noremap J 5j
 noremap K 5k
 
-" open configure file
-map <LEADER>rc :e ~/.config/nvim/init.vim<CR>
+" open configure file in new tab
+map <LEADER>rc :tabnew  ~/.config/nvim/init.vim<CR>
 
 " spell check 
 map <LEADER>sc :set spell!<CR>
@@ -133,11 +136,17 @@ noremap <LEADER><CR> :nohlsearch<CR>
 
 " save & quit
 map <c-q> :q<CR>
+map Q :q<cr>
 map <c-s> :w<CR>
+" open file under cursor in new tab
+noremap gf <c-w>gf
 
 " Copy to system clipboard
 vnoremap Y "+y
 noremap  P "+p
+
+" search select
+vnoremap / y/<c-r>"<cr>
 
 " Indentation
 noremap < <<
