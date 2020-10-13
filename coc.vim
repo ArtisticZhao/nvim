@@ -13,7 +13,8 @@ let g:coc_global_extensions = [
             \'coc-vimlsp',
             \'coc-explorer',
             \'coc-clangd',
-            \'coc-snippets'
+            \'coc-snippets',
+            \'coc-python'
             \] 
 
 " ==============================================
@@ -65,8 +66,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use <l>h to show documentation in preview window.
-nnoremap <silent> <LEADER>h :call <SID>show_documentation()<CR>
+" Use <l>d to show documentation in preview window.
+nnoremap <silent> <LEADER>d :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -95,15 +96,15 @@ nnoremap <leader>e :CocCommand explorer<CR>
 " =================================================
 " ==================== coc-snippets ===============
 " =================================================
-" Use <C-l> for trigger snippet expand.
-imap <c-f> <Plug>(coc-snippets-expand)
-" Use <C-j> for select text for visual placeholder of snippet.
+" Use <C-d> for trigger snippet expand.
+imap <c-d> <Plug>(coc-snippets-expand)
+" Use <C-d> for select text for visual placeholder of snippet.
 vmap <c-d> <Plug>(coc-snippets-select)
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+" Use <C-d> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_next = '<c-d>'
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+" Use <C-e> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-e>'
-" Use <C-j> for both expand and jump (make expand higher priority.)
+" Use <C-d> for both expand and jump (make expand higher priority.)
 imap <c-d> <Plug>(coc-snippets-expand-jump)
 " Use <leader>x for convert visual selected code to snippet
 xmap <leader>x  <Plug>(coc-convert-snippet)

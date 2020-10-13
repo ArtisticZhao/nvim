@@ -26,9 +26,10 @@
 "      |                | Insert Mode with new line above                   | O                 |
 "      |                | Insert Mode at insert before                      | gi                |
 "      |----------------+---------------------------------------------------+-------------------|
-"      |                | replace a char                                    | r                 |
+"      | edit           | replace a char                                    | r                 |
+"      |                | replace word under cursor                         | <c-g>             |
 "      |----------------+---------------------------------------------------+-------------------|
-"      |                | Write file                                        | <c-s>             |
+"      |                | Write file(turn to normal mode when insert mode)  | <c-s>             |
 "      |                | Quit                                              | <c-q>             |
 "      |                | Copy to Cilpboard                                 | Y(in visual mode) |
 "      |                | Paste from Cilpboard                              | P                 |
@@ -49,6 +50,9 @@
 "      |                | Insert Column before                              | <l>tiC            |
 "      |                | Insert Column after                               | <l>tic            |
 "      |----------------+---------------------------------------------------+-------------------|
+"      | coc-snippets   | <expand or jump to next placeholder               | <c-d>             |
+"      |                | jump to previous placeholder                      | <c-e>             |
+"      |----------------+---------------------------------------------------+-------------------|
 "
 "
 "
@@ -67,7 +71,11 @@ endif
 " ==============================================
 set encoding=utf-8
 let &t_ut=''  " cmd color
-set autochdir
+if (getcwd() != '/home/lilacsat/learn_linux/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek')
+    set autochdir
+else
+    echo "Work on kerel dir"
+endif
 
 syntax on
 filetype on
@@ -116,7 +124,7 @@ let mapleader=" "
 
 " 让配置变更立即生效
 " autocmd BufWritePost $MYVIMRC source $MYVIMRC
-noremap <c-r> :source $MYVIMRC<CR>
+noremap <LEADER>r :source $MYVIMRC<CR>
 
 " speed navi
 noremap J 5j
@@ -124,6 +132,16 @@ noremap K 5k
 
 " open configure file in new tab
 map <LEADER>rc :tabnew  ~/.config/nvim/init.vim<CR>
+
+" open device tree
+function! OpenDeviceTree()
+    if getcwd()=="/home/lilacsat/learn_linux/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek"
+        :tabnew ./arch/arm/boot/dts/imx6ull-alientek-emmc.dts
+    else
+        echo getcwd()
+    endif
+endfunction
+map <LEADER>dt :call OpenDeviceTree()<CR> 
 
 " spell check 
 map <LEADER>sc :set spell!<CR>
@@ -138,6 +156,8 @@ noremap <LEADER><CR> :nohlsearch<CR>
 map <c-q> :q<CR>
 map Q :q<cr>
 map <c-s> :w<CR>
+imap <c-s> <esc>:w<CR>
+
 " open file under cursor in new tab
 noremap gf <c-w>gf
 
@@ -147,6 +167,10 @@ noremap  P "+p
 
 " search select
 vnoremap / y/<c-r>"<cr>
+
+" replace current word
+inoremap <c-g> <esc>:%s/<c-r><c-w>//g<left><left>
+nnoremap <c-g> <esc>:%s/<c-r><c-w>//g<left><left>
 
 " Indentation
 noremap < <<
@@ -160,10 +184,10 @@ map <LEADER>sl :set splitright<CR>:vsplit<CR>
 map <LEADER>sh :set nosplitright<CR>:vsplit<CR>
 map <LEADER>sk :set nosplitbelow<CR>:split<CR>
 map <LEADER>sj :set splitbelow<CR>:split<CR>
-map <C-h> <C-w>h  
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+map <c-h> <C-w>h
+map <c-j> <C-w>j
+map <c-k> <C-w>k
+map <c-l> <C-w>l
 map <C-up> :res +5<CR>
 map <C-down> :res -5<CR>
 map <C-left> :vertical resize+5<CR>
@@ -207,11 +231,22 @@ tnoremap <Esc> <C-\><C-n>
 " When switching to terminal windows it goes into insert mode automatically
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 " navigate windows in terminal mode
-tmap <C-h> <C-\><C-n><C-w>h  
+tmap <C-h> <C-\><C-n><C-w>h
 tmap <C-j> <C-\><C-n><C-w>j
 tmap <C-k> <C-\><C-n><C-w>k
 tmap <C-l> <C-\><C-n><C-w>l
+" resize window in terminal mode
+tmap <C-up> <C-\><C-n>:res +5<CR>i
+tmap <C-down> <C-\><C-n>:res -5<CR>i
+tmap <C-left> <C-\><C-n>:vertical resize+5<CR>i
+tmap <C-right> <C-\><C-n>:vertical resize-5<CR>i
 
+
+" ==============================================
+" ============== Path configure ================
+" ==============================================
+let g:python3_host_prog='/usr/bin/python3'
+let g:python_host_prog='/usr/bin/python2.7'
 
 " ==============================================
 " ============== import settings ===============
