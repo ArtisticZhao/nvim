@@ -7,7 +7,7 @@
 "
 "
 "      |----------------+---------------------------------------------------+-------------------|
-"      | Category       | Function                                          | Key Map           |
+"      | Category       | Function                                          | KEYMAP            |
 "      |----------------+---------------------------------------------------+-------------------|
 "      | Navigation     | Navigation                                        | h j k l           |
 "      |                | Speed Navigation                                  | J K               |
@@ -54,8 +54,12 @@
 "      |                | jump to previous placeholder                      | <c-e>             |
 "      |----------------+---------------------------------------------------+-------------------|
 "
-"
-"
+"   TODO:
+"     - <sp>rc open file in current buffer if empty;
+"     - resize window -> move the split line
+
+
+
 " ==============================================
 " ============= Auto load for first time uses ==
 " ==============================================
