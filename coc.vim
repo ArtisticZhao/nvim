@@ -15,7 +15,7 @@ let g:coc_global_extensions = [
             \'coc-clangd',
             \'coc-snippets',
             \'coc-python'
-            \] 
+            \]
 
 " ==============================================
 " ============== COC recommand vim settings ====

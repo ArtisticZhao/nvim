@@ -79,7 +79,7 @@ endif
 
 syntax on
 filetype on
-filetype indent on 
+filetype indent on
 filetype plugin on
 filetype plugin indent on
 
@@ -94,7 +94,6 @@ set shiftwidth=4  " 设置格式化时制表符占用空格数
 set softtabstop=4 " 让 vim 把连续数量的空格视为一个制表符
 set backspace=2   " make bp like normal app
 
-
 " ==============================================
 " ============== Display =======================
 " ==============================================
@@ -104,14 +103,23 @@ set cursorline
 set showcmd
 set wildmenu
 set scrolloff=5
-
+" See [http://vim.wikia.com/wiki/Highlight_unwanted_spaces]
+" - highlight trailing whitespace in red
+" - have this highlighting not appear whilst you are typing in insert mode
+" - have the highlighting of whitespace apply when you open new buffers
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches() " for performance
 
 " ==============================================
 " ============== Search settings ===============
 " ==============================================
 set hlsearch
 set incsearch       " search when typing
-exec "nohlsearch" 
+exec "nohlsearch"
 set ignorecase
 set smartcase
 set wrapscan        " tail to head search
@@ -141,9 +149,9 @@ function! OpenDeviceTree()
         echo getcwd()
     endif
 endfunction
-map <LEADER>dt :call OpenDeviceTree()<CR> 
+map <LEADER>dt :call OpenDeviceTree()<CR>
 
-" spell check 
+" spell check
 map <LEADER>sc :set spell!<CR>
 
 " call figlet
@@ -251,7 +259,7 @@ let g:python_host_prog='/usr/bin/python2.7'
 " ==============================================
 " ============== import settings ===============
 " ==============================================
-" import plugs' settings 
+" import plugs' settings
 source ~/.config/nvim/plugs.vim
 " import coc's settings in vim
 source ~/.config/nvim/coc.vim

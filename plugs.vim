@@ -18,11 +18,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/vim-easy-align'
     Plug 'junegunn/vim-peekaboo'                                " Show registers
     Plug 'machakann/vim-highlightedyank'
-    Plug 'honza/vim-snippets'
+    " Plug 'honza/vim-snippets'
     Plug 'dhruvasagar/vim-table-mode'
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 call plug#end()
-
 
 
 " ==============================================
@@ -76,7 +75,7 @@ let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
-" Enable NERDCommenterToggle to check all selected lines is commented or not 
+" Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
 
@@ -158,3 +157,9 @@ hi default link LspCxxHlSymDependentType Type
 hi default link LspCxxHlSymDependentName Function
 " C++20 concepts, maybe type is sufficient for now...
 hi default link LspCxxHlSymConcept Type
+
+
+" ==============================================
+" ============== table mode ====================
+" ==============================================
+map <LEADER>tm :set tw=0<CR><LEADER>tm
