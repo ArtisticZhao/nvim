@@ -12,7 +12,6 @@ let g:coc_global_extensions = [
             \'coc-json',
             \'coc-vimlsp',
             \'coc-explorer',
-            \'coc-clangd',
             \'coc-snippets',
             \'coc-python'
             \]
