@@ -69,9 +69,7 @@
 " ==============================================
 " ============= Auto load for first time uses ==
 " ==============================================
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if empty(glob('~/.vim/plugged/coc.nvim/autoload/coc.vim'))
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -81,11 +79,7 @@ endif
 " ==============================================
 set encoding=utf-8
 let &t_ut=''  " cmd color
-if (getcwd() != '/home/lilacsat/learn_linux/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek')
-    set autochdir
-else
-    echo "Work on kerel dir"
-endif
+set autochdir
 
 syntax on
 filetype on
@@ -132,49 +126,60 @@ autocmd BufWinLeave * call clearmatches() " for performance
 " ==============================================
 " ============== Search settings ===============
 " ==============================================
+exec "nohlsearch"
 set hlsearch
 set incsearch       " search when typing
-exec "nohlsearch"
 set ignorecase
 set smartcase
 set wrapscan        " tail to head search
 
-
+f
 " ==============================================
 " ============== Key Mappings ==================
 " ==============================================
 let mapleader=" "
+
 " -------------- Speed Navigation
 noremap J 5j
 noremap K 5k
+
 " -------------- spell check
 map <LEADER>sc :set spell!<CR>
+
 " -------------- save & quit
 map <c-q> :q<CR>
 map Q :q<cr>
 map <c-s> :w<CR>
 imap <c-s> <esc>:w<CR>
+
 " -------------- open file under cursor in new tab
 noremap gf <c-w>gf
+
 " -------------- Copy to system clipboard
 vnoremap Y "+y
 nnoremap Y "+yy
 noremap  P "+p
+
 " -------------- search select
 vnoremap / y/<c-r>"<cr>
 " find word under cursor
 nnoremap <c-f> /<c-r><c-w><cr>
 inoremap <c-f> <esc>/<c-r><c-w><cr>
 xnoremap <c-f> y/<c-r>"<cr>
+" no highlight for search
+noremap <LEADER><CR> :nohlsearch<CR>
+
 " -------------- replace current word
 inoremap <c-g> <esc>:%s/<c-r><c-w>//g<left><left>
 nnoremap <c-g> <esc>:%s/<c-r><c-w>//g<left><left>
+
 " -------------- Indentation
 noremap < <<
 noremap > >>
 " keep visual mode after indent
 vnoremap > >gv
 vnoremap < <gv
+
 " -------------- split window
 map <LEADER>sl :set splitright<CR>:vsplit<CR>
 map <LEADER>sh :set nosplitright<CR>:vsplit<CR>
@@ -188,10 +193,12 @@ map <C-up> :res +5<CR>
 map <C-down> :res -5<CR>
 map <C-left> :vertical resize+5<CR>
 map <C-right> :vertical resize-5<CR>
+
 " -------------- tabs
 map tn :tabe<CR>  " tab new
 map th :-tabnext<CR>
 map tl :tabnext<CR>
+
 " -------------- place holder
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
@@ -199,11 +206,12 @@ map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 " ==============================================
 " ============== Key Shortcuts =================
 " ==============================================
-" 让配置变更立即生效, this configure not work well in neoVIM!
-" autocmd BufWritePost $MYVIMRC source $MYVIMRC
-noremap <LEADER>R :source $MYVIMRC<CR>
-" -------------- open neoVIM configure file in new tab
-map <LEADER>rc :tabnew  ~/.config/nvim/init.vim<CR>
+" when work on kernel directory, always work on root directory
+if (getcwd() == '/home/lilacsat/learn_linux/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek')
+    echo "Work on kerel dir"
+    set noautochdir
+endif
+
 " -------------- open device tree only work on kernel dir
 function! OpenDeviceTree()
     if getcwd()=="/home/lilacsat/learn_linux/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek"
@@ -213,10 +221,16 @@ function! OpenDeviceTree()
     endif
 endfunction
 map <LEADER>dt :call OpenDeviceTree()<CR>
+
+" 让配置变更立即生效, this configure not work well in neoVIM!
+" autocmd BufWritePost $MYVIMRC source $MYVIMRC
+noremap <LEADER>R :source $MYVIMRC<CR>
+
+" -------------- open neoVIM configure file in new tab
+map <LEADER>rc :tabnew  ~/.config/nvim/init.vim<CR>
+
 " call figlet
 map tx :r !figlet
-" no highlight for search
-noremap <LEADER><CR> :nohlsearch<CR>
 
 
 " ==============================================
