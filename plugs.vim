@@ -81,6 +81,11 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
+" <c-/> to toggle comment; for some reason vim register c-/ as c-_
+nmap <silent> <c-_> :call NERDComment("n", "Toggle")<CR>
+xmap <silent> <c-_> :call NERDComment("x", "Toggle")<CR>
+inoremap <silent> <c-_> <esc>:call NERDComment("n", "Toggle")<CR>i
+
 
 " ==============================================
 " ============== undo-tree =====================
