@@ -133,7 +133,7 @@ set ignorecase
 set smartcase
 set wrapscan        " tail to head search
 
-f
+
 " ==============================================
 " ============== Key Mappings ==================
 " ==============================================

@@ -53,7 +53,6 @@
     /** snippets */
     "snippets.ultisnips.directories": [
         "UltiSnips",
-        /** "$HOME/Downloads/UltiSnips",*/
         "$HOME/.config/nvim/myUltiSnips/"
     ],
     /** language server configurations */
@@ -84,6 +83,7 @@
             }
         }
     },
+    "coc.preferences.jumpCommand": "vsplit",
     /** coc-explorer */
     "explorer.icon.enableNerdfont": true,
     /** Python Config */

@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'honza/vim-snippets'
     Plug 'dhruvasagar/vim-table-mode'
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+    Plug 'Raimondi/delimitMate'                                 " auto [ { ' ...
     " ==== plug 4 git ====
     " Plug 'tpope/vim-fugitive'
     " Plug 'rbong/vim-flog'
