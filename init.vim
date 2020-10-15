@@ -28,6 +28,7 @@
 "      |----------------+--------------------------------------------+-------------|
 "      | Edition        | replace a char                             | r           |
 "      |                | replace word under cursor                  | <c-g>       |
+"      |                | search word under cursor (i,n,v-mode)      | <c-f>       |
 "      |                | Copy to Cilpboard                          | Y           |
 "      |                | Paste from Cilpboard                       | P           |
 "      |                | indent/indent leftward                     | >/<         |
@@ -115,6 +116,7 @@ set cursorline
 set showcmd
 set wildmenu
 set scrolloff=5
+set nowrap
 " See [http://vim.wikia.com/wiki/Highlight_unwanted_spaces]
 " - highlight trailing whitespace in red
 " - have this highlighting not appear whilst you are typing in insert mode
@@ -160,6 +162,10 @@ nnoremap Y "+yy
 noremap  P "+p
 " -------------- search select
 vnoremap / y/<c-r>"<cr>
+" find word under cursor
+nnoremap <c-f> /<c-r><c-w><cr>
+inoremap <c-f> <esc>/<c-r><c-w><cr>
+xnoremap <c-f> y/<c-r>"<cr>
 " -------------- replace current word
 inoremap <c-g> <esc>:%s/<c-r><c-w>//g<left><left>
 nnoremap <c-g> <esc>:%s/<c-r><c-w>//g<left><left>

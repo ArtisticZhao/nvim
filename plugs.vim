@@ -166,8 +166,3 @@ hi default link LspCxxHlSymDependentName Function
 " C++20 concepts, maybe type is sufficient for now...
 hi default link LspCxxHlSymConcept Type
 
-
-" ==============================================
-" ============== table mode ====================
-" ==============================================
-map <LEADER>tm :set tw=0<CR><LEADER>tm
