@@ -13,7 +13,8 @@ let g:coc_global_extensions = [
             \'coc-vimlsp',
             \'coc-explorer',
             \'coc-snippets',
-            \'coc-python'
+            \'coc-python',
+            \'coc-highlight'
             \]
 
 " ==============================================
@@ -109,3 +110,10 @@ let g:coc_snippet_prev = '<c-e>'
 imap <c-d> <Plug>(coc-snippets-expand-jump)
 " Use <leader>x for convert visual selected code to snippet
 xmap <leader>x  <Plug>(coc-convert-snippet)
+
+
+" ==============================================
+" ============== coc-highlight =================
+" ==============================================
+set termguicolors
+autocmd CursorHold * silent call CocActionAsync('highlight')

@@ -16,7 +16,7 @@
 "      |                | end of word/WORD                           | e/E         |
 "      |                | jump matchs e.g. { -> }                    | %           |
 "      |                | Find backward/forward a char               | f[x]/F[x]   |
-"      |                | Find next/prev f[x]                        | ;/,         |
+"      |                | Find next/prev f[x]                        | =/-         |
 "      |----------------+--------------------------------------------+-------------|
 "      | Insertion      | Insert Mode at cursor                      | i           |
 "      |                | Insert Mode at line header                 | I           |
@@ -32,6 +32,7 @@
 "      |                | Copy to Cilpboard                          | Y           |
 "      |                | Paste from Cilpboard                       | P           |
 "      |                | indent/indent leftward                     | >/<         |
+"      |                | Select all                                 | <c-a>       |
 "      |----------------+--------------------------------------------+-------------|
 "      | Files          | Write file(turn to n-mode when i-mode)     | <c-s>       |
 "      |                | Quit                                       | <c-q>       |
@@ -160,12 +161,18 @@ vnoremap Y "+y
 nnoremap Y "+yy
 noremap  P "+p
 
-" -------------- search select
+" -------------- search & select
+" select all
+nmap <c-a> ggVG
+" search selected words
 vnoremap / y/<c-r>"<cr>
 " find word under cursor
 nnoremap <c-f> /<c-r><c-w><cr>
 inoremap <c-f> <esc>/<c-r><c-w><cr>
 xnoremap <c-f> y/<c-r>"<cr>
+" next/prev fx Fx
+nnoremap - ,
+nnoremap = ;
 " no highlight for search
 noremap <LEADER><CR> :nohlsearch<CR>
 
