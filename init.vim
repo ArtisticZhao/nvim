@@ -143,6 +143,9 @@ let mapleader=" "
 " -------------- Speed Navigation
 noremap J 5j
 noremap K 5k
+" Ctrl + n or m will move up/down the view port without moving the cursor
+noremap <C-m> 5<C-y>
+noremap <C-n> 5<C-e>
 
 " -------------- spell check
 map <LEADER>sc :set spell!<CR>

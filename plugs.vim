@@ -25,6 +25,7 @@ call plug#begin('~/.vim/plugged')
     " ==== plug 4 git ====
     " Plug 'tpope/vim-fugitive'
     " Plug 'rbong/vim-flog'
+    Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 
@@ -164,6 +165,18 @@ hi default link LspCxxHlSymEnumConstant LspCxxHlGroupEnumConstant
 hi default link LspCxxHlSymDependentType Type
 " A name dependent on a template, usually a function but can also be a variable?
 hi default link LspCxxHlSymDependentName Function
-" C++20 concepts, maybe type is sufficient for now...
+" C++20 concepts, maybe type is sufficient for now....
 hi default link LspCxxHlSymConcept Type
 
+" ==============================================
+" ============== GitGutter =====================
+" ==============================================
+let g:gitgutter_sign_allow_clobber = 0
+let g:gitgutter_map_keys = 0
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_preview_win_floating = 1
+let g:gitgutter_sign_added = '▎'
+let g:gitgutter_sign_modified = '░'
+let g:gitgutter_sign_removed = '▏'
+let g:gitgutter_sign_removed_first_line = '▔'
+let g:gitgutter_sign_modified_removed = '▒'

@@ -83,7 +83,7 @@
             }
         }
     },
-    "coc.preferences.jumpCommand": "vsplit",
+    "coc.preferences.jumpCommand": "tab drop",
     /** coc-explorer */
     "explorer.icon.enableNerdfont": true,
     /** Python Config */
