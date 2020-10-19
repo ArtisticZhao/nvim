@@ -1,10 +1,10 @@
 priority -50
 
 ###########################################################################
-#                            SnipMate Snippets                            #
+#                            snipmate snippets                            #
 ###########################################################################
-snippet gvar "Global / configuration variable" b
-if !exists("g:${1:MyUltraImportantVar}")
+snippet gvar "global / configuration variable" b
+if !exists("g:${1:myultraimportantvar}")
 	let g:$1 = ${2:"${3:<tab>}"}
 endif
 endsnippet
@@ -23,14 +23,14 @@ endf
 endsnippet
 # vim:ft=snippets:
 
-snippet == "Comment Section"
+snippet == "comment section"
 " ==============================================
-" ============== ${0:New Section} ==============
+" ============== ${1:new section} ==============
 " ==============================================
-${1}
+${2}
 endsnippet
 
-snippet -- "Comment Line"
-" -------------- ${0:New Section} --------------
-${1}
+snippet -- "comment line"
+" -------------- ${1:new section} --------------
+${2}
 endsnippet

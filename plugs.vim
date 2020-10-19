@@ -23,8 +23,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
     Plug 'Raimondi/delimitMate'                                 " auto [ { ' ...
     " ==== plug 4 git ====
-    " Plug 'tpope/vim-fugitive'
-    " Plug 'rbong/vim-flog'
+    Plug 'tpope/vim-fugitive'
+    Plug 'rbong/vim-flog'
     Plug 'airblade/vim-gitgutter'
 call plug#end()
 
@@ -168,6 +168,7 @@ hi default link LspCxxHlSymDependentName Function
 " C++20 concepts, maybe type is sufficient for now....
 hi default link LspCxxHlSymConcept Type
 
+
 " ==============================================
 " ============== GitGutter =====================
 " ==============================================
@@ -180,3 +181,9 @@ let g:gitgutter_sign_modified = '░'
 let g:gitgutter_sign_removed = '▏'
 let g:gitgutter_sign_removed_first_line = '▔'
 let g:gitgutter_sign_modified_removed = '▒'
+
+
+" ==============================================
+" ============== git-flog=======================
+" ==============================================
+nnoremap <LEADER>gb :Flog<cr>

@@ -11,6 +11,7 @@
 "      |----------------+--------------------------------------------+-------------|
 "      | Navigation     | Navigation                                 | h j k l     |
 "      |                | Speed Navigation                           | J K         |
+"      |                | <Home> <End>                               | H L         |
 "      |                | next/prev word (split by space or ,._=...) | w/b         |
 "      |                | next/prev WORD (split only with sp)        | W/B         |
 "      |                | end of word/WORD                           | e/E         |
@@ -33,6 +34,7 @@
 "      |                | Paste from Cilpboard                       | P           |
 "      |                | indent/indent leftward                     | >/<         |
 "      |                | Select all                                 | <c-a>       |
+"      |                | change upper/lowercase                     | `           |
 "      |----------------+--------------------------------------------+-------------|
 "      | Files          | Write file(turn to n-mode when i-mode)     | <c-s>       |
 "      |                | Quit                                       | <c-q>       |
@@ -44,7 +46,8 @@
 "      |                | Splited Windows Navigation                 | <c-[hjkl]>  |
 "      |                | toggle terminal                            | <c-t>       |
 "      |----------------+--------------------------------------------+-------------|
-"      | Align          | Align by = (v-mode muti-lines)             | <sp>ga[=]   |
+"      | PLUGS          | Align by = (v-mode muti-lines)             | <sp>ga[=]   |
+"      |                | unto tree                                  | <sp>ut      |
 "      |----------------+--------------------------------------------+-------------|
 "      | Table Mode     | toggle table mode                          | <sp>tm      |
 "      | (use '!'       | table header                               | !A!B!C!     |
@@ -60,10 +63,16 @@
 "      |                | uncomment                                  | <sp>cu      |
 "      |                | toggle comment (also work in i-mode)       | <c-/>       |
 "      |----------------+--------------------------------------------+-------------|
+"      | git            | stage/unstage on coc-explorer              | <</>>       |
+"      |                | open graph of commit & branch              | <sp>gb      |
+"      |----------------+--------------------------------------------+-------------|
 "
 "   TODO:
 "     - <sp>rc open file in current buffer if empty;
 "     - resize window -> move the split line
+"     - git diff files
+"     - find file in dir <c-p> like vscode
+"     - find content in files like vscode's search.
 
 
 
@@ -143,9 +152,15 @@ let mapleader=" "
 " -------------- Speed Navigation
 noremap J 5j
 noremap K 5k
+noremap H ^
+noremap L $
+
 " Ctrl + n or m will move up/down the view port without moving the cursor
 noremap <C-m> 5<C-y>
 noremap <C-n> 5<C-e>
+
+" -------------- change to uppercase
+noremap ` ~
 
 " -------------- spell check
 map <LEADER>sc :set spell!<CR>
