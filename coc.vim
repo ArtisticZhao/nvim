@@ -40,11 +40,11 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-" Use <c-l> to trigger completion.
+" Use <c-d> to trigger completion.
 if has('nvim')
-  inoremap <silent><expr> <c-l> coc#refresh()
+  inoremap <silent><expr> <c-d> coc#refresh()
 else
-  inoremap <silent><expr> <c-l> coc#refresh()
+  inoremap <silent><expr> <c-d> coc#refresh()
 endif
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.

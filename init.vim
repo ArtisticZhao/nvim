@@ -10,6 +10,7 @@
 "      | Category       | Function                                   | KEYMAP      |
 "      |----------------+--------------------------------------------+-------------|
 "      | Navigation     | Navigation                                 | h j k l     |
+"      |                | Navigation in i-mode                       | <c-[hjkl]>  |
 "      |                | Speed Navigation                           | J K         |
 "      |                | <Home> <End>                               | H L         |
 "      |                | next/prev word (split by space or ,._=...) | w/b         |
@@ -28,7 +29,7 @@
 "      |                | Insert Mode at insert before               | gi          |
 "      |----------------+--------------------------------------------+-------------|
 "      | Edition        | replace a char                             | r           |
-"      |                | replace word under cursor                  | <c-g>       |
+"      |                | replace word under cursor                  | <c-h>       |
 "      |                | search word under cursor (i,n,v-mode)      | <c-f>       |
 "      |                | Copy to Cilpboard                          | Y           |
 "      |                | Paste from Cilpboard                       | P           |
@@ -43,7 +44,7 @@
 "      |                | Go to file                                 | gf          |
 "      |----------------+--------------------------------------------+-------------|
 "      | Split Windows  | split windows to                           | <sp>s[hjkl] |
-"      |                | Splited Windows Navigation                 | <c-[hjkl]>  |
+"      |                | Splited Windows Navigation                 | <m-[hjkl]>  |
 "      |                | toggle terminal                            | <c-t>       |
 "      |----------------+--------------------------------------------+-------------|
 "      | PLUGS          | Align by = (v-mode muti-lines)             | <sp>ga[=]   |
@@ -154,6 +155,11 @@ noremap J 5j
 noremap K 5k
 noremap H ^
 noremap L $
+" -------------- B=Navigation on i-mode
+imap <c-h> <left>
+imap <c-j> <down>
+imap <c-k> <up>
+imap <c-l> <right>
 
 " Ctrl + n or m will move up/down the view port without moving the cursor
 noremap <C-m> 5<C-y>
@@ -195,8 +201,7 @@ nnoremap = ;
 noremap <LEADER><CR> :nohlsearch<CR>
 
 " -------------- replace current word
-inoremap <c-g> <esc>:%s/<c-r><c-w>//g<left><left>
-nnoremap <c-g> <esc>:%s/<c-r><c-w>//g<left><left>
+nnoremap <c-h> <esc>:%s/<c-r><c-w>//g<left><left>
 
 " -------------- Indentation
 noremap < <<
@@ -210,10 +215,10 @@ map <LEADER>sl :set splitright<CR>:vsplit<CR>
 map <LEADER>sh :set nosplitright<CR>:vsplit<CR>
 map <LEADER>sk :set nosplitbelow<CR>:split<CR>
 map <LEADER>sj :set splitbelow<CR>:split<CR>
-map <c-h> <C-w>h
-map <c-j> <C-w>j
-map <c-k> <C-w>k
-map <c-l> <C-w>l
+map <M-h> <C-w>h
+map <M-j> <C-w>j
+map <M-k> <C-w>k
+map <M-l> <C-w>l
 map <C-up> :res +5<CR>
 map <C-down> :res -5<CR>
 map <C-left> :vertical resize+5<CR>
@@ -287,10 +292,10 @@ tnoremap <Esc> <C-\><C-n>
 " When switching to terminal windows it goes into insert mode automatically
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 " navigate windows in terminal mode
-tmap <C-h> <C-\><C-n><C-w>h
-tmap <C-j> <C-\><C-n><C-w>j
-tmap <C-k> <C-\><C-n><C-w>k
-tmap <C-l> <C-\><C-n><C-w>l
+tmap <M-h> <C-\><C-n><C-w>h
+tmap <M-j> <C-\><C-n><C-w>j
+tmap <M-k> <C-\><C-n><C-w>k
+tmap <M-l> <C-\><C-n><C-w>l
 " resize window in terminal mode
 tmap <C-up> <C-\><C-n>:res +5<CR>i
 tmap <C-down> <C-\><C-n>:res -5<CR>i
