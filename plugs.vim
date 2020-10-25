@@ -22,10 +22,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/vim-easy-align'
     Plug 'junegunn/vim-peekaboo'                                " Show registers
     Plug 'machakann/vim-highlightedyank'
-    " Plug 'honza/vim-snippets'
     Plug 'dhruvasagar/vim-table-mode'
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
     Plug 'Raimondi/delimitMate'                                 " auto [ { ' ...
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     " ==== plug 4 git ====
     Plug 'tpope/vim-fugitive'
     Plug 'rbong/vim-flog'
@@ -56,9 +56,9 @@ sign define semshiError text=E> texthl=semshiErrorSign
 " ==============================================
 " ============== use color theme ===============
 " ==============================================
-" color snazzy
-let g:molokai_original = 1
-let g:rehash256 = 1
+color snazzy
+" let g:molokai_original = 1
+" let g:rehash256 = 1
 " ==============================================
 " ============== easy Align ====================
 " ==============================================
@@ -176,16 +176,25 @@ hi default link LspCxxHlSymConcept Type
 " ==============================================
 " ============== GitGutter =====================
 " ==============================================
-let g:gitgutter_sign_allow_clobber = 0
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#0c7d9d ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+" highlight GitGutterAddLineNr          guifg=#009900 ctermfg=2
+" highlight GitGutterChangeLineNr       guifg=#0c7d9d ctermfg=3
+" highlight GitGutterDeleteLineNr       guifg=#ff2222 ctermfg=1
+let g:gitgutter_sign_allow_clobber = 0           " not allow gitgutter overwrite other symbol
 let g:gitgutter_map_keys = 0
 let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_preview_win_floating = 1
-let g:gitgutter_sign_added = '▎'
-let g:gitgutter_sign_modified = '░'
-let g:gitgutter_sign_removed = '▏'
+let g:gitgutter_sign_added = '▉'
+let g:gitgutter_sign_modified = '▉'
+let g:gitgutter_sign_removed = '▂'
 let g:gitgutter_sign_removed_first_line = '▔'
 let g:gitgutter_sign_modified_removed = '▒'
 
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+nmap <LEADER>gf :GitGutterFold<cr>
 
 " ==============================================
 " ============== git-flog=======================
@@ -197,9 +206,9 @@ nnoremap <LEADER>gb :Flog<cr>
 " ============== Rainbow =======================
 " ==============================================
 let g:rainbow_active = 1
+	" \	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+	" \	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
 let g:rainbow_conf = {
-	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
 	\	'operators': '_->_',
 	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
 	\	'separately': {
