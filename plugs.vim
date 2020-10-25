@@ -26,9 +26,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
     Plug 'Raimondi/delimitMate'                                 " auto [ { ' ...
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+    Plug 'voldikss/vim-floaterm'
     " ==== plug 4 git ====
-    Plug 'tpope/vim-fugitive'
-    Plug 'rbong/vim-flog'
     Plug 'airblade/vim-gitgutter'
 call plug#end()
 
@@ -196,11 +196,6 @@ nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
 nmap <LEADER>gf :GitGutterFold<cr>
 
-" ==============================================
-" ============== git-flog=======================
-" ==============================================
-nnoremap <LEADER>gb :Flog<cr>
-
 
 " ==============================================
 " ============== Rainbow =======================
@@ -228,3 +223,13 @@ let g:rainbow_conf = {
 	\		'css': 0,
 	\	}
 	\}
+
+
+" ==============================================
+" ============== fzf.vim =======================
+" ==============================================
+let g:fzf_preview_window = 'right:50%'
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
+nmap <c-p> :Files<cr>
+nmap <m-f> :Ag<cr>
+

@@ -66,6 +66,11 @@
 "      |----------------+--------------------------------------------+-------------|
 "      | git            | stage/unstage on coc-explorer              | <</>>       |
 "      |                | open graph of commit & branch              | <sp>gb      |
+"      |                | next/prev hunk                             | [h ]h       |
+"      |                | git fold to only show hunks                | <sp>gf      |
+"      |----------------+--------------------------------------------+-------------|
+"      | fzf            | search file in current directory           | <c-p>       |
+"      |                | search content in file                     | <m-f>       |
 "      |----------------+--------------------------------------------+-------------|
 "
 "   TODO:
@@ -230,6 +235,7 @@ map th :-tabnext<CR>
 map tl :tabnext<CR>
 
 " -------------- place holder
+imap <c-p> <++>  " put a placeholder
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 
@@ -261,6 +267,10 @@ map <LEADER>rc :tabnew  ~/.config/nvim/init.vim<CR>
 
 " call figlet
 map tx :r !figlet
+
+" nmap <LEADER>gb :tabnew<cr>:term<cr>igit log --graph --pretty=oneline<cr><esc>
+nmap <LEADER>gb :FloatermNew git log --graph --pretty='\%h \%s'<cr><esc>
+
 
 
 " ==============================================
