@@ -1,16 +1,15 @@
-# my nvim configuration
+# my nvim/zsh/fzf... configuration
 
 ## Install Neovim
 - Download Nvim
 ```
 wget --quiet https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage --output-document nvim
 ```
-- 添加权限
+- add execute permission
 ```
 chmod +x nvim
 ```
-
-- 移动到系统路径
+- move to system bin
 ```
 sudo chown root:root nvim
 sudo mv nvim /usr/bin
@@ -27,7 +26,7 @@ git clone https://github.com/ArtisticZhao/nvim
 ```
 The plug will auto install!
 
-## Q&A
+## Question Record
 #### E117: Unknown function: SemshiBufWipeout
 ```
 :UpdateRemotePlugins
