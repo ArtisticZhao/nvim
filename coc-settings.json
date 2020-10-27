@@ -55,43 +55,7 @@
         "UltiSnips",
         "$HOME/.config/nvim/myUltiSnips/"
     ],
-    /** language server configurations */
-    "languageserver": {
-        "ccls": {
-            "command": "ccls",
-            "filetypes": [
-                "c",
-                "cpp",
-                "cuda",
-                "objc",
-                "objcpp"
-            ],
-            "rootPatterns": [
-                ".ccls",
-                "compile_commands.json"
-            ],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls"
-                },
-                "client": {
-                    "snippetSupport": true
-                },
-                "highlight": {
-                    "lsRanges": true
-                }
-            }
-        }
-    },
     "coc.preferences.jumpCommand": "tab drop",
     /** coc-explorer */
-    "explorer.icon.enableNerdfont": true,
-    /** Python Config */
-    "python.autoComplete.addBrackets": true,
-    "python.jediEnabled": false,
-    "python.formatting.provider": "yapf",
-    "python.formatting.yapfArgs": [
-        "--style",
-        "{SPACES_AROUND_POWER_OPERATOR: True, SPACES_BEFORE_COMMENT: 1}"
-    ]
+    "explorer.icon.enableNerdfont": true
 }
