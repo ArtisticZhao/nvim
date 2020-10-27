@@ -276,27 +276,27 @@ nmap <LEADER>gb :FloatermNew git log --graph --pretty='\%h \%s'<cr><esc>
 " ==============================================
 " ============== Terminal Window ===============
 " ==============================================
-let g:term_buf = 0
-let g:term_win = 0
-function! Term_toggle(height)
-    if win_gotoid(g:term_win)
-        hide
-    else
-        botright new
-        exec "resize " . a:height
-        try
-            exec "buffer " . g:term_buf
-        catch
-            call termopen($SHELL, {"detach": 0})
-            let g:term_buf = bufnr("")
-        endtry
-        startinsert!
-        let g:term_win = win_getid()
-    endif
-endfunction
+" let g:term_buf = 0
+" let g:term_win = 0
+" function! Term_toggle(height)
+"     if win_gotoid(g:term_win)
+"         hide
+"     else
+"         botright new
+"         exec "resize " . a:height
+"         try
+"             exec "buffer " . g:term_buf
+"         catch
+"             call termopen($SHELL, {"detach": 0})
+"             let g:term_buf = bufnr("")
+"         endtry
+"         startinsert!
+"         let g:term_win = win_getid()
+"     endif
+" endfunction
 " CTRL + t to toggle terminal wimdow
-nnoremap <C-t> :call Term_toggle(10)<cr>
-tnoremap <C-t> <C-\><C-n>:call Term_toggle(10)<cr>
+nnoremap <C-t> :FloatermToggle quick<cr>
+tnoremap <C-t> <C-\><C-n>:FloatermToggle quick<cr>
 " <ESC> Terminal go back to normal mode
 tnoremap <Esc> <C-\><C-n>
 " When switching to terminal windows it goes into insert mode automatically

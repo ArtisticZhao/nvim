@@ -28,6 +28,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'voldikss/vim-floaterm'
+    Plug 'mhinz/vim-startify'
     " ==== plug 4 git ====
     Plug 'airblade/vim-gitgutter'
 call plug#end()
@@ -232,4 +233,13 @@ let g:fzf_preview_window = 'right:50%'
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
 nmap <c-p> :Files<cr>
 nmap <m-f> :Ag<cr>
+
+
+" ==============================================
+" ============== floaterm ======================
+" ==============================================
+" Set floaterm window's background to black
+hi Floaterm guibg=black
+" Set floating window border line color to cyan, and background to orange
+hi FloatermBorder guibg=cyan guifg=orange 
 
