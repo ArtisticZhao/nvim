@@ -6,84 +6,85 @@
 "
 "
 "
-"      |----------------+--------------------------------------------+----------------|
-"      | Category       | Function                                   | KEYMAP         |
-"      |----------------+--------------------------------------------+----------------|
-"      | Navigation     | Navigation                                 | h j k l        |
-"      |                | Navigation in i-mode                       | <c-[hjkl]>     |
-"      |                | Speed Navigation                           | J K            |
-"      |                | <Home> <End>                               | H L            |
-"      |                | next/prev word (split by space or ,._=...) | w/b            |
-"      |                | next/prev WORD (split only with sp)        | W/B            |
-"      |                | end of word/WORD                           | e/E            |
-"      |                | jump matchs e.g. { -> }                    | %              |
-"      |                | Find backward/forward a char               | f[x]/F[x]      |
-"      |                | Find next/prev f[x]                        | =/-            |
-"      |----------------+--------------------------------------------+----------------|
-"      | Insertion      | Insert Mode at cursor                      | i              |
-"      |                | Insert Mode at line header                 | I              |
-"      |                | Insert Mode after cursor                   | a              |
-"      |                | Insert Mode at line tail                   | A              |
-"      |                | Insert Mode with new line below            | o              |
-"      |                | Insert Mode with new line above            | O              |
-"      |                | Insert Mode at insert before               | gi             |
-"      |----------------+--------------------------------------------+----------------|
-"      | Edition        | replace a char                             | r              |
-"      |                | replace word under cursor                  | <c-h>          |
-"      |                | search word under cursor (i,n,v-mode)      | <c-f>          |
-"      |                | Copy to Cilpboard                          | Y              |
-"      |                | Paste from Cilpboard                       | P              |
-"      |                | indent/indent leftward                     | >/<            |
-"      |                | Select all                                 | <c-a>          |
-"      |                | change upper/lowercase                     | `              |
-"      |                | add empty row (n-mode)                     | <enter>        |
-"      |----------------+--------------------------------------------+----------------|
-"      | Files          | Write file(turn to n-mode when i-mode)     | <c-s>          |
-"      |                | Quit                                       | <c-q>          |
-"      |                | Open Config File                           | <sp>RC         |
-"      |                | Spell Check                                | <sp>SC         |
-"      |                | Go to file                                 | gf             |
-"      |----------------+--------------------------------------------+----------------|
-"      | Split Windows  | split windows to                           | <sp>s[hjkl]    |
-"      |                | Splited Windows Navigation                 | <m-[hjkl]>     |
-"      |                | toggle terminal                            | <c-t>          |
-"      |----------------+--------------------------------------------+----------------|
-"      | Tab            | new tab                                    | tn             |
-"      |                | next tab                                   | tl or <tab>    |
-"      |                | prev tab                                   | th or <s-tab>  |
-"      |----------------+--------------------------------------------+----------------|
-"      | PLUGS          | Align by = (v-mode muti-lines)             | <sp>ga[=]      |
-"      |                | unto tree                                  | <sp>ut         |
-"      |----------------+--------------------------------------------+----------------|
-"      | Table Mode     | toggle table mode                          | <sp>tm         |
-"      | (use '!'       | table header                               | !A!B!C!        |
-"      | represent'\|') | Dividing line                              | !!(i-mode)     |
-"      |                | Delete Column                              | <l>tdc         |
-"      |                | Insert Column before                       | <l>tiC         |
-"      |                | Insert Column after                        | <l>tic         |
-"      |----------------+--------------------------------------------+----------------|
-"      | coc-Snippets   | expand or jump to next placeholder         | <c-d>          |
-"      |                | jump to previous placeholder               | <c-e>          |
-"      |----------------+--------------------------------------------+----------------|
-"      | Nerd-Commenter | comment                                    | <sp>cc         |
-"      |                | uncomment                                  | <sp>cu         |
-"      |                | toggle comment (also work in i-mode)       | <c-/>          |
-"      |----------------+--------------------------------------------+----------------|
-"      | git            | stage/unstage on coc-explorer              | <</>>          |
-"      |                | open graph of commit & branch              | <sp>gb         |
-"      |                | next/prev hunk                             | [h ]h          |
-"      |                | git fold to only show hunks                | <sp>gf         |
-"      |----------------+--------------------------------------------+----------------|
-"      | fzf            | search file in current directory           | <c-p>          |
-"      |                | search content in file                     | <m-f>          |
-"      |----------------+--------------------------------------------+----------------|
+"      |----------------+--------------------------------------------+-------------|
+"      | Category       | Function                                   | KEYMAP      |
+"      |----------------+--------------------------------------------+-------------|
+"      | Navigation     | Navigation                                 | h j k l     |
+"      |                | Navigation in i-mode                       | <c-[hjkl]>  |
+"      |                | Speed Navigation                           | J K         |
+"      |                | <Home> <End>                               | H L         |
+"      |                | next/prev word (split by space or ,._=...) | w/b         |
+"      |                | next/prev WORD (split only with sp)        | W/B         |
+"      |                | end of word/WORD                           | e/E         |
+"      |                | jump matchs e.g. { -> }                    | %           |
+"      |                | Find backward/forward a char               | f[x]/F[x]   |
+"      |                | Find next/prev f[x]                        | =/-         |
+"      |----------------+--------------------------------------------+-------------|
+"      | Insertion      | Insert Mode at cursor                      | i           |
+"      |                | Insert Mode at line header                 | I           |
+"      |                | Insert Mode after cursor                   | a           |
+"      |                | Insert Mode at line tail                   | A           |
+"      |                | Insert Mode with new line below            | o           |
+"      |                | Insert Mode with new line above            | O           |
+"      |                | Insert Mode at insert before               | gi          |
+"      |----------------+--------------------------------------------+-------------|
+"      | Edition        | replace a char                             | r           |
+"      |                | replace word under cursor                  | <c-h>       |
+"      |                | search word under cursor (i,n,v-mode)      | <c-f>       |
+"      |                | Copy to Cilpboard                          | Y           |
+"      |                | Paste from Cilpboard                       | P           |
+"      |                | indent/indent leftward                     | >/<         |
+"      |                | Select all                                 | <c-a>       |
+"      |                | change upper/lowercase                     | `           |
+"      |                | add empty row (n-mode)                     | <enter>     |
+"      |----------------+--------------------------------------------+-------------|
+"      | Files          | Write file(turn to n-mode when i-mode)     | <c-s>       |
+"      |                | Quit                                       | <c-q>       |
+"      |                | Open Config File                           | <sp>RC      |
+"      |                | Spell Check                                | <sp>SC      |
+"      |                | Go to file                                 | gf          |
+"      |----------------+--------------------------------------------+-------------|
+"      | Split Windows  | split windows to                           | <sp>s[hjkl] |
+"      |                | Splited Windows Navigation                 | <m-[hjkl]>  |
+"      |                | toggle terminal                            | <c-t>       |
+"      |----------------+--------------------------------------------+-------------|
+"      | Buffer         | next buffer                                | <tab>       |
+"      |                | prev buffer                                | <s-tab>     |
+"      |                | jump buffer X(buffer index)                | <sp>X       |
+"      |----------------+--------------------------------------------+-------------|
+"      |----------------+--------------------------------------------+-------------|
+"      | easy align     | Align by = (v-mode muti-lines)             | <sp>ga[=]   |
+"      |                | align by first space                       | <sp>ga1<sp> |
+"      |----------------+--------------------------------------------+-------------|
+"      | unto tree      | toggle unto tree                           | <sp>ut      |
+"      |----------------+--------------------------------------------+-------------|
+"      | Table Mode     | toggle table mode                          | <sp>tm      |
+"      | (use '!'       | table header                               | !A!B!C!     |
+"      | represent'\|') | Dividing line                              | !!(i-mode)  |
+"      |                | Delete Column                              | <l>tdc      |
+"      |                | Insert Column before                       | <l>tiC      |
+"      |                | Insert Column after                        | <l>tic      |
+"      |----------------+--------------------------------------------+-------------|
+"      | coc-Snippets   | expand or jump to next placeholder         | <c-d>       |
+"      |                | jump to previous placeholder               | <c-e>       |
+"      |----------------+--------------------------------------------+-------------|
+"      | Nerd-Commenter | comment                                    | <sp>cc      |
+"      |                | uncomment                                  | <sp>cu      |
+"      |                | toggle comment (also work in i-mode)       | <c-/>       |
+"      |----------------+--------------------------------------------+-------------|
+"      | git            | stage/unstage on coc-explorer              | <</>>       |
+"      |                | open lazygit                               | <c-g>       |
+"      |                | open graph of commit & branch              | <sp>gb      |
+"      |                | next/prev hunk                             | [h ]h       |
+"      |                | git fold to only show hunks                | <sp>gf      |
+"      |----------------+--------------------------------------------+-------------|
+"      | fzf            | search file in current directory           | <c-p>       |
+"      |                | search content in file                     | <m-f>       |
+"      |----------------+--------------------------------------------+-------------|
 "
 "   TODO:
-"     - <sp>rc open file in current buffer if empty;
 "     - resize window -> move the split line
 "     - git diff files
-"     - find file in dir <c-p> like vscode
-"     - find content in files like vscode's search.
 
 
 
@@ -175,10 +176,6 @@ imap <c-j> <down>
 imap <c-k> <up>
 imap <c-l> <right>
 
-" Ctrl + n or m will move up/down the view port without moving the cursor
-noremap <C-m> 5<C-y>
-noremap <C-n> 5<C-e>
-
 " -------------- add empty row
 noremap <cr> o<esc>
 
@@ -190,12 +187,9 @@ map <LEADER>sc :set spell!<CR>
 
 " -------------- save & quit
 map <c-q> :q<CR>
-map Q :q<cr>
 map <c-s> :w<CR>
 imap <c-s> <esc>:w<CR>
 
-" -------------- open file under cursor in new tab
-noremap gf <c-w>gf
 
 " -------------- Copy to system clipboard
 vnoremap Y "+y
@@ -241,12 +235,13 @@ map <C-down> :res -5<CR>
 map <C-left> :vertical resize+5<CR>
 map <C-right> :vertical resize-5<CR>
 
-" -------------- tabs
-map tn :tabe<CR>
-map th :-tabnext<CR>
-map tl :tabnext<CR>
-map <tab> :tabnext<CR>
-map <s-tab> :-tabnext<CR>
+" -------------- buffers
+" map tn :tabe<CR>
+" map th :-tabnext<CR>
+" map tl :tabnext<CR>
+map Q :bd<cr>
+map <tab> :bn<CR>
+map <s-tab> :bp<CR>
 " -------------- place holder
 imap <c-p> <++>  " put a placeholder
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
@@ -264,7 +259,7 @@ endif
 " -------------- open device tree only work on kernel dir
 function! OpenDeviceTree()
     if getcwd()=="/home/lilacsat/learn_linux/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek"
-        :tabnew ./arch/arm/boot/dts/imx6ull-alientek-emmc.dts
+        :e ./arch/arm/boot/dts/imx6ull-alientek-emmc.dts
     else
         echo getcwd()
     endif
@@ -276,16 +271,15 @@ map <LEADER>dt :call OpenDeviceTree()<CR>
 noremap <LEADER>R :source $MYVIMRC<CR>
 
 " -------------- open neoVIM configure file in new tab
-map <silent><expr> <LEADER>rc :e  ~/.config/nvim/init.vim<CR>
-    " \ Is_emptytab() ? ':e  ~/.config/nvim/init.vim<CR>' :
-    " \ ':tabnew  ~/.config/nvim/init.vim<CR>'
-
+map <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " -------------- call figlet
 map tx :r !figlet
 " -------------- show git log graph 
 nmap <LEADER>gb :FloatermNew git log --graph --pretty='\%h \%s'<cr><esc>
-
+" CTRL + t to toggle terminal wimdow
+nnoremap <C-g> :FloatermNew --height=0.8 --width=0.9 --wintype=floating --name=lg --position=topleft --autoclose=2 lazygit<cr>
+tnoremap <c-h> <esc>
 
 " ==============================================
 " ============== Terminal Window ===============

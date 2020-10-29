@@ -11,6 +11,8 @@
 call plug#begin('~/.vim/plugged')
     " ==== vision ====
     Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    " Plug 'ap/vim-buftabline'
     Plug 'connorholyday/vim-snazzy'                             " color theme
     Plug 'luochen1990/rainbow'
     Plug 'machakann/vim-highlightedyank'
@@ -35,11 +37,40 @@ call plug#end()
 
 
 " ==============================================
+" ============== airline =======================
+" ==============================================
+let g:airline_powerline_fonts = 1
+let g:airline_theme="papercolor"
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+" let g:airline_symbols.branch = ''
+" let g:airline_symbols.readonly = ''
+" let g:airline_symbols.linenr = '☰'
+" let g:airline_symbols.maxlinenr = ''
+" enable tabline to show buffers
+let g:airline#extensions#tabline#enabled = 1
+" show buffers' index
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+" quickly jump to buffers
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+
+" ==============================================
 " ============== Semshi ========================
 " ==============================================
 hi semshiLocal           ctermfg=209 guifg=#ff875f
 hi semshiGlobal          ctermfg=214 guifg=#ffaf00
-hi semshiImported        ctermfg=214 guifg=#ffaf00 cterm=bold gui=bold
+hi semshiImported        ctermfg=214 guifg=#ffaf00 cterm=bold      gui=bold
 hi semshiParameter       ctermfg=75  guifg=#5fafff
 hi semshiParameterUnused ctermfg=117 guifg=#87d7ff cterm=underline gui=underline
 hi semshiFree            ctermfg=218 guifg=#ffafd7
@@ -47,10 +78,9 @@ hi semshiBuiltin         ctermfg=207 guifg=#ff5fff
 hi semshiAttribute       ctermfg=49  guifg=#00ffaf
 hi semshiSelf            ctermfg=249 guifg=#b2b2b2
 hi semshiUnresolved      ctermfg=226 guifg=#ffff00 cterm=underline gui=underline
-hi semshiSelected        ctermfg=231 guifg=#ffffff ctermbg=161 guibg=#d7005f
-
-hi semshiErrorSign       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d70000
-hi semshiErrorChar       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d70000
+hi semshiSelected        ctermfg=231 guifg=#ffffff ctermbg=161     guibg=#d7005f
+hi semshiErrorSign       ctermfg=231 guifg=#ffffff ctermbg=160     guibg=#d70000
+hi semshiErrorChar       ctermfg=231 guifg=#ffffff ctermbg=160     guibg=#d70000
 sign define semshiError text=E> texthl=semshiErrorSign
 
 
@@ -72,6 +102,7 @@ nmap ga <Plug>(EasyAlign)
 " ==============================================
 " ============== NERD-Commenter ================
 " ==============================================
+"
 " KEY MAP: <L>cc comment; <L>cu uncomment
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
