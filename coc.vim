@@ -30,7 +30,9 @@ set shortmess+=c
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
+" use tab at line header to get correct indent
 inoremap <silent><expr> <TAB>
+      \ Is_emptyline() ? "\<esc>cc" :
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
