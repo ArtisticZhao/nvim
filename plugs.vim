@@ -31,9 +31,18 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'voldikss/vim-floaterm'
     Plug 'mhinz/vim-startify'
+    Plug 'ntpeters/vim-better-whitespace'
     " ==== plug 4 git ====
     Plug 'airblade/vim-gitgutter'
 call plug#end()
+
+
+" ==============================================
+" ============== use color theme ===============
+" ==============================================
+color snazzy
+" let g:molokai_original = 1
+" let g:rehash256 = 1
 
 
 " ==============================================
@@ -46,10 +55,10 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-" let g:airline_symbols.branch = ''
-" let g:airline_symbols.readonly = ''
-" let g:airline_symbols.linenr = '☰'
-" let g:airline_symbols.maxlinenr = ''
+
+" change the tabline display format.
+" this format only show the short dir when filename is not unique
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " enable tabline to show buffers
 let g:airline#extensions#tabline#enabled = 1
 " show buffers' index
@@ -64,6 +73,7 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
+
 
 " ==============================================
 " ============== Semshi ========================
@@ -84,12 +94,6 @@ hi semshiErrorChar       ctermfg=231 guifg=#ffffff ctermbg=160     guibg=#d70000
 sign define semshiError text=E> texthl=semshiErrorSign
 
 
-" ==============================================
-" ============== use color theme ===============
-" ==============================================
-color snazzy
-" let g:molokai_original = 1
-" let g:rehash256 = 1
 " ==============================================
 " ============== easy Align ====================
 " ==============================================
@@ -272,5 +276,11 @@ nmap <m-f> :Ag<cr>
 " Set floaterm window's background to black
 hi Floaterm guibg=black
 " Set floating window border line color to cyan, and background to orange
-hi FloatermBorder guibg=cyan guifg=orange 
+hi FloatermBorder guibg=cyan guifg=orange
+
+
+" ==============================================
+" ============== better whitespace =============
+" ==============================================
+let g:better_whitespace_enabled=1
 

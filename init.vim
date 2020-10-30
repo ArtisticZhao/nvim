@@ -133,16 +133,6 @@ set showcmd
 set wildmenu
 set scrolloff=5
 set nowrap
-" See [http://vim.wikia.com/wiki/Highlight_unwanted_spaces]
-" - highlight trailing whitespace in red
-" - have this highlighting not appear whilst you are typing in insert mode
-" - have the highlighting of whitespace apply when you open new buffers
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches() " for performance
 
 
 " ==============================================
@@ -275,7 +265,7 @@ map <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " -------------- call figlet
 map tx :r !figlet
-" -------------- show git log graph 
+" -------------- show git log graph
 nmap <LEADER>gb :FloatermNew git log --graph --pretty='\%h \%s'<cr><esc>
 " CTRL + t to toggle terminal wimdow
 nnoremap <C-g> :FloatermNew --height=0.8 --width=0.9 --wintype=floating --name=lg --position=topleft --autoclose=2 lazygit<cr>
