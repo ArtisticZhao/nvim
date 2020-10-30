@@ -275,8 +275,8 @@ tnoremap <c-h> <esc>
 " ============== Terminal Window ===============
 " ==============================================
 " CTRL + t to toggle terminal wimdow
-nnoremap <C-t> :FloatermToggle quick<cr>
-tnoremap <C-t> <C-\><C-n>:FloatermToggle quick<cr>
+nnoremap <silent> <C-t> :FloatermToggle quick<cr>
+tnoremap <silent> <C-t> <C-\><C-n>:FloatermToggle quick<cr>
 " <ESC> Terminal go back to normal mode
 tnoremap <Esc> <C-\><C-n>
 " When switching to terminal windows it goes into insert mode automatically

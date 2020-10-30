@@ -9,11 +9,13 @@
 " ============== Plug List =====================
 " ==============================================
 call plug#begin('~/.vim/plugged')
+    " colortheme
+    Plug 'connorholyday/vim-snazzy'
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'morhetz/gruvbox'
     " ==== vision ====
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    " Plug 'ap/vim-buftabline'
-    Plug 'connorholyday/vim-snazzy'                             " color theme
     Plug 'luochen1990/rainbow'
     Plug 'machakann/vim-highlightedyank'
     " ==== function ====
@@ -40,11 +42,17 @@ call plug#end()
 " ==============================================
 " ============== use color theme ===============
 " ==============================================
-color snazzy
+set background=dark
+" -- snazzy
+" color snazzy
+" -- molokai
 " let g:molokai_original = 1
 " let g:rehash256 = 1
-
-
+" -- solarized
+" colorscheme solarized
+" -- gruvbox
+let g:gruvbox_sign_colum='bg'
+colorscheme gruvbox
 " ==============================================
 " ============== airline =======================
 " ==============================================
@@ -218,9 +226,11 @@ highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 " highlight GitGutterAddLineNr          guifg=#009900 ctermfg=2
 " highlight GitGutterChangeLineNr       guifg=#0c7d9d ctermfg=3
 " highlight GitGutterDeleteLineNr       guifg=#ff2222 ctermfg=1
-let g:gitgutter_sign_allow_clobber = 0           " not allow gitgutter overwrite other symbol
+" not allow gitgutter overwrite other symbol
+let g:gitgutter_sign_allow_clobber = 0
 let g:gitgutter_map_keys = 0
-let g:gitgutter_override_sign_column_highlight = 0
+" use configured color not use color in colortheme
+let g:gitgutter_override_sign_column_highlight = 1
 let g:gitgutter_preview_win_floating = 1
 let g:gitgutter_sign_added = '▉'
 let g:gitgutter_sign_modified = '▉'
@@ -283,4 +293,5 @@ hi FloatermBorder guibg=cyan guifg=orange
 " ============== better whitespace =============
 " ==============================================
 let g:better_whitespace_enabled=1
-
+nnoremap ]w :NextTrailingWhitespace<CR>
+nnoremap [w :PrevTrailingWhitespace<CR>
