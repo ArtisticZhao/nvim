@@ -261,8 +261,6 @@ function! OpenDeviceTree()
 endfunction
 map <LEADER>dt :call OpenDeviceTree()<CR>
 
-" -------------- open linux documents in fzf by ag
-map <F10> :call fzf#vim#ag('', {'dir': '~/learn_linux/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek/Documentation'})
 " 让配置变更立即生效, this configure not work well in neoVIM!
 " autocmd BufWritePost $MYVIMRC source $MYVIMRC
 noremap <LEADER>R :source $MYVIMRC<CR>

@@ -9,78 +9,226 @@
 " ============== Plug List =====================
 " ==============================================
 call plug#begin('~/.vim/plugged')
-    " colortheme
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}             " coc
+
+
+    " ============= colortheme =============
     Plug 'connorholyday/vim-snazzy'
     Plug 'altercation/vim-colors-solarized'
     Plug 'morhetz/gruvbox'
-    " ==== vision ====
+        set background=dark
+        " -- snazzy
+        " color snazzy
+        " -- molokai
+        " let g:molokai_original = 1
+        " let g:rehash256 = 1
+        " -- solarized
+        " colorscheme solarized
+        " -- gruvbox
+        let g:gruvbox_sign_colum='bg'
+        colorscheme gruvbox
+
+
+    " ============= vision     =============
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+        let g:airline_powerline_fonts = 1
+        let g:airline_theme="papercolor"
+        " powerline symbols
+        let g:airline_left_sep = ''
+        let g:airline_left_alt_sep = ''
+        let g:airline_right_sep = ''
+        let g:airline_right_alt_sep = ''
+
+        " change the tabline display format.
+        " this format only show the short dir when filename is not unique
+        let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+        " enable tabline to show buffers
+        let g:airline#extensions#tabline#enabled = 1
+        " show buffers' index
+        let g:airline#extensions#tabline#buffer_idx_mode = 1
+        " quickly jump to buffers
+        nmap <leader>1 <Plug>AirlineSelectTab1
+        nmap <leader>2 <Plug>AirlineSelectTab2
+        nmap <leader>3 <Plug>AirlineSelectTab3
+        nmap <leader>4 <Plug>AirlineSelectTab4
+        nmap <leader>5 <Plug>AirlineSelectTab5
+        nmap <leader>6 <Plug>AirlineSelectTab6
+        nmap <leader>7 <Plug>AirlineSelectTab7
+        nmap <leader>8 <Plug>AirlineSelectTab8
+        nmap <leader>9 <Plug>AirlineSelectTab9
+
     Plug 'luochen1990/rainbow'
+        let g:rainbow_active = 1
+            " \	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+            " \	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+        let g:rainbow_conf = {
+            \	'operators': '_->_',
+            \	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+            \	'separately': {
+            \		'*': {},
+            \		'tex': {
+            \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+            \		},
+            \		'lisp': {
+            \			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+            \		},
+            \		'vim': {
+            \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+            \		},
+            \		'html': {
+            \			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+            \		},
+            \		'css': 0,
+            \	}
+            \}
+
+    Plug 'ntpeters/vim-better-whitespace'
+        let g:better_whitespace_enabled=1
+        nnoremap ]w :NextTrailingWhitespace<CR>
+        nnoremap [w :PrevTrailingWhitespace<CR>
+
     Plug 'machakann/vim-highlightedyank'
-    " ==== function ====
-    Plug 'preservim/nerdcommenter'
-    Plug 'mbbill/undotree'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}             " coc
     Plug 'jackguo380/vim-lsp-cxx-highlight'
-    Plug 'junegunn/vim-easy-align'
-    Plug 'junegunn/vim-peekaboo'                                " Show registers
-    Plug 'machakann/vim-highlightedyank'
-    Plug 'dhruvasagar/vim-table-mode'
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-    Plug 'Raimondi/delimitMate'                                 " auto [ { ' ...
+
+
+    " ============= speed      =============
+    Plug 'preservim/nerdcommenter'
+        " KEY MAP: <L>cc comment; <L>cu uncomment
+        " Add spaces after comment delimiters by default
+        let g:NERDSpaceDelims = 1
+        " Use compact syntax for prettified multi-line comments
+        let g:NERDCompactSexyComs = 1
+        " Align line-wise comment delimiters flush left instead of following code indentation
+        let g:NERDDefaultAlign = 'left'
+        " Add your own custom formats or override the defaults
+        let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+        " Allow commenting and inverting empty lines (useful when commenting a region)
+        let g:NERDCommentEmptyLines = 1
+        " Enable trimming of trailing whitespace when uncommenting
+        let g:NERDTrimTrailingWhitespace = 1
+        " Enable NERDCommenterToggle to check all selected lines is commented or not
+        let g:NERDToggleCheckAllLines = 1
+        " <c-/> to toggle comment; for some reason vim register c-/ as c-_
+        nmap <silent> <c-_> :call NERDComment("n", "Toggle")<CR>
+        xmap <silent> <c-_> :call NERDComment("x", "Toggle")<CR>
+        inoremap <silent> <c-_> <esc>:call NERDComment("n", "Toggle")<CR>i
+
+    Plug 'junegunn/vim-easy-align'
+        " Start interactive EasyAlign in visual mode (e.g. vipga)
+        xmap ga <Plug>(EasyAlign)
+        " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+        nmap ga <Plug>(EasyAlign)
+
+
+    Plug 'haya14busa/incsearch.vim'
+    Plug 'haya14busa/incsearch-fuzzy.vim'
+        map /  <Plug>(incsearch-forward)
+        map ?  <Plug>(incsearch-backward)
+        " enable auto nohlsearch
+        let g:incsearch#auto_nohlsearch = 1
+        map n  <Plug>(incsearch-nohl-n)
+        map N  <Plug>(incsearch-nohl-N)
+        map *  <Plug>(incsearch-nohl-*)
+        map #  <Plug>(incsearch-nohl-#)
+        map g* <Plug>(incsearch-nohl-g*)
+        map g# <Plug>(incsearch-nohl-g#)
+        " fuzzy find
+        function! s:config_fuzzyall(...) abort
+          return extend(copy({
+          \   'converters': [
+          \     incsearch#config#fuzzy#converter(),
+          \     incsearch#config#fuzzyspell#converter()
+          \   ],
+          \ }), get(a:, 1, {}))
+        endfunction
+        noremap <silent><expr> z/ incsearch#go(<SID>config_fuzzyall())
+        noremap <silent><expr> z? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
+
+    Plug 'easymotion/vim-easymotion'
+    Plug 'haya14busa/incsearch-easymotion.vim'
+        let g:EasyMotion_do_mapping = 0 " Disable default mappings
+        " Turn on case-insensitive feature
+        let g:EasyMotion_smartcase = 1
+        " Need one more keystroke, but on average, it may be more comfortable.
+        nmap s <Plug>(easymotion-overwin-f2)
+        " JK motions: Line motions
+        map <Leader>j <Plug>(easymotion-j)
+        map <Leader>k <Plug>(easymotion-k)
+        " incsearch.vim x fuzzy x vim-easymotion
+        function! s:config_easyfuzzymotion(...) abort
+          return extend(copy({
+          \   'converters': [incsearch#config#fuzzy#converter()],
+          \   'modules': [incsearch#config#easymotion#module()],
+          \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+          \   'is_expr': 0,
+          \   'is_stay': 1
+          \ }), get(a:, 1, {}))
+        endfunction
+        noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+
+
+    " ============= function   =============
+    Plug 'mbbill/undotree'
+        map <LEADER>ut :UndotreeToggle<CR>
+
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
+        let g:fzf_preview_window = 'right:50%'
+        let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
+        nmap <c-p> :Files<cr>
+        nmap <m-f> :Ag<cr>
+        " ------------- define AgIn to use Ag in dir
+        function! s:ag_in(bang, ...)
+          if !isdirectory(a:1)
+            throw 'not a valid directory: ' .. a:1
+          endif
+          call fzf#vim#ag(join(a:000[1:], ' '), fzf#vim#with_preview({'dir': a:1}, 'right:50%'), a:bang)
+          " If you don't want preview option, use this
+          " call fzf#vim#ag(join(a:000[1:], ' '), {'dir': a:1}, a:bang)
+        endfunction
+        command! -bang -nargs=+ -complete=dir AgIn call s:ag_in(<bang>0, <f-args>)
+        " -------------- open linux documents in fzf by ag
+        map <F10> :AgIn! /home/lilacsat/learn_linux/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek/Documentation<cr>
+
     Plug 'voldikss/vim-floaterm'
+        " Set floaterm window's background to black
+        hi Floaterm guibg=black
+        " Set floating window border line color to cyan, and background to orange
+        hi FloatermBorder guibg=cyan guifg=orange
+
     Plug 'mhinz/vim-startify'
-    Plug 'ntpeters/vim-better-whitespace'
-    " ==== plug 4 git ====
+    Plug 'junegunn/vim-peekaboo'                                " Show registers
+    Plug 'dhruvasagar/vim-table-mode'
+    Plug 'Raimondi/delimitMate'                                 " auto [ { ' ...
+
+
+    " ============= plug 4 git =============
     Plug 'airblade/vim-gitgutter'
-call plug#end()
+        highlight GitGutterAdd    guifg=#009900 ctermfg=2
+        highlight GitGutterChange guifg=#0c7d9d ctermfg=3
+        highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+        " highlight GitGutterAddLineNr          guifg=#009900 ctermfg=2
+        " highlight GitGutterChangeLineNr       guifg=#0c7d9d ctermfg=3
+        " highlight GitGutterDeleteLineNr       guifg=#ff2222 ctermfg=1
+        " not allow gitgutter overwrite other symbol
+        let g:gitgutter_sign_allow_clobber = 0
+        let g:gitgutter_map_keys = 0
+        " use configured color not use color in colortheme
+        let g:gitgutter_override_sign_column_highlight = 1
+        let g:gitgutter_preview_win_floating = 1
+        let g:gitgutter_sign_added = '▉'
+        let g:gitgutter_sign_modified = '▉'
+        let g:gitgutter_sign_removed = '▂'
+        let g:gitgutter_sign_removed_first_line = '▔'
+        let g:gitgutter_sign_modified_removed = '▒'
 
+        nmap ]h <Plug>(GitGutterNextHunk)
+        nmap [h <Plug>(GitGutterPrevHunk)
+        nmap <LEADER>gf :GitGutterFold<cr>
+        call plug#end()
 
-" ==============================================
-" ============== use color theme ===============
-" ==============================================
-set background=dark
-" -- snazzy
-" color snazzy
-" -- molokai
-" let g:molokai_original = 1
-" let g:rehash256 = 1
-" -- solarized
-" colorscheme solarized
-" -- gruvbox
-let g:gruvbox_sign_colum='bg'
-colorscheme gruvbox
-" ==============================================
-" ============== airline =======================
-" ==============================================
-let g:airline_powerline_fonts = 1
-let g:airline_theme="papercolor"
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-
-" change the tabline display format.
-" this format only show the short dir when filename is not unique
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-" enable tabline to show buffers
-let g:airline#extensions#tabline#enabled = 1
-" show buffers' index
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-" quickly jump to buffers
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
 
 
 " ==============================================
@@ -100,47 +248,6 @@ hi semshiSelected        ctermfg=231 guifg=#ffffff ctermbg=161     guibg=#d7005f
 hi semshiErrorSign       ctermfg=231 guifg=#ffffff ctermbg=160     guibg=#d70000
 hi semshiErrorChar       ctermfg=231 guifg=#ffffff ctermbg=160     guibg=#d70000
 sign define semshiError text=E> texthl=semshiErrorSign
-
-
-" ==============================================
-" ============== easy Align ====================
-" ==============================================
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
-
-" ==============================================
-" ============== NERD-Commenter ================
-" ==============================================
-"
-" KEY MAP: <L>cc comment; <L>cu uncomment
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-" Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-" Enable NERDCommenterToggle to check all selected lines is commented or not
-let g:NERDToggleCheckAllLines = 1
-
-" <c-/> to toggle comment; for some reason vim register c-/ as c-_
-nmap <silent> <c-_> :call NERDComment("n", "Toggle")<CR>
-xmap <silent> <c-_> :call NERDComment("x", "Toggle")<CR>
-inoremap <silent> <c-_> <esc>:call NERDComment("n", "Toggle")<CR>i
-
-
-" ==============================================
-" ============== undo-tree =====================
-" ==============================================
-map <LEADER>ut :UndotreeToggle<CR>
 
 
 " ==============================================
@@ -216,98 +323,3 @@ hi default link LspCxxHlSymDependentName Function
 " C++20 concepts, maybe type is sufficient for now....
 hi default link LspCxxHlSymConcept Type
 
-
-" ==============================================
-" ============== GitGutter =====================
-" ==============================================
-highlight GitGutterAdd    guifg=#009900 ctermfg=2
-highlight GitGutterChange guifg=#0c7d9d ctermfg=3
-highlight GitGutterDelete guifg=#ff2222 ctermfg=1
-" highlight GitGutterAddLineNr          guifg=#009900 ctermfg=2
-" highlight GitGutterChangeLineNr       guifg=#0c7d9d ctermfg=3
-" highlight GitGutterDeleteLineNr       guifg=#ff2222 ctermfg=1
-" not allow gitgutter overwrite other symbol
-let g:gitgutter_sign_allow_clobber = 0
-let g:gitgutter_map_keys = 0
-" use configured color not use color in colortheme
-let g:gitgutter_override_sign_column_highlight = 1
-let g:gitgutter_preview_win_floating = 1
-let g:gitgutter_sign_added = '▉'
-let g:gitgutter_sign_modified = '▉'
-let g:gitgutter_sign_removed = '▂'
-let g:gitgutter_sign_removed_first_line = '▔'
-let g:gitgutter_sign_modified_removed = '▒'
-
-nmap ]h <Plug>(GitGutterNextHunk)
-nmap [h <Plug>(GitGutterPrevHunk)
-nmap <LEADER>gf :GitGutterFold<cr>
-
-
-" ==============================================
-" ============== Rainbow =======================
-" ==============================================
-let g:rainbow_active = 1
-	" \	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-	" \	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-let g:rainbow_conf = {
-	\	'operators': '_->_',
-	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-	\	'separately': {
-	\		'*': {},
-	\		'tex': {
-	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-	\		},
-	\		'lisp': {
-	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-	\		},
-	\		'vim': {
-	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-	\		},
-	\		'html': {
-	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-	\		},
-	\		'css': 0,
-	\	}
-	\}
-
-
-" ==============================================
-" ============== fzf.vim =======================
-" ==============================================
-let g:fzf_preview_window = 'right:50%'
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
-nmap <c-p> :Files<cr>
-nmap <m-f> :Ag<cr>
-
-function! s:ag_in(bang, ...)
-  if !isdirectory(a:1)
-    throw 'not a valid directory: ' .. a:1
-  endif
-  " Press `?' to enable preview window.
-  call fzf#vim#ag(join(a:000[1:], ' '), fzf#vim#with_preview({'dir': a:1}, 'right:50%'), a:bang)
-
-  " If you don't want preview option, use this
-  " call fzf#vim#ag(join(a:000[1:], ' '), {'dir': a:1}, a:bang)
-endfunction
-
-command! -bang -nargs=+ -complete=dir AgIn call s:ag_in(<bang>0, <f-args>)
-
-" -------------- open linux documents in fzf by ag
-map <F10> :AgIn! /home/lilacsat/learn_linux/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek/Documentation<cr>
-
-
-" ==============================================
-" ============== floaterm ======================
-" ==============================================
-" Set floaterm window's background to black
-hi Floaterm guibg=black
-" Set floating window border line color to cyan, and background to orange
-hi FloatermBorder guibg=cyan guifg=orange
-
-
-" ==============================================
-" ============== better whitespace =============
-" ==============================================
-let g:better_whitespace_enabled=1
-nnoremap ]w :NextTrailingWhitespace<CR>
-nnoremap [w :PrevTrailingWhitespace<CR>
