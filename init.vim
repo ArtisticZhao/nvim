@@ -195,6 +195,9 @@ vnoremap / y/<c-r>"<cr>
 nnoremap <c-f> /<c-r><c-w><cr>
 inoremap <c-f> <esc>/<c-r><c-w><cr>
 xnoremap <c-f> y/<c-r>"<cr>
+" n for search down N for search up
+nnoremap <silent> n /<CR>zz
+nnoremap <silent> N ?<CR>zz
 " next/prev fx Fx
 nnoremap - ,
 nnoremap = ;
@@ -235,6 +238,8 @@ map <s-tab> :bp<CR>
 " -------------- place holder
 imap <c-p> <++>  " put a placeholder
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+" -------------- remap to put -> in C files
+au filetype c imap <buffer> ` ->
 
 
 " ==============================================
@@ -256,6 +261,8 @@ function! OpenDeviceTree()
 endfunction
 map <LEADER>dt :call OpenDeviceTree()<CR>
 
+" -------------- open linux documents in fzf by ag
+map <F10> :call fzf#vim#ag('', {'dir': '~/learn_linux/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek/Documentation'})
 " 让配置变更立即生效, this configure not work well in neoVIM!
 " autocmd BufWritePost $MYVIMRC source $MYVIMRC
 noremap <LEADER>R :source $MYVIMRC<CR>

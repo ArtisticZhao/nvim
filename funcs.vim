@@ -30,11 +30,10 @@
 " return:      when line is empty will return 1
 " call:        call at coc.vim to redefine the tab behavior
 " =====================================================
-function! Is_emptyline() 
+function! Is_emptyline()
     let line=getline('.')
     if len(line)==0
         return 1
     endif
     return 0
 endfunction
-

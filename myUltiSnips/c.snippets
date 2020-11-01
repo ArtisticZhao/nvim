@@ -133,23 +133,15 @@ endsnippet
 post_jump "if snip.tabstop == 0 : split_line(snip.tabstops[4].current_text)"
 snippet func "Function Header" 
 /******************************************************************************
-* Function:         $1
-* Description:      ${4:${VISUAL}}
-* Where:`!p 
-snip.rv = ""
-snip >> 2
-
-args = get_args(t[2])
-if args:
-	for arg in args:
-		snip.rv += '\n' + '*' + ' '*19 + arg + ' - TODO'
-snip << 2
-`
-* Return:           $5
-* Error:            $6
+* Function:        |$2
+* Description:     |${4:${VISUAL}}
+* Args:            |
+* Return:          |$5
+* Error:           |$6
 *****************************************************************************/
-${1}($2){
-	${0}
+${1:void} ${2:function_name}($3)
+{
+	${VISUAL}$0
 }
 endsnippet
 # vim:ft=snippets:

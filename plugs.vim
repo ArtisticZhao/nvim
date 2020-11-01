@@ -279,6 +279,22 @@ let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
 nmap <c-p> :Files<cr>
 nmap <m-f> :Ag<cr>
 
+function! s:ag_in(bang, ...)
+  if !isdirectory(a:1)
+    throw 'not a valid directory: ' .. a:1
+  endif
+  " Press `?' to enable preview window.
+  call fzf#vim#ag(join(a:000[1:], ' '), fzf#vim#with_preview({'dir': a:1}, 'right:50%'), a:bang)
+
+  " If you don't want preview option, use this
+  " call fzf#vim#ag(join(a:000[1:], ' '), {'dir': a:1}, a:bang)
+endfunction
+
+command! -bang -nargs=+ -complete=dir AgIn call s:ag_in(<bang>0, <f-args>)
+
+" -------------- open linux documents in fzf by ag
+map <F10> :AgIn! /home/lilacsat/learn_linux/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek/Documentation<cr>
+
 
 " ==============================================
 " ============== floaterm ======================
