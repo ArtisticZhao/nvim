@@ -80,6 +80,10 @@
 "      |----------------+--------------------------------------------+-------------|
 "      | fzf            | search file in current directory           | <c-p>       |
 "      |                | search content in file                     | <m-f>       |
+"      |                | search linux kernel doc                    | <F10>       |
+"      |----------------+--------------------------------------------+-------------|
+"      | easymotion     | s<char><char><label>                       |             |
+"      |                | fuzzy search & easymotion                  | <sp>/       |
 "      |----------------+--------------------------------------------+-------------|
 "
 "   TODO:
@@ -99,6 +103,8 @@ endif
 " ==============================================
 " ============== System settings ===============
 " ==============================================
+set novb
+set noeb vb t_vb=
 set encoding=utf-8
 let &t_ut=''  " cmd color
 set autochdir

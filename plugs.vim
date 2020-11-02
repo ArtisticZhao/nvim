@@ -16,24 +16,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'connorholyday/vim-snazzy'
     Plug 'altercation/vim-colors-solarized'
     Plug 'morhetz/gruvbox'
-        set background=dark
-        " -- snazzy
-        " color snazzy
-        " -- molokai
-        " let g:molokai_original = 1
-        " let g:rehash256 = 1
-        " -- solarized
-        " colorscheme solarized
-        " -- gruvbox
-        let g:gruvbox_sign_colum='bg'
-        colorscheme gruvbox
 
 
     " ============= vision     =============
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
         let g:airline_powerline_fonts = 1
-        let g:airline_theme="papercolor"
+        let g:airline_theme="luna"
         " powerline symbols
         let g:airline_left_sep = ''
         let g:airline_left_alt_sep = ''
@@ -227,9 +216,23 @@ call plug#begin('~/.vim/plugged')
         nmap ]h <Plug>(GitGutterNextHunk)
         nmap [h <Plug>(GitGutterPrevHunk)
         nmap <LEADER>gf :GitGutterFold<cr>
-        call plug#end()
+    call plug#end()
 
 
+" ==============================================
+" ============== theme color  ==================
+" ==============================================
+set background=dark
+" -- snazzy
+" color snazzy
+" -- molokai
+" let g:molokai_original = 1
+" let g:rehash256 = 1
+" -- solarized
+" colorscheme solarized
+" -- gruvbox
+let g:gruvbox_sign_colum='bg'
+colorscheme gruvbox
 
 " ==============================================
 " ============== Semshi ========================
