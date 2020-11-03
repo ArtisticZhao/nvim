@@ -85,6 +85,8 @@
 "      | easymotion     | s<char><char><label>                       |             |
 "      |                | fuzzy search & easymotion                  | <sp>/       |
 "      |----------------+--------------------------------------------+-------------|
+"      | incsearch      | fuzzy search                               | z/ or z?    |
+"      |----------------+--------------------------------------------+-------------|
 "
 "   TODO:
 "     - resize window -> move the split line
@@ -244,8 +246,9 @@ map <s-tab> :bp<CR>
 " -------------- place holder
 imap <c-p> <++>  " put a placeholder
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+
 " -------------- remap to put -> in C files
-au filetype c imap <buffer> ` ->
+au filetype c inoremap <buffer> > ->
 
 
 " ==============================================
@@ -253,7 +256,7 @@ au filetype c imap <buffer> ` ->
 " ==============================================
 " when work on kernel directory, always work on root directory
 if (getcwd() == '/home/lilacsat/learn_linux/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek')
-    echo "Work on kerel dir"
+    echo "Work on kernel dir"
     set noautochdir
 endif
 
@@ -278,9 +281,6 @@ map <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 map tx :r !figlet
 " -------------- show git log graph
 nmap <LEADER>gb :FloatermNew git log --graph --pretty='\%h \%s'<cr><esc>
-" CTRL + t to toggle terminal wimdow
-nnoremap <C-g> :FloatermNew --height=0.8 --width=0.9 --wintype=floating --name=lg --position=topleft --autoclose=2 lazygit<cr>
-tnoremap <c-h> <esc>
 
 " ==============================================
 " ============== Terminal Window ===============

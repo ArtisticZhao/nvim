@@ -11,13 +11,6 @@
 call plug#begin('~/.vim/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}             " coc
 
-
-    " ============= colortheme =============
-    Plug 'connorholyday/vim-snazzy'
-    Plug 'altercation/vim-colors-solarized'
-    Plug 'morhetz/gruvbox'
-
-
     " ============= vision     =============
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -157,6 +150,7 @@ call plug#begin('~/.vim/plugged')
         endfunction
         noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
+    Plug 'jiangmiao/auto-pairs'
 
     " ============= function   =============
     Plug 'mbbill/undotree'
@@ -186,26 +180,22 @@ call plug#begin('~/.vim/plugged')
         hi Floaterm guibg=black
         " Set floating window border line color to cyan, and background to orange
         hi FloatermBorder guibg=cyan guifg=orange
+        " Set keymap
+        tnoremap <silent> <c-q> <c-\><c-n>:FloatermKill<cr>
+        " call lazygit in floaterm
+        nnoremap <C-g> :FloatermNew! --height=0.8 --width=0.9 --wintype=floating --name=lg --position=topleft --autoclose=2 lazygit<cr>
+        tnoremap <c-h> <esc>
 
-    Plug 'mhinz/vim-startify'
-    Plug 'junegunn/vim-peekaboo'                                " Show registers
-    Plug 'dhruvasagar/vim-table-mode'
-    Plug 'Raimondi/delimitMate'                                 " auto [ { ' ...
-
-
-    " ============= plug 4 git =============
     Plug 'airblade/vim-gitgutter'
+        " use configured color not use color in colortheme
+        let g:gitgutter_override_sign_column_highlight = 1
         highlight GitGutterAdd    guifg=#009900 ctermfg=2
         highlight GitGutterChange guifg=#0c7d9d ctermfg=3
         highlight GitGutterDelete guifg=#ff2222 ctermfg=1
-        " highlight GitGutterAddLineNr          guifg=#009900 ctermfg=2
-        " highlight GitGutterChangeLineNr       guifg=#0c7d9d ctermfg=3
-        " highlight GitGutterDeleteLineNr       guifg=#ff2222 ctermfg=1
+        " WARNING: those 4 settings above need to reconfig after set Colortheme!!!
         " not allow gitgutter overwrite other symbol
         let g:gitgutter_sign_allow_clobber = 0
         let g:gitgutter_map_keys = 0
-        " use configured color not use color in colortheme
-        let g:gitgutter_override_sign_column_highlight = 1
         let g:gitgutter_preview_win_floating = 1
         let g:gitgutter_sign_added = '▉'
         let g:gitgutter_sign_modified = '▉'
@@ -216,7 +206,18 @@ call plug#begin('~/.vim/plugged')
         nmap ]h <Plug>(GitGutterNextHunk)
         nmap [h <Plug>(GitGutterPrevHunk)
         nmap <LEADER>gf :GitGutterFold<cr>
-    call plug#end()
+
+    Plug 'mhinz/vim-startify'
+    Plug 'junegunn/vim-peekaboo'                                " Show registers
+    Plug 'dhruvasagar/vim-table-mode'
+
+
+    " ============= colortheme =============
+    Plug 'connorholyday/vim-snazzy'
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'morhetz/gruvbox'
+
+call plug#end()
 
 
 " ==============================================
@@ -233,6 +234,12 @@ set background=dark
 " -- gruvbox
 let g:gruvbox_sign_colum='bg'
 colorscheme gruvbox
+" use configured color not use color in colortheme
+let g:gitgutter_override_sign_column_highlight = 1
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#0c7d9d ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+
 
 " ==============================================
 " ============== Semshi ========================
@@ -269,7 +276,6 @@ hi default link LspCxxHlSkippedRegion Comment
 " in most cases this contains the #if/#else/#endif statements
 " so it is better to let syntax do the highlighting.
 hi default link LspCxxHlSkippedRegionBeginEnd Normal
-
 
 " Syntax Highlighting:
 "
