@@ -71,8 +71,6 @@ call plug#begin('~/.vim/plugged')
         nnoremap [w :PrevTrailingWhitespace<CR>
 
     Plug 'machakann/vim-highlightedyank'
-    Plug 'jackguo380/vim-lsp-cxx-highlight'
-    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 
     " ============= speed      =============
@@ -136,8 +134,8 @@ call plug#begin('~/.vim/plugged')
         " Need one more keystroke, but on average, it may be more comfortable.
         nmap s <Plug>(easymotion-overwin-f2)
         " JK motions: Line motions
-        map <Leader>j <Plug>(easymotion-j)
-        map <Leader>k <Plug>(easymotion-k)
+        map <c-j> <Plug>(easymotion-j)
+        map <c-k> <Plug>(easymotion-k)
         " incsearch.vim x fuzzy x vim-easymotion
         function! s:config_easyfuzzymotion(...) abort
           return extend(copy({
@@ -182,6 +180,9 @@ call plug#begin('~/.vim/plugged')
         hi FloatermBorder guibg=cyan guifg=orange
         " Set keymap
         tnoremap <silent> <c-q> <c-\><c-n>:FloatermKill<cr>
+        " CTRL + t to toggle terminal wimdow
+        nnoremap <silent> <C-t> :FloatermToggle quick<cr>
+        tnoremap <silent> <C-t> <C-\><C-n>:FloatermToggle quick<cr>
         " call lazygit in floaterm
         nnoremap <C-g> :FloatermNew! --height=0.8 --width=0.9 --wintype=floating --name=lg --position=topleft --autoclose=2 lazygit<cr>
         tnoremap <c-h> <esc>
@@ -205,13 +206,33 @@ call plug#begin('~/.vim/plugged')
 
         nmap ]h <Plug>(GitGutterNextHunk)
         nmap [h <Plug>(GitGutterPrevHunk)
-        nmap <LEADER>gf :GitGutterFold<cr>
+        nnoremap zg :GitGutterFold<cr>
+
+    " auto sudo read/write file
+    Plug 'lambdalisue/suda.vim'
+        let g:suda_smart_edit = 1
+
+    Plug 'liuchengxu/vista.vim'
+        noremap <LEADER>v :Vista coc<CR>
+        noremap <leader>fv :silent! Vista finder coc<CR>
+        let g:vista_default_executive = 'coc'  " ['ale', 'coc', 'ctags', 'lcn', 'nvim_lsp', 'vim_lsc', 'vim_lsp']
+        let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+        let g:vista#renderer#enable_icon = 1
+        let g:vista#renderer#icons = {
+        \   "function": "\uf794",
+        \   "variable": "\uf71b",
+        \  }
 
     Plug 'mhinz/vim-startify'
     Plug 'junegunn/vim-peekaboo'                                " Show registers
     Plug 'dhruvasagar/vim-table-mode'
 
-
+    " ============= clang      =============
+    Plug 'jackguo380/vim-lsp-cxx-highlight'
+    " ============= python     =============
+    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
+    Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
+    Plug 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
     " ============= colortheme =============
     Plug 'connorholyday/vim-snazzy'
     Plug 'altercation/vim-colors-solarized'
@@ -332,3 +353,5 @@ hi default link LspCxxHlSymDependentName Function
 " C++20 concepts, maybe type is sufficient for now....
 hi default link LspCxxHlSymConcept Type
 
+
+autocmd FileType python BracelessEnable +indent +highlight +fold-slow

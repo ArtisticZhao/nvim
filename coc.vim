@@ -14,7 +14,8 @@ let g:coc_global_extensions = [
             \'coc-explorer',
             \'coc-snippets',
             \'coc-python',
-            \'coc-highlight'
+            \'coc-highlight',
+            \'coc-translator'
             \]
 
 " ==============================================
@@ -119,3 +120,11 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 " ==============================================
 set termguicolors
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+
+" ==============================================
+" ============== coc-translator ================
+" ==============================================
+" popup
+nmap <Leader>t <Plug>(coc-translator-p)
+vmap <Leader>t <Plug>(coc-translator-pv)

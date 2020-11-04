@@ -20,6 +20,11 @@
 "      |                | Find backward/forward a char               | f[x]/F[x]   |
 "      |                | Find next/prev f[x]                        | =/-         |
 "      |----------------+--------------------------------------------+-------------|
+"      | Folding        | toggle folding                             | za          |
+"      |                | open/close folding                         | zo zc       |
+"      |                | fold all/ unfold all                       | zM zR       |
+"      |                | toggle fold git diff                       | zg          |
+"      |----------------+--------------------------------------------+-------------|
 "      | Insertion      | Insert Mode at cursor                      | i           |
 "      |                | Insert Mode at line header                 | I           |
 "      |                | Insert Mode after cursor                   | a           |
@@ -40,12 +45,12 @@
 "      |----------------+--------------------------------------------+-------------|
 "      | Files          | Write file(turn to n-mode when i-mode)     | <c-s>       |
 "      |                | Quit                                       | <c-q>       |
-"      |                | Open Config File                           | <sp>RC      |
-"      |                | Spell Check                                | <sp>SC      |
+"      |                | Open Config File                           | <sp>rc      |
+"      |                | Spell Check                                | <sp>sc      |
 "      |                | Go to file                                 | gf          |
 "      |----------------+--------------------------------------------+-------------|
 "      | Split Windows  | split windows to                           | <sp>s[hjkl] |
-"      |                | Splited Windows Navigation                 | <m-[hjkl]>  |
+"      |                | Splited Windows Navigation                 | <sp>[hjkl]  |
 "      |                | toggle terminal                            | <c-t>       |
 "      |----------------+--------------------------------------------+-------------|
 "      | Buffer         | next buffer                                | <tab>       |
@@ -76,7 +81,7 @@
 "      |                | open lazygit                               | <c-g>       |
 "      |                | open graph of commit & branch              | <sp>gb      |
 "      |                | next/prev hunk                             | [h ]h       |
-"      |                | git fold to only show hunks                | <sp>gf      |
+"      |                | git fold to only show hunks                | zg          |
 "      |----------------+--------------------------------------------+-------------|
 "      | fzf            | search file in current directory           | <c-p>       |
 "      |                | search content in file                     | <m-f>       |
@@ -120,6 +125,11 @@ filetype plugin indent on
 " open file with last edit postion
 autocmd BufReadPost * normal! g`"
 
+" 基于缩进或语法进行代码折叠
+"set foldmethod=indent
+set foldmethod=syntax
+" 启动 vim 时关闭折叠代码
+set nofoldenable
 
 " ==============================================
 " ============== Indentation & Backspace =======
@@ -227,10 +237,10 @@ map <LEADER>sl :set splitright<CR>:vsplit<CR>
 map <LEADER>sh :set nosplitright<CR>:vsplit<CR>
 map <LEADER>sk :set nosplitbelow<CR>:split<CR>
 map <LEADER>sj :set splitbelow<CR>:split<CR>
-map <M-h> <C-w>h
-map <M-j> <C-w>j
-map <M-k> <C-w>k
-map <M-l> <C-w>l
+map <leader>h <C-w>h
+map <leader>j <C-w>j
+map <leader>k <C-w>k
+map <leader>l <C-w>l
 map <C-up> :res +5<CR>
 map <C-down> :res -5<CR>
 map <C-left> :vertical resize+5<CR>
@@ -279,29 +289,6 @@ map <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " -------------- call figlet
 map tx :r !figlet
-" -------------- show git log graph
-nmap <LEADER>gb :FloatermNew git log --graph --pretty='\%h \%s'<cr><esc>
-
-" ==============================================
-" ============== Terminal Window ===============
-" ==============================================
-" CTRL + t to toggle terminal wimdow
-nnoremap <silent> <C-t> :FloatermToggle quick<cr>
-tnoremap <silent> <C-t> <C-\><C-n>:FloatermToggle quick<cr>
-" <ESC> Terminal go back to normal mode
-tnoremap <Esc> <C-\><C-n>
-" When switching to terminal windows it goes into insert mode automatically
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-" navigate windows in terminal mode
-tmap <M-h> <C-\><C-n><C-w>h
-tmap <M-j> <C-\><C-n><C-w>j
-tmap <M-k> <C-\><C-n><C-w>k
-tmap <M-l> <C-\><C-n><C-w>l
-" resize window in terminal mode
-tmap <C-up> <C-\><C-n>:res +5<CR>i
-tmap <C-down> <C-\><C-n>:res -5<CR>i
-tmap <C-left> <C-\><C-n>:vertical resize+5<CR>i
-tmap <C-right> <C-\><C-n>:vertical resize-5<CR>i
 
 
 " ==============================================
