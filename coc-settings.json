@@ -57,7 +57,7 @@
     ],
     /** language server configurations */
     "languageserver": {
-        "ccls": {
+        /*"ccls": {
             "command": "ccls",
             "filetypes": [
                 "c",
@@ -81,7 +81,7 @@
                     "lsRanges": true
                 }
             }
-        },
+        },*/
         "svls": {
             "command": "svls",
             "filetypes": [
