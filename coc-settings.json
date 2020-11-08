@@ -81,6 +81,14 @@
                     "lsRanges": true
                 }
             }
+        },
+        "svls": {
+            "command": "svls",
+            "filetypes": [
+                "systemverilog",
+                "verilog",
+                "verilog_systemverilog"
+            ]
         }
     },
     "coc.preferences.jumpCommand": "edit",

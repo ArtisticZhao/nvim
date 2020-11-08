@@ -8,9 +8,10 @@
 " ==============================================
 " ============== Plug List =====================
 " ==============================================
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}             " coc
-
+        " import coc's settings in vim
+        source ~/.config/nvim/coc.vim
     " ============= vision     =============
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -185,7 +186,6 @@ call plug#begin('~/.vim/plugged')
         tnoremap <silent> <C-t> <C-\><C-n>:FloatermToggle quick<cr>
         " call lazygit in floaterm
         nnoremap <C-g> :FloatermNew! --height=0.8 --width=0.9 --wintype=floating --name=lg --position=topleft --autoclose=2 lazygit<cr>
-        tnoremap <c-h> <esc>
 
     Plug 'airblade/vim-gitgutter'
         " use configured color not use color in colortheme
@@ -227,12 +227,17 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/vim-peekaboo'                                " Show registers
     Plug 'dhruvasagar/vim-table-mode'
 
+
+    " ============= verilog    =============
+    " Plug 'WeiChungWu/vim-SystemVerilog'
+    Plug 'vhda/verilog_systemverilog.vim'
+        au filetype verilog_systemverilog set foldmethod=syntax
     " ============= clang      =============
     Plug 'jackguo380/vim-lsp-cxx-highlight'
     " ============= python     =============
-    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
-    Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
-    Plug 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
+    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for' :['python']}
+    Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python'] }
+    Plug 'tweekmonster/braceless.vim', { 'for' :['python'] }
     " ============= colortheme =============
     Plug 'connorholyday/vim-snazzy'
     Plug 'altercation/vim-colors-solarized'
@@ -260,6 +265,8 @@ let g:gitgutter_override_sign_column_highlight = 1
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#0c7d9d ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+
+hi Normal guibg=NONE ctermbg=NONE
 
 
 " ==============================================

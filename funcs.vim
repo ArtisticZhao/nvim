@@ -1,3 +1,10 @@
+"   __                  _   _
+"  / _|_   _ _ __   ___| |_(_) ___  _ __  ___
+" | |_| | | | '_ \ / __| __| |/ _ \| '_ \/ __|
+" |  _| |_| | | | | (__| |_| | (_) | | | \__ \
+" |_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
+"
+"
 " =====================================================
 " function:    Term_toggle
 " description: toggle the term in split windows
@@ -37,3 +44,23 @@ function! Is_emptyline()
     endif
     return 0
 endfunction
+
+
+" ==============================================
+" ============== Key Shortcuts =================
+" ==============================================
+" when work on kernel directory, always work on root directory
+if (getcwd() == '/home/lilacsat/learn_linux/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek')
+    echo "Work on kernel dir"
+    set noautochdir
+endif
+
+" -------------- open device tree only work on kernel dir
+function! OpenDeviceTree()
+    if getcwd()=="/home/lilacsat/learn_linux/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek"
+        :e ./arch/arm/boot/dts/imx6ull-alientek-emmc.dts
+    else
+        echo getcwd()
+    endif
+endfunction
+map <LEADER>dt :call OpenDeviceTree()<CR>

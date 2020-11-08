@@ -102,8 +102,8 @@
 " ==============================================
 " ============= Auto load for first time uses ==
 " ==============================================
-if empty(glob('~/.vim/plugged/coc.nvim/autoload/coc.vim'))
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 
@@ -130,6 +130,8 @@ autocmd BufReadPost * normal! g`"
 set foldmethod=syntax
 " 启动 vim 时关闭折叠代码
 set nofoldenable
+" let block-v can select anywhere
+set virtualedit=all
 
 " ==============================================
 " ============== Indentation & Backspace =======
@@ -167,8 +169,6 @@ set wrapscan        " tail to head search
 " ==============================================
 " ============== Key Mappings ==================
 " ==============================================
-" -------------- load functions script
-source ~/.config/nvim/funcs.vim
 
 " -------------- set space as leader key
 let mapleader=" "
@@ -260,26 +260,6 @@ map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 " -------------- remap to put -> in C files
 au filetype c inoremap <buffer> > ->
 
-
-" ==============================================
-" ============== Key Shortcuts =================
-" ==============================================
-" when work on kernel directory, always work on root directory
-if (getcwd() == '/home/lilacsat/learn_linux/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek')
-    echo "Work on kernel dir"
-    set noautochdir
-endif
-
-" -------------- open device tree only work on kernel dir
-function! OpenDeviceTree()
-    if getcwd()=="/home/lilacsat/learn_linux/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek"
-        :e ./arch/arm/boot/dts/imx6ull-alientek-emmc.dts
-    else
-        echo getcwd()
-    endif
-endfunction
-map <LEADER>dt :call OpenDeviceTree()<CR>
-
 " 让配置变更立即生效, this configure not work well in neoVIM!
 " autocmd BufWritePost $MYVIMRC source $MYVIMRC
 noremap <LEADER>R :source $MYVIMRC<CR>
@@ -301,7 +281,8 @@ let g:python_host_prog='/usr/bin/python2.7'
 " ==============================================
 " ============== import settings ===============
 " ==============================================
+" load functions script
+source ~/.config/nvim/funcs.vim
 " import plugs' settings
 source ~/.config/nvim/plugs.vim
-" import coc's settings in vim
-source ~/.config/nvim/coc.vim
+
