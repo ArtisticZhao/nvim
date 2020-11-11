@@ -1,9 +1,7 @@
 {
-    /** extensions auto update */
     "coc.preferences.extensionUpdateCheck": "daily",
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
-    /** suggest icons settings */
     "suggest.completionItemKindLabels": {
         "class": "\uf0e8",
         "color": "\ue22b",
@@ -31,7 +29,6 @@
         "value": "\uf89f",
         "variable": "\ue71b"
     },
-    /** diagnostic codes */
     "diagnostic.signOffset": 1,
     "diagnostic.errorSign": "\uf467",
     "diagnostic.warningSign": "\uf071",
@@ -46,18 +43,15 @@
     "codeLens.enable": true,
     "list.previousKeymap": "<C-[>",
     "list.nextKeymap": "<C-]>",
-    /** auto format */
     "coc.preferences.formatOnSaveFiletypes": [
         "json"
     ],
-    /** snippets */
     "snippets.ultisnips.directories": [
         "UltiSnips",
         "$HOME/.config/nvim/myUltiSnips/"
     ],
-    /** language server configurations */
     "languageserver": {
-        /*"ccls": {
+        "ccls": {
             "command": "ccls",
             "filetypes": [
                 "c",
@@ -81,20 +75,16 @@
                     "lsRanges": true
                 }
             }
-        },*/
+        },
         "svls": {
             "command": "svls",
             "filetypes": [
-                "systemverilog",
-                "verilog",
-                "verilog_systemverilog"
+                "verilog"
             ]
         }
     },
     "coc.preferences.jumpCommand": "edit",
-    /** coc-explorer */
     "explorer.icon.enableNerdfont": true,
-    /** Python Config */
     "python.autoComplete.addBrackets": true,
     "python.jediEnabled": false,
     "python.formatting.provider": "yapf",

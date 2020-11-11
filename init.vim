@@ -51,7 +51,7 @@
 "      |----------------+--------------------------------------------+-------------|
 "      | Split Windows  | split windows to                           | <sp>s[hjkl] |
 "      |                | Splited Windows Navigation                 | <sp>[hjkl]  |
-"      |                | toggle terminal                            | <c-t>       |
+"      |                | toggle terminal                            | <m-t>       |
 "      |----------------+--------------------------------------------+-------------|
 "      | Buffer         | next buffer                                | <tab>       |
 "      |                | prev buffer                                | <s-tab>     |
@@ -102,7 +102,7 @@
 " ==============================================
 " ============= Auto load for first time uses ==
 " ==============================================
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
+if empty(glob('~/.config/nvim/plugged'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -131,7 +131,7 @@ set foldmethod=syntax
 " 启动 vim 时关闭折叠代码
 set nofoldenable
 " let block-v can select anywhere
-set virtualedit=all
+" set virtualedit=all
 
 " ==============================================
 " ============== Indentation & Backspace =======
@@ -258,7 +258,8 @@ imap <c-p> <++>  " put a placeholder
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 " -------------- remap to put -> in C files
-au filetype c inoremap <buffer> > ->
+au filetype c inoremap <buffer> ` ->
+au filetype verilog inoremap <buffer> ` <=
 
 " 让配置变更立即生效, this configure not work well in neoVIM!
 " autocmd BufWritePost $MYVIMRC source $MYVIMRC
@@ -285,4 +286,3 @@ let g:python_host_prog='/usr/bin/python2.7'
 source ~/.config/nvim/funcs.vim
 " import plugs' settings
 source ~/.config/nvim/plugs.vim
-

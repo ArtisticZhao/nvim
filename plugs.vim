@@ -63,6 +63,9 @@ call plug#begin('~/.config/nvim/plugged')
             \			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
             \		},
             \		'css': 0,
+            \       'verilog_systemverilog': {
+            \           'parentheses': ['start=/begin/ end=/end/'],
+            \       },
             \	}
             \}
 
@@ -150,6 +153,8 @@ call plug#begin('~/.config/nvim/plugged')
         noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
     Plug 'jiangmiao/auto-pairs'
+        au Filetype c       let b:AutoPairs={'(':')', '[':']', '{':'}', "'":"'", '"':'"', '"""':'"""', "'''":"'''"}
+        au Filetype verilog let b:AutoPairs={'(':')', '[':']', '{':'}', "'":"'", '"':'"', '"""':'"""', "'''":"'''"}
 
     " ============= function   =============
     Plug 'mbbill/undotree'
@@ -182,8 +187,8 @@ call plug#begin('~/.config/nvim/plugged')
         " Set keymap
         tnoremap <silent> <c-q> <c-\><c-n>:FloatermKill<cr>
         " CTRL + t to toggle terminal wimdow
-        nnoremap <silent> <C-t> :FloatermToggle quick<cr>
-        tnoremap <silent> <C-t> <C-\><C-n>:FloatermToggle quick<cr>
+        nnoremap <silent> <m-t> :FloatermToggle quick<cr>
+        tnoremap <silent> <m-t> <C-\><C-n>:FloatermToggle quick<cr>
         " call lazygit in floaterm
         nnoremap <C-g> :FloatermNew! --height=0.8 --width=0.9 --wintype=floating --name=lg --position=topleft --autoclose=2 lazygit<cr>
 
@@ -213,9 +218,9 @@ call plug#begin('~/.config/nvim/plugged')
         let g:suda_smart_edit = 1
 
     Plug 'liuchengxu/vista.vim'
-        noremap <LEADER>v :Vista coc<CR>
+        noremap <LEADER>v :Vista!!<CR>
         noremap <leader>fv :silent! Vista finder coc<CR>
-        let g:vista_default_executive = 'coc'  " ['ale', 'coc', 'ctags', 'lcn', 'nvim_lsp', 'vim_lsc', 'vim_lsp']
+        let g:vista_default_executive = 'ctags'  " ['ale', 'coc', 'ctags', 'lcn', 'nvim_lsp', 'vim_lsc', 'vim_lsp']
         let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
         let g:vista#renderer#enable_icon = 1
         let g:vista#renderer#icons = {
@@ -223,21 +228,43 @@ call plug#begin('~/.config/nvim/plugged')
         \   "variable": "\uf71b",
         \  }
 
+        let g:vista_ctags_cmd = {
+        \ 'ctags': '--extra=+q --fields=+i -n',
+        \ }
+
+        function! NearestMethodOrFunction() abort
+          return get(b:, 'vista_nearest_method_or_function', '')
+        endfunction
+
+        set statusline+=%{NearestMethodOrFunction()}
+
+        " By default vista.vim never run if you don't call it explicitly.
+        "
+        " If you want to show the nearest function in your statusline automatically,
+        " you can add the following line to your vimrc
+        " autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
     Plug 'mhinz/vim-startify'
     Plug 'junegunn/vim-peekaboo'                                " Show registers
     Plug 'dhruvasagar/vim-table-mode'
 
 
     " ============= verilog    =============
-    " Plug 'WeiChungWu/vim-SystemVerilog'
+    " Plug 'WeiChungWu/vim-SystemVerilog', { 'for' :['verilog'] }
     Plug 'vhda/verilog_systemverilog.vim'
-        au filetype verilog_systemverilog set foldmethod=syntax
+        " au filetype verilog_systemverilog set foldmethod=syntax
+    Plug 'vimtaku/hl_matchit.vim'
+        let g:hl_matchit_hl_groupname = 'HiMatchit'
+        hi HiMatchit        ctermfg=231 guifg=#ffffff ctermbg=161     guibg=#d7005f
+
     " ============= clang      =============
     Plug 'jackguo380/vim-lsp-cxx-highlight'
     " ============= python     =============
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for' :['python']}
     Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python'] }
     Plug 'tweekmonster/braceless.vim', { 'for' :['python'] }
+    " ============= markdown   =============
+    Plug 'suan/vim-instant-markdown', {'for': ['markdown']}
     " ============= colortheme =============
     Plug 'connorholyday/vim-snazzy'
     Plug 'altercation/vim-colors-solarized'
@@ -267,7 +294,6 @@ highlight GitGutterChange guifg=#0c7d9d ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 hi Normal guibg=NONE ctermbg=NONE
-
 
 " ==============================================
 " ============== Semshi ========================
@@ -362,3 +388,11 @@ hi default link LspCxxHlSymConcept Type
 
 
 autocmd FileType python BracelessEnable +indent +highlight +fold-slow
+" ==============================================
+" ============== auto-pair =====================
+" ==============================================
+
+" let g:AutoPairscccc {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '"""':'"""', "'''":"'''"}
+
+
+
