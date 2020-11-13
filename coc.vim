@@ -15,7 +15,8 @@ let g:coc_global_extensions = [
             \'coc-snippets',
             \'coc-python',
             \'coc-highlight',
-            \'coc-translator'
+            \'coc-translator',
+            \'coc-marketplace'
             \]
 
 " ==============================================
@@ -126,5 +127,5 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " ============== coc-translator ================
 " ==============================================
 " popup
-nmap <Leader>t <Plug>(coc-translator-p)
-vmap <Leader>t <Plug>(coc-translator-pv)
+nmap <Leader>tr <Plug>(coc-translator-p)
+vmap <Leader>tr <Plug>(coc-translator-pv)

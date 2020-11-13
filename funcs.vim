@@ -83,10 +83,13 @@ map <F2> :call SynGroup()<CR>
 func! CompileRun()
 	exec "w"
     if &filetype == 'python'
-		set splitbelow
-		:sp
-        :res -10
-		:term python3 %
+        :FloatermNew
+            \   --height=0.3 --width=0.8
+            \   --wintype=floating
+            \   --name=run_python
+            \   --position=bottomright
+            \   --autoclose=2
+            \   python3 %
     endif
 endfunc
 noremap <F5> :call CompileRun()<CR>
