@@ -12,6 +12,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}             " coc
         " import coc's settings in vim
         source ~/.config/nvim/coc.vim
+
+
     " ============= vision     =============
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -40,6 +42,20 @@ call plug#begin('~/.config/nvim/plugged')
         nmap <leader>7 <Plug>AirlineSelectTab7
         nmap <leader>8 <Plug>AirlineSelectTab8
         nmap <leader>9 <Plug>AirlineSelectTab9
+        " disable whitespace check by airline
+        let g:airline#extensions#whitespace#enabled = 0
+        " enable/disable LanguageClient integration >
+        let g:airline#extensions#languageclient#enabled = 1
+        " languageclient error_symbol >
+        let airline#extensions#languageclient#error_symbol = 'Error: '
+        " languageclient warning_symbol >
+        let airline#extensions#languageclient#warning_symbol = 'Warning: '
+        " languageclient show_line_numbers >
+        let airline#extensions#languageclient#show_line_numbers = 1
+        " languageclient open_lnum_symbol >
+        let airline#extensions#languageclient#open_lnum_symbol = '(L'
+        " languageclient close_lnum_symbol >
+        let airline#extensions#languageclient#close_lnum_symbol = ')'
 
     Plug 'luochen1990/rainbow'
         let g:rainbow_active = 1
@@ -105,7 +121,6 @@ call plug#begin('~/.config/nvim/plugged')
         " Start interactive EasyAlign for a motion/text object (e.g. gaip)
         nmap ga <Plug>(EasyAlign)
 
-
     Plug 'haya14busa/incsearch.vim'
     Plug 'haya14busa/incsearch-fuzzy.vim'
         map /  <Plug>(incsearch-forward)
@@ -136,7 +151,7 @@ call plug#begin('~/.config/nvim/plugged')
         " Turn on case-insensitive feature
         let g:EasyMotion_smartcase = 1
         " Need one more keystroke, but on average, it may be more comfortable.
-        nmap s <Plug>(easymotion-overwin-f2)
+        nmap m <Plug>(easymotion-overwin-f2)
         " JK motions: Line motions
         map <c-j> <Plug>(easymotion-j)
         map <c-k> <Plug>(easymotion-k)
@@ -155,6 +170,14 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'jiangmiao/auto-pairs'
         au Filetype c       let b:AutoPairs={'(':')', '[':']', '{':'}', "'":"'", '"':'"', '"""':'"""', "'''":"'''"}
         au Filetype verilog let b:AutoPairs={'(':')', '[':']', '{':'}', "'":"'", '"':'"', '"""':'"""', "'''":"'''"}
+
+    Plug 'gcmt/wildfire.vim'
+        map <tab> <Plug>(wildfire-fuel)
+        vmap <s-tab> <Plug>(wildfire-water)
+
+    Plug 'machakann/vim-sandwich'
+    Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
 
     " ============= function   =============
     Plug 'mbbill/undotree'
@@ -203,8 +226,8 @@ call plug#begin('~/.config/nvim/plugged')
         let g:gitgutter_sign_allow_clobber = 0
         let g:gitgutter_map_keys = 0
         let g:gitgutter_preview_win_floating = 1
-        let g:gitgutter_sign_added = '▉'
-        let g:gitgutter_sign_modified = '▉'
+        let g:gitgutter_sign_added = '┃'
+        let g:gitgutter_sign_modified = '┃'
         let g:gitgutter_sign_removed = '▂'
         let g:gitgutter_sign_removed_first_line = '▔'
         let g:gitgutter_sign_modified_removed = '▒'
@@ -247,7 +270,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'mhinz/vim-startify'
     Plug 'junegunn/vim-peekaboo'                                " Show registers
     Plug 'dhruvasagar/vim-table-mode'
-
+    Plug 'will133/vim-dirdiff'
 
     " ============= verilog    =============
     " Plug 'WeiChungWu/vim-SystemVerilog', { 'for' :['verilog'] }
@@ -388,11 +411,3 @@ hi default link LspCxxHlSymConcept Type
 
 
 autocmd FileType python BracelessEnable +indent +highlight +fold-slow
-" ==============================================
-" ============== auto-pair =====================
-" ==============================================
-
-" let g:AutoPairscccc {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '"""':'"""', "'''":"'''"}
-
-
-

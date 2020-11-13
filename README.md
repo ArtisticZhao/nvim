@@ -26,14 +26,19 @@ curl -sL install-node.now.sh/lts | bash
 python3 -m pip install pynvim
 ```
 
-## clone configuration files
+## Clone configuration files
 ```
 cd ~/.config
 git clone https://github.com/ArtisticZhao/nvim
 ```
+
 The plug will auto install!
 
-## dependencies
+## Dependencies
+
+### Plugins dependencies
+- [Ag](https://github.com/ggreer/the_silver_searcher)
+
 ### C-language  
 
 - [ccls](https://github.com/MaskRay/ccls/wiki)  
@@ -42,6 +47,11 @@ Follow the Build and Install.
 - [compiledb](https://github.com/nickdiego/compiledb)
 
 ## Question Record
+#### Checkout the output of coc.nvim
+```
+:CoCCommand workplace.showOutput
+```
+
 #### E117: Unknown function: SemshiBufWipeout
 ```
 $ python3 -m pip install pynvim

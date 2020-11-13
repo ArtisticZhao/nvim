@@ -85,11 +85,17 @@
     },
     "coc.preferences.jumpCommand": "edit",
     "explorer.icon.enableNerdfont": true,
-    "python.autoComplete.addBrackets": true,
+    "python.pythonPath": "python3",
+    "python.envFile": "${workspaceFolder}/.venv",
     "python.jediEnabled": false,
     "python.formatting.provider": "yapf",
     "python.formatting.yapfArgs": [
         "--style",
         "{SPACES_AROUND_POWER_OPERATOR: True, SPACES_BEFORE_COMMENT: 1}"
-    ]
+    ],
+    "python.linting.flake8Args": [
+        "--max-line-length=120"
+    ],
+    "python.linting.flake8Enabled": true,
+    "python.linting.maxNumberOfProblems": 100
 }

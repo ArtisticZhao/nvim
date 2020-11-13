@@ -64,3 +64,29 @@ function! OpenDeviceTree()
     endif
 endfunction
 map <LEADER>dt :call OpenDeviceTree()<CR>
+
+
+" ==============================================
+" ============== show highlight group ==========
+" ==============================================
+" press f10 to show hlgroup
+function! SynGroup()
+	let l:s = synID(line('.'), col('.'), 1)
+	echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
+map <F2> :call SynGroup()<CR>
+
+
+" ==============================================
+" ============== run program ===================
+" ==============================================
+func! CompileRun()
+	exec "w"
+    if &filetype == 'python'
+		set splitbelow
+		:sp
+        :res -10
+		:term python3 %
+    endif
+endfunc
+noremap <F5> :call CompileRun()<CR>
