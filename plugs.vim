@@ -44,18 +44,18 @@ call plug#begin('~/.config/nvim/plugged')
         nmap <leader>9 <Plug>AirlineSelectTab9
         " disable whitespace check by airline
         let g:airline#extensions#whitespace#enabled = 0
-        " enable/disable LanguageClient integration >
-        let g:airline#extensions#languageclient#enabled = 1
+        " enable/disable coc integration >
+        let g:airline#extensions#coc#enabled = 1
         " languageclient error_symbol >
-        let airline#extensions#languageclient#error_symbol = 'Error: '
+        let airline#extensions#coc#error_symbol = ''
         " languageclient warning_symbol >
-        let airline#extensions#languageclient#warning_symbol = 'Warning: '
+        let airline#extensions#coc#warning_symbol = ''
         " languageclient show_line_numbers >
-        let airline#extensions#languageclient#show_line_numbers = 1
+        let airline#extensions#coc#show_line_numbers = 1
         " languageclient open_lnum_symbol >
-        let airline#extensions#languageclient#open_lnum_symbol = '(L'
+        let airline#extensions#coc#open_lnum_symbol = '['
         " languageclient close_lnum_symbol >
-        let airline#extensions#languageclient#close_lnum_symbol = ')'
+        let airline#extensions#coc#close_lnum_symbol = ']'
 
     Plug 'luochen1990/rainbow'
         let g:rainbow_active = 1
@@ -271,6 +271,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'junegunn/vim-peekaboo'                                " Show registers
     Plug 'dhruvasagar/vim-table-mode'
     Plug 'will133/vim-dirdiff'
+    Plug 'ZSaberLv0/ZFVimDirDiff'
 
     " ============= verilog    =============
     " Plug 'WeiChungWu/vim-SystemVerilog', { 'for' :['verilog'] }

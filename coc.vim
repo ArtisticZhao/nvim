@@ -16,7 +16,10 @@ let g:coc_global_extensions = [
             \'coc-python',
             \'coc-highlight',
             \'coc-translator',
-            \'coc-marketplace'
+            \'coc-marketplace',
+            \'coc-tag',
+            \'coc-word',
+            \'coc-syntax'
             \]
 
 " ==============================================

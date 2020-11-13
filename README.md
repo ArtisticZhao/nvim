@@ -5,10 +5,12 @@
 ```
 wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage --output-document nvim
 ```
+
 - add execute permission
 ```
 chmod +x nvim
 ```
+
 - move to system bin
 ```
 sudo chown root:root nvim
@@ -19,6 +21,15 @@ sudo mv nvim /usr/bin
 ```
 sudo -i
 curl -sL install-node.now.sh/lts | bash
+```
+
+To speed up the download. Try to use image server of taobao
+```
+npm config set registry https://registry.npm.taobao.org
+# check configuration
+npm config get registry
+# restore official server
+npm config set registry https://registry.npmjs.org
 ```
 
 ## Add python support
@@ -38,6 +49,7 @@ The plug will auto install!
 
 ### Plugins dependencies
 - [Ag](https://github.com/ggreer/the_silver_searcher)
+- figlet `sudo apt install figlet`
 
 ### C-language  
 
