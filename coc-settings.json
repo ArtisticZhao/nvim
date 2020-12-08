@@ -32,6 +32,11 @@
     "coc.source.word.priority": 0,
     "coc.source.word.shortcut": "",
     "coc.source.syntax.shortcut": "",
+    "coc.source.file.ignoreHidden": false,
+    "coc.source.word.filetypes": [
+        "markdown"
+    ],
+    "coc.source.syntax.enable": true,
     "diagnostic.signOffset": 1,
     "diagnostic.errorSign": "\uf467",
     "diagnostic.warningSign": "\uf071",
@@ -46,6 +51,7 @@
     "codeLens.enable": true,
     "list.previousKeymap": "<C-[>",
     "list.nextKeymap": "<C-]>",
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "coc.preferences.formatOnSaveFiletypes": [
         "json"
     ],

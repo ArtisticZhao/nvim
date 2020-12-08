@@ -89,6 +89,8 @@ call plug#begin('~/.config/nvim/plugged')
         let g:better_whitespace_enabled=1
         nnoremap ]w :NextTrailingWhitespace<CR>
         nnoremap [w :PrevTrailingWhitespace<CR>
+        nnoremap <leader>sw :StripWhitespace<CR>
+        vnoremap <leader>sw :'<,'>StripWhitespace<CR>
 
     Plug 'machakann/vim-highlightedyank'
 
@@ -274,12 +276,12 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'ZSaberLv0/ZFVimDirDiff'
 
     " ============= verilog    =============
-    " Plug 'WeiChungWu/vim-SystemVerilog', { 'for' :['verilog'] }
-    Plug 'vhda/verilog_systemverilog.vim'
+    Plug 'WeiChungWu/vim-SystemVerilog', { 'for' :['verilog'] }
+    " Plug 'vhda/verilog_systemverilog.vim'
         " au filetype verilog_systemverilog set foldmethod=syntax
-    Plug 'vimtaku/hl_matchit.vim'
-        let g:hl_matchit_hl_groupname = 'HiMatchit'
-        hi HiMatchit        ctermfg=231 guifg=#ffffff ctermbg=161     guibg=#d7005f
+    " Plug 'vimtaku/hl_matchit.vim'
+    "     let g:hl_matchit_hl_groupname = 'HiMatchit'
+    "     hi HiMatchit        ctermfg=231 guifg=#ffffff ctermbg=161     guibg=#d7005f
 
     " ============= clang      =============
     Plug 'jackguo380/vim-lsp-cxx-highlight'

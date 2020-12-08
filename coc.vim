@@ -19,7 +19,9 @@ let g:coc_global_extensions = [
             \'coc-marketplace',
             \'coc-tag',
             \'coc-word',
-            \'coc-syntax'
+            \'coc-syntax',
+            \'coc-dictionary',
+            \'coc-yaml'
             \]
 
 " ==============================================

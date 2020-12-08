@@ -83,7 +83,7 @@ map <F2> :call SynGroup()<CR>
 func! CompileRun()
 	exec "w"
     if &filetype == 'python'
-        :FloatermNew
+        :FloatermNew!
             \   --height=0.3 --width=0.8
             \   --wintype=floating
             \   --name=run_python

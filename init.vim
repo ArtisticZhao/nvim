@@ -42,6 +42,7 @@
 "       |                 | Select all                                 | <c-a>            |
 "       |                 | change upper/lowercase                     | `                |
 "       |                 | add empty row (n-mode)                     | <enter>          |
+"       |                 | replace tab with space                     | <sp><tab>        |
 "       |-----------------+--------------------------------------------+------------------|
 "       | code navigation | go to defination                           | gd               |
 "       |                 | goto/goback defination in ctags            | <c-]> <c-t>      |
@@ -132,6 +133,8 @@ set noeb vb t_vb=
 set encoding=utf-8
 let &t_ut=''  " cmd color
 set autochdir
+" enable mouse click
+" set mouse=a
 
 syntax on
 filetype on
@@ -170,6 +173,8 @@ set showcmd
 set wildmenu
 set scrolloff=5
 set nowrap
+" show tab and space
+set list
 
 
 " ==============================================
@@ -181,6 +186,15 @@ set incsearch       " search when typing
 set ignorecase
 set smartcase
 set wrapscan        " tail to head search
+
+
+" ==============================================
+" ============== import settings ===============
+" ==============================================
+" load functions script
+source ~/.config/nvim/funcs.vim
+" import plugs' settings
+source ~/.config/nvim/plugs.vim
 
 
 " ==============================================
@@ -215,7 +229,6 @@ map <c-q> :q<CR>
 map <c-s> :w<CR>
 imap <c-s> <esc>:w<CR>
 
-
 " -------------- Copy to system clipboard
 vnoremap Y "+y
 nnoremap Y "+yy
@@ -226,10 +239,10 @@ noremap  P "+p
 nmap <c-a> ggVG
 " search selected words
 vnoremap / y/<c-r>"<cr>
-" find word under cursor
-nnoremap <c-f> /<c-r><c-w><cr>
-inoremap <c-f> <esc>/<c-r><c-w><cr>
-xnoremap <c-f> y/<c-r>"<cr>
+" find word under cursor use Incsearch plugin
+nmap <c-f> /<c-r><c-w><cr>
+imap <c-f> <esc>/<c-r><c-w><cr>
+xmap <c-f> y/<c-r>"<cr>
 " n for search down N for search up
 nnoremap <silent> n /<CR>zz
 nnoremap <silent> N ?<CR>zz
@@ -241,7 +254,9 @@ noremap <LEADER><CR> :nohlsearch<CR>
 
 " -------------- replace current word
 nnoremap <c-h> <esc>:%s/<c-r><c-w>//g<left><left>
-
+xnoremap <c-h> y<esc>:%s/<c-r>"//g<left><left>
+" replace tab with space
+nnoremap <leader><tab> <esc>:%ret! 4<cr>
 " -------------- Indentation
 noremap < <<
 noremap > >>
@@ -294,10 +309,3 @@ let g:python3_host_prog='/usr/bin/python3'
 let g:python_host_prog='/usr/bin/python2.7'
 
 
-" ==============================================
-" ============== import settings ===============
-" ==============================================
-" load functions script
-source ~/.config/nvim/funcs.vim
-" import plugs' settings
-source ~/.config/nvim/plugs.vim
