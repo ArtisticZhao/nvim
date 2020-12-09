@@ -187,6 +187,8 @@ set ignorecase
 set smartcase
 set wrapscan        " tail to head search
 
+" -------------- set space as leader key
+let mapleader=" "
 
 " ==============================================
 " ============== import settings ===============
@@ -200,9 +202,6 @@ source ~/.config/nvim/plugs.vim
 " ==============================================
 " ============== Key Mappings ==================
 " ==============================================
-
-" -------------- set space as leader key
-let mapleader=" "
 
 " -------------- Speed Navigation
 noremap J 5j
