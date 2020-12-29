@@ -1,4 +1,8 @@
 {
+    "yank.highlight.enable": true,
+    "yank.highlight.duration": 1000,
+    "yank.list.maxsize": 200,
+    "yank.enableCompletion": true,
     "coc.preferences.extensionUpdateCheck": "daily",
     "suggest.noselect": true,
     "suggest.enablePreselect": false,

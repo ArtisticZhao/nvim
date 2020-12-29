@@ -92,7 +92,8 @@ call plug#begin('~/.config/nvim/plugged')
         nnoremap <leader>sw :StripWhitespace<CR>
         vnoremap <leader>sw :'<,'>StripWhitespace<CR>
 
-    Plug 'machakann/vim-highlightedyank'
+    " use coc-yank
+    " Plug 'machakann/vim-highlightedyank'
 
 
     " ============= speed      =============
@@ -324,27 +325,30 @@ call plug#end()
 
 
 " ==============================================
-" ============== theme color  ==================
+" ============== colortheme   ==================
 " ==============================================
 set background=dark
 " -- snazzy
-" color snazzy
+color snazzy
 " -- molokai
 " let g:molokai_original = 1
 " let g:rehash256 = 1
 " -- solarized
 " colorscheme solarized
 " -- gruvbox
-let g:gruvbox_sign_colum='bg'
-colorscheme gruvbox
+" let g:gruvbox_sign_colum='bg'
+" colorscheme gruvbox
+
 " use configured color not use color in colortheme
 let g:gitgutter_override_sign_column_highlight = 1
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#0c7d9d ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
+" transparent background
 hi Normal guibg=NONE ctermbg=NONE
 
+" hi HighlightedyankRegion term=bold ctermbg=0 guibg=#13354A
 " ==============================================
 " ============== Semshi ========================
 " ==============================================

@@ -21,7 +21,8 @@ let g:coc_global_extensions = [
             \'coc-word',
             \'coc-syntax',
             \'coc-dictionary',
-            \'coc-yaml'
+            \'coc-yaml',
+            \'coc-yank'
             \]
 
 " ==============================================
@@ -134,3 +135,9 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " popup
 nmap <Leader>tr <Plug>(coc-translator-p)
 vmap <Leader>tr <Plug>(coc-translator-pv)
+
+
+" ==============================================
+" ============== coc-yank ======================
+" ==============================================
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>

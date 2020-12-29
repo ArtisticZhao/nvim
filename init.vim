@@ -109,6 +109,7 @@
 "       |                 | skip current                               | q                |
 "       |-----------------+--------------------------------------------+------------------|
 "       | coc-translator  | translate                                  | <l>tr            |
+"       | coc-yank        | yank history                               | <l>y             |
 "       |-----------------+--------------------------------------------+------------------|
 "
 "   TODO:
@@ -235,7 +236,7 @@ noremap  P "+p
 
 " -------------- search & select
 " select all
-nmap <c-a> ggVG
+" nmap <c-a> ggVG
 " search selected words
 vnoremap / y/<c-r>"<cr>
 " find word under cursor use Incsearch plugin
