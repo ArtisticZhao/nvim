@@ -111,8 +111,11 @@
 "       | coc-translator  | translate                                  | <l>tr            |
 "       | coc-yank        | yank history                               | <l>y             |
 "       |-----------------+--------------------------------------------+------------------|
+"       | MarkDown        | paste copyed image                         | <l>p             |
+"       |-----------------+--------------------------------------------+------------------|
 "
 "   TODO:
+"     - coc-word for comments
 "     - resize window -> move the split line
 "     - git diff files
 

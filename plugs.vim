@@ -316,6 +316,11 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tweekmonster/braceless.vim', { 'for' :['python'] }
     " ============= markdown   =============
     Plug 'suan/vim-instant-markdown', {'for': ['markdown']}
+    Plug 'ferrine/md-img-paste.vim', {'for': ['markdown']}
+        autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+        " there are some defaults for image directory and image name, you can change them
+        let g:mdip_imgdir = 'img'
+        let g:mdip_imgname = 'image'
     " ============= colortheme =============
     Plug 'connorholyday/vim-snazzy'
     Plug 'altercation/vim-colors-solarized'

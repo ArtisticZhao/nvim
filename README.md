@@ -50,7 +50,7 @@ The plug will auto install!
 ### Plugins dependencies
 - [Ag](https://github.com/ggreer/the_silver_searcher)
 - figlet `sudo apt install figlet`
-
+- xclip `sudo apt install xclip`
 ### C-language  
 
 - [ccls](https://github.com/MaskRay/ccls/wiki)  
