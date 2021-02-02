@@ -105,5 +105,8 @@
         "--max-line-length=120"
     ],
     "python.linting.flake8Enabled": true,
-    "python.linting.maxNumberOfProblems": 100
+    "python.linting.maxNumberOfProblems": 100,
+    "markdownlint.config": {
+        "line-length": true
+    }
 }

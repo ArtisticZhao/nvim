@@ -22,7 +22,8 @@ let g:coc_global_extensions = [
             \'coc-syntax',
             \'coc-dictionary',
             \'coc-yaml',
-            \'coc-yank'
+            \'coc-yank',
+            \'coc-markdownlint'
             \]
 
 " ==============================================
@@ -95,7 +96,7 @@ nmap <leader>rn <Plug>(coc-rename)
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
-
+nmap <leader>af <Plug>(coc-codeaction)
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 

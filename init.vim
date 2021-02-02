@@ -163,6 +163,7 @@ set virtualedit=block
 set expandtab     " 将制表符扩展为空格
 set tabstop=4     " 设置编辑时制表符占用空格数
 set shiftwidth=4  " 设置格式化时制表符占用空格数
+autocmd FileType yaml set shiftwidth=2
 set softtabstop=4 " 让vim把连续数量的空格视为一个制表符
 set backspace=2   " make bp like normal app
 
@@ -176,7 +177,9 @@ set cursorline
 set showcmd
 set wildmenu
 set scrolloff=5
+" define wrap rules
 set nowrap
+autocmd FileType markdown set wrap
 " show tab and space
 set list
 
@@ -306,9 +309,28 @@ map tx :r !figlet
 
 
 " ==============================================
+" ============== MarkDown ======================
+" ==============================================
+autocmd Filetype markdown inoremap ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
+autocmd Filetype markdown inoremap ,n ---<Enter><Enter>
+autocmd Filetype markdown inoremap ,b **** <++><Esc>F*hi
+autocmd Filetype markdown inoremap ,s ~~~~ <++><Esc>F~hi
+autocmd Filetype markdown inoremap ,i ** <++><Esc>F*i
+autocmd Filetype markdown inoremap ,d `` <++><Esc>F`i
+autocmd Filetype markdown inoremap ,c ```<Enter><++><Enter>```<Enter><Enter><++><Esc>4kA
+autocmd Filetype markdown inoremap ,h ====<Space><++><Esc>F=hi
+autocmd Filetype markdown inoremap ,p ![](<++>) <++><Esc>F[a
+autocmd Filetype markdown inoremap ,a [](<++>) <++><Esc>F[a
+autocmd Filetype markdown inoremap ,1 #<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,2 ##<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,3 ###<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,l --------<Enter>
+
+
+" ==============================================
 " ============== Path configure ================
 " ==============================================
 let g:python3_host_prog='/usr/bin/python3'
 let g:python_host_prog='/usr/bin/python2.7'
-
 

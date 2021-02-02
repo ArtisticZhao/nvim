@@ -71,8 +71,8 @@ map <LEADER>dt :call OpenDeviceTree()<CR>
 " ==============================================
 " press f10 to show hlgroup
 function! SynGroup()
-	let l:s = synID(line('.'), col('.'), 1)
-	echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
 map <F2> :call SynGroup()<CR>
 
@@ -81,7 +81,7 @@ map <F2> :call SynGroup()<CR>
 " ============== run program ===================
 " ==============================================
 func! CompileRun()
-	exec "w"
+    exec "w"
     if &filetype == 'python'
         :FloatermNew!
             \   --height=0.3 --width=0.8
@@ -90,6 +90,8 @@ func! CompileRun()
             \   --position=bottomright
             \   --autoclose=2
             \   python3 %
+    elseif &filetype == 'markdown'
+        exec "MarkdownPreview"
     endif
 endfunc
 noremap <F5> :call CompileRun()<CR>
