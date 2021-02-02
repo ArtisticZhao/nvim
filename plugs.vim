@@ -92,10 +92,6 @@ call plug#begin('~/.config/nvim/plugged')
         nnoremap <leader>sw :StripWhitespace<CR>
         vnoremap <leader>sw :'<,'>StripWhitespace<CR>
 
-    " use coc-yank
-    " Plug 'machakann/vim-highlightedyank'
-
-
     " ============= speed      =============
     Plug 'preservim/nerdcommenter'
         " KEY MAP: <L>cc comment; <L>cu uncomment
@@ -315,7 +311,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python'] }
     Plug 'tweekmonster/braceless.vim', { 'for' :['python'] }
     " ============= markdown   =============
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown']}
         " set to 1, nvim will open the preview window after entering the markdown buffer
         " default: 0
         let g:mkdp_auto_start = 0
