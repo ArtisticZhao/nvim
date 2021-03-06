@@ -34,6 +34,9 @@ npm config set registry https://registry.npmjs.org
 
 ## Add python support
 ```
+# set pip's source to Tsinghua
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+# Add python support
 python3 -m pip install pynvim
 ```
 
