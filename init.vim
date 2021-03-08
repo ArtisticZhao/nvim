@@ -10,7 +10,7 @@
 "       | Category        | Function                                   | KEYMAP           |
 "       |-----------------+--------------------------------------------+------------------|
 "       | Navigation      | Navigation                                 | h j k l          |
-"       |                 | Navigation in i-mode                       | <M-[hjkl]>       |
+"       |                 | Navigation in i-mode                       | <c-[hjkl]>       |
 "       |                 | Speed Navigation                           | J K              |
 "       |                 | <Home> <End>                               | H L              |
 "       |                 | next/prev word (split by space or ,._=...) | w/b              |
@@ -189,10 +189,10 @@ noremap K 5k
 noremap H ^
 noremap L $
 " -------------- Navigation on i-mode
-imap <M-h> <left>
-imap <M-j> <down>
-imap <M-k> <up>
-imap <M-l> <right>
+inoremap <c-h> <left>
+inoremap <c-j> <down>
+inoremap <c-k> <up>
+inoremap <c-l> <right>
 " -------------- add empty row
 noremap <cr> o<esc>
 " -------------- change to uppercase
@@ -221,8 +221,8 @@ nnoremap = ;
 " no highlight for search
 noremap <LEADER><CR> :nohlsearch<CR>
 " -------------- replace current word
-nnoremap <c-h> <esc>:%s/<c-r><c-w>//g<left><left>
-xnoremap <c-h> y<esc>:%s/<c-r>"//g<left><left>
+" nnoremap <c-h> <esc>:%s/<c-r><c-w>//g<left><left>
+" xnoremap <c-h> y<esc>:%s/<c-r>"//g<left><left>
 " replace tab with space
 nnoremap <leader><tab> <esc>:%ret! 4<cr>
 " -------------- Indentation
@@ -462,6 +462,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'jiangmiao/auto-pairs'
         au Filetype c       let b:AutoPairs={'(':')', '[':']', '{':'}', "'":"'", '"':'"', '"""':'"""', "'''":"'''"}
         au Filetype verilog let b:AutoPairs={'(':')', '[':']', '{':'}', "'":"'", '"':'"', '"""':'"""', "'''":"'''"}
+        let g:AutoPairsMapCh = 0  " don't map the <c-h> to backspace in insert mode
 
     Plug 'gcmt/wildfire.vim'
         map <tab> <Plug>(wildfire-fuel)
