@@ -5,30 +5,6 @@
 " |_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
 "
 "
-" =====================================================
-" function:    Term_toggle
-" description: toggle the term in split windows
-" return:      
-" call:        
-" =====================================================
-" let g:term_buf = 0
-" let g:term_win = 0
-" function! Term_toggle(height)
-"     if win_gotoid(g:term_win)
-"         hide
-"     else
-"         botright new
-"         exec 'resize ' . a:height
-"         try
-"             exec 'buffer ' . g:term_buf
-"         catch
-"             call termopen($SHELL, {"detach": 0})
-"             let g:term_buf = bufnr("")
-"         endtry
-"         startinsert!
-"         let g:term_win = win_getid()
-"     endif
-" endfunction
 
 
 " =====================================================
@@ -43,6 +19,27 @@ function! Is_emptyline()
         return 1
     endif
     return 0
+endfunction
+
+
+" =====================================================
+" function:    Escaped Search
+" description: Auto Escape the specal characters
+" return:
+" call:
+" =====================================================
+function! EscapedSearch() range
+    " Backup what's in default register
+    let l:saved_reg = @"
+    " Copy selection
+    execute 'normal! vgvy'
+    " Escape special chars
+    let l:pattern = escape(@", "\\/.*'$^~[]")
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+    " Set search
+    let @/ = l:pattern
+    " Restore default register
+    let @" = l:saved_reg
 endfunction
 
 
