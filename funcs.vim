@@ -42,6 +42,9 @@ function! EscapedSearch() range
     let @" = l:saved_reg
 endfunction
 
+function! CmdLine(str)
+    call feedkeys(":" . a:str)
+endfunction
 
 " ==============================================
 " ============== Key Shortcuts =================
