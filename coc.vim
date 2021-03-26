@@ -103,7 +103,19 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " =================================================
 " ==================== coc-explorer ===============
 " =================================================
-nnoremap <leader>e :CocCommand explorer<CR>
+nnoremap <leader>e :CocCommand explorer --preset floatingLeftside<CR>
+" nnoremap <leader>b :CocCommand explorer --preset buffer<CR>
+let g:coc_explorer_global_presets = {
+    \   'floatingLeftside': {
+    \     'position': 'floating',
+    \     'floating-position': 'left-center',
+    \     'floating-width': 50,
+    \     'open-action-strategy': 'sourceWindow',
+    \   },
+    \   'buffer': {
+    \     'sources': [{'name': 'buffer', 'expand': v:true}]
+    \   },
+    \ }
 
 
 " =================================================

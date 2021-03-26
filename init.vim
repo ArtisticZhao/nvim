@@ -48,10 +48,8 @@ set virtualedit=block
 set expandtab     " 将制表符扩展为空格
 set tabstop=4     " 设置编辑时制表符占用空格数
 set shiftwidth=4  " 设置格式化时制表符占用空格数
-autocmd FileType yaml set shiftwidth=2
 set softtabstop=4 " 把连续数量的空格视为一个tab
 set backspace=2   " make bp like normal app
-
 
 " ============== Display =======================
 set number
@@ -67,6 +65,7 @@ set list
 set showbreak=↪\
 set listchars=tab:▸\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 "eol:↲,
+
 " ============== Search settings ===============
 exec "nohlsearch"
 set hlsearch
@@ -74,7 +73,6 @@ set incsearch       " search when typing
 set ignorecase
 set smartcase
 set wrapscan        " tail to head search
-
 " don't higlight search when sourcing .vimrc
 let @/ = ""
 
@@ -498,33 +496,6 @@ au filetype verilog inoremap <buffer> ` <=
 map tx :r !figlet
 
 
-" ==============================================
-" ============== markdown   ====================
-" ==============================================
-autocmd FileType markdown set wrap
-" find a placeholder
-autocmd Filetype markdown inoremap ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
-autocmd Filetype markdown inoremap ,n ---<Enter><Enter>
-" bold
-autocmd Filetype markdown inoremap ,b **** <++><Esc>F*hi
-" delete line
-autocmd Filetype markdown inoremap ,s ~~~~ <++><Esc>F~hi
-" italic
-autocmd Filetype markdown inoremap ,i ** <++><Esc>F*i
-" code in line
-autocmd Filetype markdown inoremap ,d `` <++><Esc>F`i
-" code block
-autocmd Filetype markdown inoremap ,c ```<Enter><++><Enter>```<Enter><Enter><++><Esc>4kA
-autocmd Filetype markdown inoremap ,h ====<Space><++><Esc>F=hi
-autocmd Filetype markdown inoremap ,p ![](<++>) <++><Esc>F[a
-autocmd Filetype markdown inoremap ,a [](<++>) <++><Esc>F[a
-autocmd Filetype markdown inoremap ,1 #<Space><Enter><++><Esc>kA
-autocmd Filetype markdown inoremap ,2 ##<Space><Enter><++><Esc>kA
-autocmd Filetype markdown inoremap ,3 ###<Space><Enter><++><Esc>kA
-autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
-autocmd Filetype markdown inoremap ,l --------<Enter>
-" place a 'more'
-autocmd Filetype markdown inoremap ,m <!--more-->
 
 
 
