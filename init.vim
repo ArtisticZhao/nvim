@@ -64,7 +64,9 @@ set scrolloff=5
 set nowrap
 " show tab and space
 set list
-
+set showbreak=↪\
+set listchars=tab:▸\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+"eol:↲,
 " ============== Search settings ===============
 exec "nohlsearch"
 set hlsearch
@@ -109,6 +111,8 @@ vmap <c-s> <esc>:w<CR>
 vnoremap Y "+y
 nnoremap Y "+yy
 noremap  P "+p
+" Don't lose clipboard when pasting
+vnoremap p pgvy
 " -------------- search & select
 " find word under cursor use Incsearch plugin
 nmap <c-f> /<c-r><c-w><cr>
@@ -150,6 +154,7 @@ map <LEADER>sl :set splitright<CR>:vsplit<CR>
 map <LEADER>sh :set nosplitright<CR>:vsplit<CR>
 map <LEADER>sk :set nosplitbelow<CR>:split<CR>
 map <LEADER>sj :set splitbelow<CR>:split<CR>
+map <LEADER>s= <c-w>=
 " move around splited windows
 map <leader>h <C-w>h
 map <leader>j <C-w>j
@@ -160,8 +165,8 @@ map <LEADER>sr <c-w><c-r>
 " change width and height of splited windows
 map <C-up> :res +5<CR>
 map <C-down> :res -5<CR>
-map <C-left> :vertical resize+5<CR>
-map <C-right> :vertical resize-5<CR>
+map <C-left> <c-w>10>
+map <C-right> <c-w>10<
 " -------------- VIMRC
 " Open neoVIM configure file in new tab
 map <LEADER>rc :e ~/.config/nvim/init.vim<CR>
@@ -183,11 +188,13 @@ source ~/.config/nvim/funcs.vim
 " ============== plugins =======================
 " ==============================================
 call plug#begin('~/.config/nvim/plugged')
+    Plug 'yianwillis/vimcdoc'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " colortheme
-    Plug 'connorholyday/vim-snazzy'
+    " Plug 'connorholyday/vim-snazzy'
     " Plug 'altercation/vim-colors-solarized'
-    " Plug 'morhetz/gruvbox'
+    Plug 'morhetz/gruvbox'
+    Plug 'patstockwell/vim-monokai-tasty'
     " vision
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -216,6 +223,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'voldikss/vim-floaterm'
+
     " markdown
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown']}
     Plug 'ferrine/md-img-paste.vim', {'for': ['markdown']}
@@ -225,14 +233,13 @@ call plug#end()
 
 
 " ==============================================
-" ============== colortheme   ==================
+" ============== colorscheme   =================
 " ==============================================
 set background=dark
 " -- snazzy
-color snazzy
+" color snazzy
 " -- molokai
-" let g:molokai_original = 1
-" let g:rehash256 = 1
+colorscheme vim-monokai-tasty
 " -- solarized
 " colorscheme solarized
 " -- gruvbox
@@ -249,7 +256,8 @@ source ~/.config/nvim/coc.vim
 
 " -------------- vim-airline/vim-airline vim-airline/vim-airline-themes
 let g:airline_powerline_fonts = 1
-let g:airline_theme="deus"
+" let g:airline_theme="deus"
+let g:airline_theme='monokai_tasty'
 " powerline symbols
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
