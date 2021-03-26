@@ -9,8 +9,6 @@
 "
 "   TODO:
 "     - coc-word for comments
-"     - resize window -> move the split line
-"     - git diff files
 
 " #########################################################################################
 "                              BASIC SETTINGS: no plugins settings
@@ -115,6 +113,8 @@ vnoremap p pgvy
 " find word under cursor use Incsearch plugin
 nmap <c-f> /<c-r><c-w><cr>
 imap <c-f> <esc>/<c-r><c-w><cr>
+" open a quickfix windwos for the last search
+nmap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 " find selected string with escape mode
 vnoremap <silent> <c-f> :<C-u>call EscapedSearch()<CR>/<C-R>=@/<CR><CR>n
 " n for search down N for search up
@@ -126,7 +126,8 @@ nnoremap = ;
 " no highlight for search
 noremap <LEADER><CR> :nohlsearch<CR>
 " -------------- replace current word
-" vnoremap <silent> <c-h> :call EscapedSearch()<CR>:call CmdLine("%s".'/'.@/.'/'.@/)<CR>
+vnoremap <silent> <c-h> :call EscapedSearch()<CR>:call CmdLine("%s".'/'.@/.'/'.@/)<CR>
+nnoremap <silent> <c-h> viw:call EscapedSearch()<CR>:call CmdLine("%s".'/'.@/.'/'.@/)<CR>
 " nnoremap <c-h> <esc>:%s/<c-r><c-w>//g<left><left> asd
 " xnoremap <c-h> y<esc>:%s/<c-r>"//g<left><left> asd
 " replace tab with space
@@ -216,6 +217,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'dhruvasagar/vim-table-mode', {'on': 'TableModeToggle'}
         nnoremap <LEADER>tm :TableModeToggle<CR>
+    Plug 'lfv89/vim-interestingwords'
     " functions
     Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
