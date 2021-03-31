@@ -95,7 +95,7 @@ npm install
 
 ## Keymaps
 
-This table draw with vim-table-mode, it will better presente in text mode.
+This table draw with vim-table-mode, it will better present in text mode.
 
 | Category         | Function                                   | KEYMAP             |
 |------------------|--------------------------------------------|--------------------|

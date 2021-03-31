@@ -60,7 +60,7 @@ set scrolloff=5
 set nowrap
 " show tab and space
 set list
-set showbreak=↪\
+set showbreak=↪
 set listchars=tab:▸\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 "eol:↲,
 
