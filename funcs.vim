@@ -92,6 +92,14 @@ func! CompileRun()
             \   python3 %
     elseif &filetype == 'markdown'
         exec "MarkdownPreview"
+    elseif &filetype == 'tex'
+        :FloatermNew!
+            \   --height=0.3 --width=0.8
+            \   --wintype=floating
+            \   --name=run_python
+            \   --position=bottomright
+            \   --autoclose=2
+            \   xelatex %
     endif
 endfunc
 noremap <F5> :call CompileRun()<CR>

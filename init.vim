@@ -245,7 +245,7 @@ colorscheme vim-monokai-tasty
 " -- gruvbox
 " let g:gruvbox_sign_colum='bg'
 " colorscheme gruvbox
-
+hi Normal ctermfg=252 ctermbg=none
 
 " ==============================================
 " ============== plugins configs ===============
