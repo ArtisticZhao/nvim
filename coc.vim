@@ -23,7 +23,8 @@ let g:coc_global_extensions = [
             \'coc-dictionary',
             \'coc-yaml',
             \'coc-yank',
-            \'coc-markdownlint'
+            \'coc-markdownlint',
+            \'coc-texlab'
             \]
 
 " ==============================================

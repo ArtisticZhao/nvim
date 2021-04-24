@@ -227,6 +227,8 @@ call plug#begin('~/.config/nvim/plugged')
     " markdown
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown']}
     Plug 'ferrine/md-img-paste.vim', {'for': ['markdown']}
+    " latex
+    Plug 'lervag/vimtex', {'for': ['tex', 'plaintex']}
     " tools
     Plug 'ZSaberLv0/ZFVimDirDiff', {'on': 'ZFDirDiff'}
 call plug#end()

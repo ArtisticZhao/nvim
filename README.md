@@ -208,4 +208,10 @@ This table draw with vim-table-mode, it will better present in text mode.
 |------------------|--------------------------------------------|--------------------|
 | MarkDown         | paste copyed image                         | {leader}p          |
 |------------------|--------------------------------------------|--------------------|
+| vimtex           | start compile                              | \ll                |
+|                  | show pdf                                   | \lv                |
+|                  | stop compile                               | \lk                |
+|                  | show logs                                  | \le                |
+|                  | clean compiled files                       | \lc                |
+|------------------|--------------------------------------------|--------------------|
 
