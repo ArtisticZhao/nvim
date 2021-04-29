@@ -424,6 +424,15 @@ au Filetype verilog let b:AutoPairs={'(':')', '[':']', '{':'}', "'":"'", '"':'"'
 let g:AutoPairsMapCh = 0
 
 
+" -------------- lfv89/vim-interestingwords
+let g:interestingWordsDefaultMappings = 0
+nnoremap <silent> <leader>i :call InterestingWords('n')<cr>
+vnoremap <silent> <leader>i :call InterestingWords('v')<cr>
+nnoremap <silent> <leader>I :call UncolorAllWords()<cr>
+
+nnoremap <silent> n :call WordNavigation(1)<cr>
+nnoremap <silent> N :call WordNavigation(0)<cr>
+
 " -------------- mbbill/undotree
 map <LEADER>ut :UndotreeToggle<CR>
 
@@ -492,15 +501,13 @@ autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownCli
 let g:mdip_imgdir = 'img'
 let g:mdip_imgname = 'image'
 
+
 " -------------- remap to put -> in C files
 au filetype c inoremap <buffer> ` ->
 au filetype verilog inoremap <buffer> ` <=
 
 " -------------- call figlet
 map tx :r !figlet
-
-
-
 
 
 " ==============================================

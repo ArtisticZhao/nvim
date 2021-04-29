@@ -24,7 +24,8 @@ let g:coc_global_extensions = [
             \'coc-yaml',
             \'coc-yank',
             \'coc-markdownlint',
-            \'coc-texlab'
+            \'coc-texlab',
+            \'coc-metals'
             \]
 
 " ==============================================

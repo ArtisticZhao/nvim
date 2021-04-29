@@ -190,6 +190,9 @@ This table draw with vim-table-mode, it will better present in text mode.
 |------------------|--------------------------------------------|--------------------|
 | wildfire         | select in "'[(                             | {tab}              |
 |------------------|--------------------------------------------|--------------------|
+| interestingwords | add interesting word [n-mode, v-mode]      | {leader}i          |
+|                  | remove all interestingwords                | {leader}I          |
+|------------------|--------------------------------------------|--------------------|
 | sandwich         | add sround in v-mode                       | sa{pairs}          |
 |                  | add sround with motion                     | eg saiw{pairs}     |
 |                  | delete sround                              | sdb/sd{pairs}      |
@@ -205,6 +208,8 @@ This table draw with vim-table-mode, it will better present in text mode.
 |------------------|--------------------------------------------|--------------------|
 | coc-translator   | translate                                  | {leader}tr         |
 | coc-yank         | yank history                               | {leader}y          |
+|------------------|--------------------------------------------|--------------------|
+| coc-word         | toggle coc-word enable                     | F3                 |
 |------------------|--------------------------------------------|--------------------|
 | MarkDown         | paste copyed image                         | {leader}p          |
 |------------------|--------------------------------------------|--------------------|

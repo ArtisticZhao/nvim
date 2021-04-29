@@ -73,8 +73,30 @@ map <LEADER>dt :call OpenDeviceTree()<CR>
 function! SynGroup()
     let l:s = synID(line('.'), col('.'), 1)
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
-endfun
+endfunction
 map <F2> :call SynGroup()<CR>
+
+
+" ==============================================
+" ============== toggle coc-word ===============
+" ==============================================
+function! ToggleWord()
+    if !exists("b:isword_enable")
+        let b:isword_enable = 0
+    endif
+    if b:isword_enable == 1
+        call coc#config('coc.source', {'word.enable': v:false})
+        echo "coc word disable"
+        let b:isword_enable = 0
+    else
+        call coc#config('coc.source', {'word.enable': v:true})
+        echo "coc word enable"
+        let b:isword_enable = 1
+    endif
+endfunction
+
+map  <F3> :call ToggleWord()<CR>
+imap <F3> <ESC>:call ToggleWord()<CR>gi
 
 
 " ==============================================
@@ -101,5 +123,5 @@ func! CompileRun()
             \   --autoclose=2
             \   xelatex %
     endif
-endfunc
+endfunction
 noremap <F5> :call CompileRun()<CR>
