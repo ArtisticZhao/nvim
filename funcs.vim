@@ -106,12 +106,13 @@ func! CompileRun()
     exec "w"
     if &filetype == 'python'
         :FloatermNew!
-            \   --height=0.3 --width=0.8
-            \   --wintype=floating
-            \   --name=run_python
-            \   --position=bottomright
-            \   --autoclose=2
-            \   python3 %
+                    \ --height=0.3
+                    \ --width=0.8
+                    \ --wintype=floating
+                    \ --name=run_python
+                    \ --position=bottomright
+                    \ --autoclose=2
+                    \ python3 %
     elseif &filetype == 'markdown'
         exec "MarkdownPreview"
     elseif &filetype == 'tex'

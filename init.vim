@@ -35,7 +35,7 @@ filetype plugin indent on
 autocmd BufReadPost * normal! g`"
 
 " 基于缩进或语法进行代码折叠
-set foldmethod=indent
+set foldmethod=marker
 " set foldmethod=syntax
 " 启动 vim 时关闭折叠代码
 set nofoldenable
@@ -223,6 +223,10 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'voldikss/vim-floaterm'
+    " telescope
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
 
     " markdown
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown']}
@@ -231,6 +235,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'lervag/vimtex', {'for': ['tex', 'plaintex']}
     " tools
     Plug 'ZSaberLv0/ZFVimDirDiff', {'on': 'ZFDirDiff'}
+    " auto switch IME method
+    Plug 'lyokha/vim-xkbswitch'
 call plug#end()
 
 
@@ -484,6 +490,14 @@ tnoremap <silent> <m-t> <C-\><C-n>:FloatermToggle quick<cr>
 nnoremap <C-g> :FloatermNew! --height=0.8 --width=0.9 --wintype=floating --name=lg --position=topleft --autoclose=2 lazygit<cr>
 
 
+" -------------- nvim-telescope/telescope.nvim
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+
 " -------------- easymotion/vim-easymotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " Turn on case-insensitive feature
@@ -500,6 +514,17 @@ autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownCli
 " there are some defaults for image directory and image name, you can change them
 let g:mdip_imgdir = 'img'
 let g:mdip_imgname = 'image'
+
+
+" -------------- lervag/vimtex
+let g:vimtex_view_method= 'zathura'
+let g:vimtex_compiler_progname = 'nvr'
+
+
+" -------------- lyokha/vim-xkbswitch
+let g:XkbSwitchEnabled = 1
+" build so follow: https://github.com/lyokha/g3kb-switch
+let g:XkbSwitchLib = '/usr/local/lib/libg3kbswitch.so'
 
 
 " -------------- remap to put -> in C files
