@@ -99,6 +99,8 @@ This table draw with vim-table-mode, it will better present in text mode.
 
 | Category         | Function                                   | KEYMAP             |
 |------------------|--------------------------------------------|--------------------|
+| vim-quickui      | open menu bar                              | <c-space>          |
+|------------------|--------------------------------------------|--------------------|
 | Navigation       | Navigation                                 | h j k l            |
 |                  | Navigation in i-mode                       | {c-[hjkl]}         |
 |                  | Speed Navigation                           | J K                |
