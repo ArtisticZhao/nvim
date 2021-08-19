@@ -1,2 +1,2 @@
-set shiftwidth=2
-vmap <c-b> di\textbf{<c-r>"}<ESC>
+setlocal shiftwidth=2
+vmap <buffer> <c-b> di\textbf{<c-r>"}<ESC>

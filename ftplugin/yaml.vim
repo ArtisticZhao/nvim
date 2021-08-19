@@ -1,2 +1,2 @@
 
-autocmd FileType yaml set shiftwidth=2
+autocmd FileType yaml setlocal shiftwidth=2
