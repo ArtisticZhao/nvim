@@ -1,0 +1,28 @@
+
+snippet fig "figure" b
+\begin{figure}[h]
+  \centering
+  \captiondelim{  }
+  \includegraphics[width = ${3:width}\textwidth]{${1:figure_name_or_label}}
+  \caption[${1:figure_name_or_label}]{${2:caption}}
+  \label{${1:figure_name_or_label}}
+\end{figure}
+endsnippet
+
+snippet tab "table" b
+\begin{table}[htbp]
+\captiondelim{  }
+\bicaption[${1:label}]{}{${2:caption}}
+\vspace{0.5em}
+\centering\wuhao
+\begin{tabular}{${3: column and align: lcr}}
+\toprule[1.5pt]
+${4: content & for column; \\ for row}
+\bottomrule[1.5pt]
+\end{tabular}
+\end{table}
+endsnippet
+
+snippet cfig "cite figure" b
+\figurename{} \ref{${1: figure label}}
+endsnippet

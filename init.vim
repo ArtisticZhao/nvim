@@ -23,7 +23,8 @@ set encoding=utf-8
 " cmd color
 let &t_ut=''
 set autochdir
-" set mouse=a  " enable mouse click
+" enable mouse click
+set mouse=a
 
 syntax on
 filetype on
@@ -112,7 +113,7 @@ vnoremap p pgvy
 " -------------- search & select
 " find word under cursor use Incsearch plugin
 nmap <c-f> /<c-r><c-w><cr>
-imap <c-f> <esc>/<c-r><c-w><cr>
+" imap <c-f> <esc>/<c-r><c-w><cr>
 " open a quickfix windwos for the last search
 nmap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 " find selected string with escape mode

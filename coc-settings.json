@@ -4,6 +4,7 @@
     "yank.list.maxsize": 200,
     "yank.enableCompletion": true,
     "coc.preferences.extensionUpdateCheck": "daily",
+    "suggest.autoTrigger": "always",
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
     "suggest.completionItemKindLabels": {

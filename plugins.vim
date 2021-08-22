@@ -61,7 +61,7 @@ call plug#begin('~/.config/nvim/plugged')
     " tools
     Plug 'ZSaberLv0/ZFVimDirDiff', {'on': 'ZFDirDiff'}
     " auto switch IME method
-    Plug 'lyokha/vim-xkbswitch'
+    Plug 'lyokha/vim-xkbswitch', {'for': ['tex', 'plaintex', 'markdown']}
 call plug#end()
 
 
@@ -252,6 +252,8 @@ vmap <s-tab> <Plug>(wildfire-water)
 " -------------- jiangmiao/auto-pairs
 au Filetype c       let b:AutoPairs={'(':')', '[':']', '{':'}', "'":"'", '"':'"', '"""':'"""', "'''":"'''"}
 au Filetype verilog let b:AutoPairs={'(':')', '[':']', '{':'}', "'":"'", '"':'"', '"""':'"""', "'''":"'''"}
+au Filetype verilog let b:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"', '"""':'"""', "'''":"'''"}
+
 " don't map the <c-h> to backspace in insert mode
 let g:AutoPairsMapCh = 0
 
