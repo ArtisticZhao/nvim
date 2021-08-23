@@ -1,6 +1,20 @@
 setlocal shiftwidth=2
+setlocal softtabstop=2
+setlocal tabstop=2
 setlocal wrap
-vmap <buffer> <c-b> di\textbf{<c-r>"}<ESC>
+
+" 允许对multi_byte字符换行（否则默认只能空格或者英文标点，详见set breakat
+setlocal formatoptions+=m
+setlocal textwidth=78
+
+" 在虚拟行之间移动
+noremap <buffer> j gj
+noremap <buffer> k gk
+inoremap <buffer> <c-j> <C-[>g<Down>a
+inoremap <buffer> <c-k> <C-[>g<Up>a
+
+vnoremap <silent><buffer> <c-b> :<c-u>call SurroundVaddPairs("\\textbf{", "}")<cr>
+vnoremap <silent><buffer> <c-m> :<c-u>call SurroundVaddPairs("$", "$")<cr>
 
 nmap <buffer> <F12> \lv
 
