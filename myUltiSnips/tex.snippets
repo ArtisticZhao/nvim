@@ -3,7 +3,7 @@ snippet fig "figure" b
 \begin{figure}[h]
   \centering
   \captiondelim{  }
-  \includegraphics[width = ${3:width}\textwidth]{${1:figure_name_or_label}}
+  \includegraphics[width = ${3:0.99}\textwidth]{${1:figure_name_or_label}}
   \caption[${1:figure_name_or_label}]{${2:caption}}
   \label{${1:figure_name_or_label}}
 \end{figure}
@@ -23,6 +23,8 @@ ${4: content & for column; \\ for row}
 \end{table}
 endsnippet
 
-snippet cfig "cite figure" b
-\figurename{} \ref{${1: figure label}}
+snippet item "item list" b
+\begin{itemize}[noitemsep,topsep=0pt]
+  \item ${1:item 1}
+\end{itemize}
 endsnippet

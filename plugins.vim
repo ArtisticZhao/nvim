@@ -13,14 +13,21 @@ endif
 call plug#begin('~/.config/nvim/plugged')
     Plug 'yianwillis/vimcdoc'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " colortheme
+    " ====== colortheme ======
     " Plug 'connorholyday/vim-snazzy'
     " Plug 'altercation/vim-colors-solarized'
     Plug 'morhetz/gruvbox'
     Plug 'patstockwell/vim-monokai-tasty'
-    " vision
+    Plug 'glepnir/zephyr-nvim'
+    Plug 'nvim-treesitter/nvim-treesitter', {'brach': '0.5-compat', 'do': ':TSUpdate'}
+    " ====== vision ======
+    Plug 'lukas-reineke/indent-blankline.nvim'
+    Plug 'xiyaowong/nvim-cursorword'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+    Plug 'akinsho/bufferline.nvim'
+    " Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
     Plug 'luochen1990/rainbow'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'mhinz/vim-startify'
@@ -34,8 +41,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'machakann/vim-sandwich'
     Plug 'mg979/vim-visual-multi', {'branch': 'master'}
     Plug 'lambdalisue/suda.vim'
-    Plug 'easymotion/vim-easymotion'
         let g:suda_smart_edit = 1
+    Plug 'easymotion/vim-easymotion'
     " enhance
     Plug 'haya14busa/incsearch.vim'
     Plug 'haya14busa/incsearch-fuzzy.vim'
@@ -60,8 +67,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'lervag/vimtex', {'for': ['tex', 'plaintex']}
     " tools
     Plug 'ZSaberLv0/ZFVimDirDiff', {'on': 'ZFDirDiff'}
-    " auto switch IME method
-    Plug 'lyokha/vim-xkbswitch', {'for': ['tex', 'plaintex', 'markdown']}
+    Plug 'lyokha/vim-xkbswitch'
+    " Plug 'kevinhwang91/vim-ibus-sw' " auto switch IME method
 call plug#end()
 
 
@@ -72,12 +79,14 @@ set background=dark
 " -- snazzy
 " color snazzy
 " -- molokai
-colorscheme vim-monokai-tasty
+" colorscheme vim-monokai-tasty
 " -- solarized
 " colorscheme solarized
 " -- gruvbox
 " let g:gruvbox_sign_colum='bg'
 " colorscheme gruvbox
+" -- zephyr
+colorscheme zephyr
 
 highlight Normal guibg=None ctermbg=None
 
@@ -86,6 +95,34 @@ highlight Normal guibg=None ctermbg=None
 " ==============================================
 " -------------- neoclide/coc.nvim
 source ~/.config/nvim/coc.vim
+
+" -------------- lukas-reineke/indent-blankline.nvim
+lua << EOF
+vim.opt.termguicolors = true
+vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 blend=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B blend=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 blend=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 blend=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF blend=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD blend=nocombine]]
+
+vim.opt.listchars = {
+    space = "⋅",
+    eol = "↴",
+}
+
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
+        "IndentBlanklineIndent3",
+        "IndentBlanklineIndent4",
+        "IndentBlanklineIndent5",
+        "IndentBlanklineIndent6",
+    },
+}
+EOF
 
 
 " -------------- vim-airline/vim-airline vim-airline/vim-airline-themes
@@ -101,20 +138,8 @@ let g:airline_right_alt_sep = ''
 " change the tabline display format.
 " this format only show the short dir when filename is not unique
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-" enable tabline to show buffers
-let g:airline#extensions#tabline#enabled = 1
-" show buffers' index
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-" quickly jump to buffers
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
+" disable tabline to show buffers
+let g:airline#extensions#tabline#enabled = 0
 " disable whitespace check by airline
 let g:airline#extensions#whitespace#enabled = 0
 " enable/disable coc integration >
@@ -130,6 +155,38 @@ let airline#extensions#coc#open_lnum_symbol = '['
 " languageclient close_lnum_symbol >
 let airline#extensions#coc#close_lnum_symbol = ']'
 
+
+" -------------- bufferline.nvim
+" In your init.lua or init.vim
+set termguicolors
+lua << EOF
+require("bufferline").setup{
+options = {
+    numbers = "ordinal",
+    number_style = "superscript",
+    left_mouse_command = "buffer %d",
+    }
+}
+EOF
+nnoremap <silent><leader>1 <Cmd>BufferLineGoToBuffer 1<CR>
+nnoremap <silent><leader>2 <Cmd>BufferLineGoToBuffer 2<CR>
+nnoremap <silent><leader>3 <Cmd>BufferLineGoToBuffer 3<CR>
+nnoremap <silent><leader>4 <Cmd>BufferLineGoToBuffer 4<CR>
+nnoremap <silent><leader>5 <Cmd>BufferLineGoToBuffer 5<CR>
+nnoremap <silent><leader>6 <Cmd>BufferLineGoToBuffer 6<CR>
+nnoremap <silent><leader>7 <Cmd>BufferLineGoToBuffer 7<CR>
+nnoremap <silent><leader>8 <Cmd>BufferLineGoToBuffer 8<CR>
+nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
+
+" -------------- glepnir/galaxyline.nvim
+" function! ConfigStatusLine()
+"   lua require('plugins.status-line')
+" endfunction
+"
+" augroup status_line_init
+"   autocmd!
+"   autocmd VimEnter * call ConfigStatusLine()
+" augroup END
 
 " -------------- luochen1990/rainbow
 let g:rainbow_active = 1
@@ -350,12 +407,8 @@ let g:mdip_imgname = 'image'
 let g:vimtex_view_method= 'zathura'
 let g:vimtex_compiler_progname = 'nvr'
 
-
-" -------------- lyokha/vim-xkbswitch
 let g:XkbSwitchEnabled = 1
-" build so follow: https://github.com/lyokha/g3kb-switch
 let g:XkbSwitchLib = '/usr/local/lib/libg3kbswitch.so'
-
 
 " -------------- remap to put -> in C files
 au filetype c inoremap <buffer> ` ->

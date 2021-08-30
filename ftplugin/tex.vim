@@ -30,6 +30,8 @@ endfunc
 
 " nmap <buffer> <F8> :!command xclip -o >> reference.bib<CR><CR>
 nmap <buffer> <F8> :call DisplayMessages()<cr>
+imap <buffer> <F8> <esc>:call DisplayMessages()<cr>
+imap <buffer> <F9> \cite{}<esc>i<tab>
 
 " quick label
 inoremap <buffer>`1 \section{}<esc>i

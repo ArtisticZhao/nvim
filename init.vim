@@ -170,6 +170,7 @@ map <C-right> <c-w>10<
 " -------------- VIMRC
 " Open neoVIM configure file in new tab
 map <LEADER>rc :e ~/.config/nvim/init.vim<CR>
+map <LEADER>pl :e ~/.config/nvim/plugins.vim<CR>
 " Reload VIMRC
 noremap <LEADER>R :source $MYVIMRC<CR>
 
