@@ -13,7 +13,6 @@ call plug#begin('~/.config/nvim/plugged')
         " import coc's settings in vim
         source ~/.config/nvim/coc.vim
 
-
     " ============= vision     =============
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
