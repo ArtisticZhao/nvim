@@ -51,7 +51,7 @@ call plug#begin('~/.config/nvim/plugged')
         nnoremap <LEADER>tm :TableModeToggle<CR>
     Plug 'lfv89/vim-interestingwords'
     " functions
-    Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
+    Plug 'mbbill/undotree',
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'voldikss/vim-floaterm'
@@ -66,8 +66,9 @@ call plug#begin('~/.config/nvim/plugged')
     " latex
     Plug 'lervag/vimtex', {'for': ['tex', 'plaintex']}
     " tools
-    Plug 'ZSaberLv0/ZFVimDirDiff', {'on': 'ZFDirDiff'}
+    " Plug 'ZSaberLv0/ZFVimDirDiff', {'on': 'ZFDirDiff'}
     Plug 'lyokha/vim-xkbswitch'
+    Plug 'will133/vim-dirdiff'
     " Plug 'kevinhwang91/vim-ibus-sw' " auto switch IME method
 call plug#end()
 
@@ -97,6 +98,7 @@ highlight Normal guibg=None ctermbg=None
 source ~/.config/nvim/coc.vim
 
 " -------------- lukas-reineke/indent-blankline.nvim
+let g:indentLine_fileTypeExclude = ['startify']
 lua << EOF
 vim.opt.termguicolors = true
 vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 blend=nocombine]]

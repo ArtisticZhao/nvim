@@ -1,6 +1,6 @@
 
 snippet fig "figure" b
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \captiondelim{  }
   \includegraphics[width = ${3:0.99}\textwidth]{${1:figure_name_or_label}}
@@ -12,12 +12,14 @@ endsnippet
 snippet tab "table" b
 \begin{table}[htbp]
 \captiondelim{  }
-\bicaption[${1:label}]{}{${2:caption}}
+\caption[${1:label}]{${2:caption}}
+\label{${1:label}}
 \vspace{0.5em}
 \centering\wuhao
 \begin{tabular}{${3: column and align: lcr}}
 \toprule[1.5pt]
 ${4: content & for column; \\ for row}
+\midrule[1pt]
 \bottomrule[1.5pt]
 \end{tabular}
 \end{table}
@@ -27,4 +29,11 @@ snippet item "item list" b
 \begin{itemize}[noitemsep,topsep=0pt]
   \item ${1:item 1}
 \end{itemize}
+endsnippet
+
+snippet equ "equation" b
+
+\begin{equation}\label{equ:${2}}
+  ${1}
+\end{equation}
 endsnippet
