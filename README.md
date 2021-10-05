@@ -61,8 +61,25 @@ The plug will auto install!
 ### Plugins dependencies
 
 - [Ag](https://github.com/ggreer/the_silver_searcher)
-- figlet `sudo apt install figlet`
-- xclip `sudo apt install xclip`
+- figlet
+  ```
+  sudo apt install figlet
+  ```
+- xclip
+  ```
+  sudo apt install xclip
+  ```
+- [g3kb-switch](https://github.com/lyokha/g3kb-switch)
+  ```
+  sudo apt-get install libglib2.0-dev
+  git clone https://github.com/lyokha/g3kb-switch.git
+  cd g3kb-switch
+  mkdir build && cd build
+  cmake -DCMAKE_BUILD_TYPE=Release ..
+  make
+  sudo make install
+  ```
+
 
 ### C-language  
 
