@@ -13,6 +13,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
     Plug 'yianwillis/vimcdoc'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'dense-analysis/ale', {'for': ['verilog']}
     " ====== colortheme ======
     " Plug 'connorholyday/vim-snazzy'
     " Plug 'altercation/vim-colors-solarized'
@@ -21,8 +22,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'glepnir/zephyr-nvim'
     Plug 'nvim-treesitter/nvim-treesitter', {'brach': '0.5-compat', 'do': ':TSUpdate'}
     " ====== vision ======
-    Plug 'lukas-reineke/indent-blankline.nvim'
-    Plug 'xiyaowong/nvim-cursorword'
+    " Plug 'lukas-reineke/indent-blankline.nvim'
+    " Plug 'xiyaowong/nvim-cursorword'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
@@ -68,8 +69,8 @@ call plug#begin('~/.config/nvim/plugged')
     " tools
     " Plug 'ZSaberLv0/ZFVimDirDiff', {'on': 'ZFDirDiff'}
     Plug 'lyokha/vim-xkbswitch'
-    Plug 'will133/vim-dirdiff'
-    " Plug 'kevinhwang91/vim-ibus-sw' " auto switch IME method
+    Plug 'zhaocai/DirDiff.vim'
+    " Plug 'will133/vim-dirdiff'
 call plug#end()
 
 
@@ -89,6 +90,7 @@ set background=dark
 " -- zephyr
 colorscheme zephyr
 
+
 highlight Normal guibg=None ctermbg=None
 
 " ==============================================
@@ -96,36 +98,6 @@ highlight Normal guibg=None ctermbg=None
 " ==============================================
 " -------------- neoclide/coc.nvim
 source ~/.config/nvim/coc.vim
-
-" -------------- lukas-reineke/indent-blankline.nvim
-let g:indentLine_fileTypeExclude = ['startify']
-lua << EOF
-vim.opt.termguicolors = true
-vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 blend=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B blend=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 blend=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 blend=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF blend=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD blend=nocombine]]
-
-vim.opt.listchars = {
-    space = "⋅",
-    eol = "↴",
-}
-
-require("indent_blankline").setup {
-    space_char_blankline = " ",
-    char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-        "IndentBlanklineIndent3",
-        "IndentBlanklineIndent4",
-        "IndentBlanklineIndent5",
-        "IndentBlanklineIndent6",
-    },
-}
-EOF
-
 
 " -------------- vim-airline/vim-airline vim-airline/vim-airline-themes
 let g:airline_powerline_fonts = 1
@@ -164,8 +136,9 @@ set termguicolors
 lua << EOF
 require("bufferline").setup{
 options = {
-    numbers = "ordinal",
-    number_style = "superscript",
+    numbers = function(opts)
+        return string.format('%s', opts.ordinal)
+    end,
     left_mouse_command = "buffer %d",
     }
 }

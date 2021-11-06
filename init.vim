@@ -20,6 +20,8 @@
 set novb
 set noeb vb t_vb=
 set encoding=utf-8
+" auto try utf-8 and gb2312 coding.
+set fileencodings=utf-8,cp936
 " cmd color
 let &t_ut=''
 set autochdir
