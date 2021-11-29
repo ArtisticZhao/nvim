@@ -62,10 +62,11 @@ set scrolloff=5
 " define wrap rules
 set nowrap
 " show tab and space
-set list
 set showbreak=↪
-set listchars=tab:▸\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
-"eol:↲,
+" set listchars=eol:§,tab:¤›,extends:»,precedes:«,nbsp:‡
+" set listchars=nbsp:␣,eol:↲,tab:→\ ,trail:•,extends:⟩,precedes:⟨
+set listchars=nbsp:␣,eol:↲,tab:→\ ,trail:•,extends:»,precedes:«
+set list
 
 " ============== Search settings ===============
 exec "nohlsearch"

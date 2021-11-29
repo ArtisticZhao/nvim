@@ -18,7 +18,7 @@ chmod +x nvim
 
 ```shell
 sudo chown root:root nvim
-sudo mv nvim /usr/bin
+sudo mv nvim /usr/bin/vim
 ```
 
 ## Install node.js

@@ -17,9 +17,10 @@ call plug#begin('~/.config/nvim/plugged')
     " ====== colortheme ======
     " Plug 'connorholyday/vim-snazzy'
     " Plug 'altercation/vim-colors-solarized'
-    Plug 'morhetz/gruvbox'
-    Plug 'patstockwell/vim-monokai-tasty'
+    " Plug 'morhetz/gruvbox'
+    " Plug 'patstockwell/vim-monokai-tasty'
     Plug 'glepnir/zephyr-nvim'
+    Plug 'christianchiarulli/nvcode-color-schemes.vim'
     Plug 'nvim-treesitter/nvim-treesitter', {'brach': '0.5-compat', 'do': ':TSUpdate'}
     " ====== vision ======
     " Plug 'lukas-reineke/indent-blankline.nvim'
@@ -88,10 +89,20 @@ set background=dark
 " let g:gruvbox_sign_colum='bg'
 " colorscheme gruvbox
 " -- zephyr
-colorscheme zephyr
-
-
+" colorscheme zephyr
+" -- nvcode-color-schemes
+colorscheme nvcode
+" checks if your terminal has 24-bit color support
+if (has("termguicolors"))
+    set termguicolors
+    hi LineNr ctermbg=NONE guibg=NONE
+endif
 highlight Normal guibg=None ctermbg=None
+" list chars colors.
+" highlight group for "eol"、"extends"、"precedes"
+hi NonText ctermfg=247 guifg=#a73111 cterm=bold gui=bold
+" highlight group for "nbsp"、"tab"、"trail"
+hi SpecialKey ctermfg=77 guifg=#654321
 
 " ==============================================
 " ============== plugins configs ===============
@@ -99,10 +110,20 @@ highlight Normal guibg=None ctermbg=None
 " -------------- neoclide/coc.nvim
 source ~/.config/nvim/coc.vim
 
+" -------------- nvim-treesitter/nvim-treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+ensure_installed = {"python", "bash", "vim"},
+    sync_install = false,
+    highlight = {
+        enable = true,
+    }
+}
+EOF
+
 " -------------- vim-airline/vim-airline vim-airline/vim-airline-themes
 let g:airline_powerline_fonts = 1
-" let g:airline_theme="deus"
-let g:airline_theme='monokai_tasty'
+let g:airline_theme='deus'
 " powerline symbols
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
