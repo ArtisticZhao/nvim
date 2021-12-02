@@ -19,18 +19,20 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'altercation/vim-colors-solarized'
     " Plug 'morhetz/gruvbox'
     " Plug 'patstockwell/vim-monokai-tasty'
+    " ====== treesitter ======
     Plug 'glepnir/zephyr-nvim'
-    Plug 'christianchiarulli/nvcode-color-schemes.vim'
-    Plug 'nvim-treesitter/nvim-treesitter', {'brach': '0.5-compat', 'do': ':TSUpdate'}
+    " Plug 'christianchiarulli/nvcode-color-schemes.vim'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'p00f/nvim-ts-rainbow'
+    Plug 'romgrk/nvim-treesitter-context'
     " ====== vision ======
-    " Plug 'lukas-reineke/indent-blankline.nvim'
+    Plug 'lukas-reineke/indent-blankline.nvim'
     " Plug 'xiyaowong/nvim-cursorword'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
     Plug 'akinsho/bufferline.nvim'
-    " Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
-    Plug 'luochen1990/rainbow'
+    " Plug 'luochen1990/rainbow'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'mhinz/vim-startify'
     Plug 'junegunn/vim-peekaboo'
@@ -65,8 +67,10 @@ call plug#begin('~/.config/nvim/plugged')
     " markdown
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown']}
     Plug 'ferrine/md-img-paste.vim', {'for': ['markdown']}
+
     " latex
     Plug 'lervag/vimtex', {'for': ['tex', 'plaintex']}
+
     " tools
     " Plug 'ZSaberLv0/ZFVimDirDiff', {'on': 'ZFDirDiff'}
     Plug 'lyokha/vim-xkbswitch'
@@ -89,20 +93,24 @@ set background=dark
 " let g:gruvbox_sign_colum='bg'
 " colorscheme gruvbox
 " -- zephyr
-" colorscheme zephyr
+colorscheme zephyr
+" highlight group for LineNr
+hi LineNr ctermfg=gray guifg=silver
+hi CursorLineNr ctermfg=blue guifg=#61AFEF cterm=bold gui=bold
 " -- nvcode-color-schemes
-colorscheme nvcode
+" colorscheme nvcode
 " checks if your terminal has 24-bit color support
 if (has("termguicolors"))
     set termguicolors
     hi LineNr ctermbg=NONE guibg=NONE
 endif
 highlight Normal guibg=None ctermbg=None
+
 " list chars colors.
 " highlight group for "eol"、"extends"、"precedes"
-hi NonText ctermfg=247 guifg=#a73111 cterm=bold gui=bold
-" highlight group for "nbsp"、"tab"、"trail"
-hi SpecialKey ctermfg=77 guifg=#654321
+hi NonText ctermfg=247 guifg=#A73111 cterm=bold gui=bold
+" highlight group for "space", "nbsp", "tab", "trail"
+hi SpecialKey ctermfg=77 guifg=#292A2D
 
 " ==============================================
 " ============== plugins configs ===============
@@ -112,15 +120,51 @@ source ~/.config/nvim/coc.vim
 
 " -------------- nvim-treesitter/nvim-treesitter
 lua <<EOF
+require("nvim-treesitter.install").prefer_git = true  -- Download parsers use git instead of curl.
 require'nvim-treesitter.configs'.setup {
-ensure_installed = {"python", "bash", "vim"},
+    ensure_installed = {"c", "python", "cpp", "bash", "bibtex", "cmake", "latex", "lua","scala", "verilog", "vim", "yaml"},
     sync_install = false,
     highlight = {
         enable = true,
+    },
+    rainbow = {
+        enable = true,
+        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+        max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    },
+    matchup = {
+        enable = true,              -- mandatory, false will disable the whole extension
     }
 }
 EOF
+" fold with treesitter
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
+hi TreesitterContext guibg=#59788E
+
+" -------------- lukas-reineke/indent-blankline.nvim
+lua <<EOF
+vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    show_current_context = true,
+    show_current_context_start = true,
+    char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
+        "IndentBlanklineIndent3",
+        "IndentBlanklineIndent4",
+        "IndentBlanklineIndent5",
+        "IndentBlanklineIndent6",
+    },
+}
+EOF
 " -------------- vim-airline/vim-airline vim-airline/vim-airline-themes
 let g:airline_powerline_fonts = 1
 let g:airline_theme='deus'
@@ -317,8 +361,9 @@ nnoremap <silent> <leader>i :call InterestingWords('n')<cr>
 vnoremap <silent> <leader>i :call InterestingWords('v')<cr>
 nnoremap <silent> <leader>I :call UncolorAllWords()<cr>
 
-nnoremap <silent> n :call WordNavigation(1)<cr>
-nnoremap <silent> N :call WordNavigation(0)<cr>
+nnoremap <silent> <leader>n :call WordNavigation(1)<cr>
+nnoremap <silent> <leader>N :call WordNavigation(0)<cr>
+
 
 " -------------- mbbill/undotree
 map <LEADER>ut :UndotreeToggle<CR>

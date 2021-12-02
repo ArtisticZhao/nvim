@@ -13,7 +13,7 @@ let g:coc_global_extensions = [
             \'coc-vimlsp',
             \'coc-explorer',
             \'coc-snippets',
-            \'coc-python',
+            \'coc-pyright',
             \'coc-highlight',
             \'coc-translator',
             \'coc-marketplace',
@@ -98,6 +98,9 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>af <Plug>(coc-codeaction)
+
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 

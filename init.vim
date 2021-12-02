@@ -65,7 +65,7 @@ set nowrap
 set showbreak=↪
 " set listchars=eol:§,tab:¤›,extends:»,precedes:«,nbsp:‡
 " set listchars=nbsp:␣,eol:↲,tab:→\ ,trail:•,extends:⟩,precedes:⟨
-set listchars=nbsp:␣,eol:↲,tab:→\ ,trail:•,extends:»,precedes:«
+set listchars=space:⋅,nbsp:␣,eol:↲,tab:→\ ,trail:•,extends:»,precedes:«
 set list
 
 " ============== Search settings ===============
@@ -122,8 +122,8 @@ nmap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 " find selected string with escape mode
 vnoremap <silent> <c-f> :<C-u>call EscapedSearch()<CR>/<C-R>=@/<CR><CR>n
 " n for search down N for search up
-nnoremap <silent> n /<CR>zz
-nnoremap <silent> N ?<CR>zz
+nmap <silent> n /<CR>zz
+nmap <silent> N ?<CR>zz
 " next/prev fx Fx
 nnoremap - ,
 nnoremap = ;
