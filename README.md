@@ -119,3 +119,11 @@ So it need use the proxy.
 p vim
 :call mkdp#util#install()
 ```
+
+### nvim-treesitter fatal error: stdint.h: No such file or directory
+
+[fatal error: stdint.h: No such file or directory](https://github.com/nvim-treesitter/nvim-treesitter/issues/2444)
+
+```
+sudo apt install build-essential
+```

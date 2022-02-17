@@ -65,7 +65,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nvim-telescope/telescope.nvim'
 
     " markdown
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown']}
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     Plug 'ferrine/md-img-paste.vim', {'for': ['markdown']}
 
     " latex
