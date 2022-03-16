@@ -12,7 +12,6 @@ let g:coc_global_extensions = [
             \'coc-json',
             \'coc-vimlsp',
             \'coc-explorer',
-            \'coc-snippets',
             \'coc-pyright',
             \'coc-highlight',
             \'coc-translator',
@@ -24,8 +23,10 @@ let g:coc_global_extensions = [
             \'coc-yaml',
             \'coc-yank',
             \'coc-markdownlint',
+            \'coc-snippets',
             \'coc-texlab'
             \]
+
 
 " ==============================================
 " ============== COC recommand vim settings ====

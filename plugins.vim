@@ -14,6 +14,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'yianwillis/vimcdoc'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'dense-analysis/ale', {'for': ['verilog']}
+
     " ====== colortheme ======
     " Plug 'connorholyday/vim-snazzy'
     " Plug 'altercation/vim-colors-solarized'

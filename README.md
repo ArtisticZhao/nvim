@@ -88,6 +88,12 @@ This is a language server for c/c++
 Follow the Build and Install.
 - [compiledb](https://github.com/nickdiego/compiledb)
 
+## Special configuration for language
+
+### Latex
+
+<visual>gq  Hard wrap by textwidth.
+
 ## Question Records
 
 ### Checkout the output of coc.nvim
@@ -126,4 +132,10 @@ p vim
 
 ```
 sudo apt install build-essential
+```
+
+### treesitter/highlighter: Error executing lua: ...: end_col value outside range
+![treesitter_error](img/treesitter_error.png)
+```
+:TSUpdate
 ```

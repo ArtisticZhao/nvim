@@ -1,3 +1,15 @@
+snippet _reg "delay signal for 1 clk" b
+reg ${1}_reg;
+always @(posedge clk or posedge reset) begin
+  if (reset) begin
+    ${1}_reg <= 1'b0;
+  end
+  else begin
+    ${1}_reg <= ${1};
+  end
+end
+endsnippet
+
 snippet if "if statement" b
 if (${1}) begin
 	${0}
