@@ -24,6 +24,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'glepnir/zephyr-nvim'
     " Plug 'christianchiarulli/nvcode-color-schemes.vim'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'p00f/nvim-ts-rainbow'
     Plug 'romgrk/nvim-treesitter-context'
     " ====== vision ======
@@ -34,6 +35,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
     Plug 'akinsho/bufferline.nvim'
     " Plug 'luochen1990/rainbow'
+    Plug 'sakshamgupta05/vim-todo-highlight'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'mhinz/vim-startify'
     Plug 'junegunn/vim-peekaboo'
@@ -123,7 +125,7 @@ source ~/.config/nvim/coc.vim
 lua <<EOF
 require("nvim-treesitter.install").prefer_git = true  -- Download parsers use git instead of curl.
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = {"c", "python", "cpp", "bash", "bibtex", "cmake", "latex", "lua","scala", "verilog", "vim", "yaml"},
+    ensure_installed = {"c", "python", "cpp", "bash", "bibtex", "cmake", "latex", "scala", "verilog", "vim", "yaml"},
     sync_install = false,
     highlight = {
         enable = true,
