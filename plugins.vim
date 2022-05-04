@@ -449,7 +449,23 @@ let g:mdip_imgname = 'image'
 
 " -------------- lervag/vimtex
 let g:vimtex_view_method= 'zathura'
+let g:vimtex_compiler_method = 'latexmk'
+let g:vimtex_compiler_latexmk = {
+        \ 'executable' : 'latexmk',
+        \ 'options' : [
+        \   '-xelatex',
+        \   '-file-line-error',
+        \   '-synctex=1',
+        \   '-interaction=nonstopmode',
+        \ ],
+        \}
 let g:vimtex_compiler_progname = 'nvr'
+let g:Tex_GotoError=0
+
+" 隐藏一些常见错误
+let g:vimtex_quickfix_ignore_filters = [
+            \'.*Package fontspec Warning.*',
+            \]
 
 let g:XkbSwitchEnabled = 1
 let g:XkbSwitchLib = '/usr/local/lib/libg3kbswitch.so'

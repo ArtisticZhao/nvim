@@ -5,7 +5,7 @@ setlocal wrap
 
 " 允许对multi_byte字符换行（否则默认只能空格或者英文标点，详见set breakat
 setlocal formatoptions+=m
-setlocal textwidth=64
+setlocal textwidth=78
 
 " 在虚拟行之间移动
 noremap <buffer> j gj
