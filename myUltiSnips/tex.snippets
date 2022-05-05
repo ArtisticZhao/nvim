@@ -32,7 +32,6 @@ snippet item "item list" b
 endsnippet
 
 snippet equ "equation" b
-
 \begin{equation}\label{equ:${2}}
   ${1}
 \end{equation}
@@ -51,4 +50,31 @@ endsnippet
 snippet sssec "subsubsection" b
 \subsubsection{${1:名称}}
 ${0}
+endsnippet
+
+snippet tikz "tikz environment" b
+%!TEX program = xelatex
+\documentclass{ctexart}
+\usepackage{tikz}
+\usetikzlibrary{positioning, shapes.geometric}
+\usetikzlibrary{graphs, quotes}
+% 绘图所需的TikZ子库
+\usepackage[active,tightpage]{preview}
+% 用了preview之后你生成的pdf文件都可以直接用`\includegraphics`命令加入文本中
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm} % 边距
+\begin{document}
+\begin{tikzpicture}[node distance=20pt]
+
+% 你的绘图代码
+
+%%%% 绘制辅助坐标系
+%\draw [help lines, dotted](-4.9,-4.9) grid (4.9,4.9);
+%\draw [->,very thick] (-4,0)--(4,0) node [right]{$x$};
+%\draw [->, very thick] (0,-4)--(0,4) node [above]{$y$};
+
+${0}
+
+\end{tikzpicture}
+\end{document}
 endsnippet

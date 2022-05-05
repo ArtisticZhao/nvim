@@ -465,6 +465,7 @@ let g:Tex_GotoError=0
 " 隐藏一些常见错误
 let g:vimtex_quickfix_ignore_filters = [
             \'.*Package fontspec Warning.*',
+            \'.*Package glossaries Warning.*',
             \]
 
 let g:XkbSwitchEnabled = 1
