@@ -98,7 +98,7 @@ inoremap <c-j> <down>
 inoremap <c-k> <up>
 inoremap <c-l> <right>
 " -------------- add empty row
-noremap <cr> o<esc>
+nmap <CR> :a<CR><CR>.<CR>
 " -------------- change to uppercase
 noremap ` ~
 " -------------- save & quit
