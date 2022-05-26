@@ -466,6 +466,7 @@ let g:Tex_GotoError=0
 let g:vimtex_quickfix_ignore_filters = [
             \'.*Package fontspec Warning.*',
             \'.*Package glossaries Warning.*',
+            \'.*Underfull \hbox.*',
             \]
 
 let g:XkbSwitchEnabled = 1

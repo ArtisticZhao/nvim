@@ -42,5 +42,5 @@ inoremap <buffer>`4 \subsubsubsection{}<esc>i
 " quick ref
 inoremap <buffer><c-f> \figurename{} \ref{}<esc>i
 inoremap <buffer><c-t> \tablename{} \ref{}<esc>i
-inoremap <buffer><c-e> (\ref{})<esc><Left>i
-
+inoremap <buffer><c-u> (\ref{equ:})<esc><Left>i
+inoremap <buffer><c-c> \cite{}<esc>i
