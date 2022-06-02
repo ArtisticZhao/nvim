@@ -75,3 +75,27 @@ ${0}
 \end{tikzpicture}
 \end{document}
 endsnippet
+
+snippet frame "add beamer frame" b
+\begin{frame}
+  \frametitle{\secname}
+  \framesubtitle{\subsecname${1:subsubtitle}}
+  ${0}
+\end{frame}
+endsnippet
+
+snippet ffig "add figure in beamer frame" b
+\centering \includegraphics[${1:width=1\textwidth}]{${2:figure-name}} \\\\
+endsnippet
+
+snippet fline "add line in beamer frame" b
+\zihao{6} ${0} \\\\
+endsnippet
+
+snippet fcol "add columns in beamer frame" b
+\begin{columns}[b]
+  \column{0.5\textwidth}
+  ${0}
+  \column{0.5\textwidth}
+\end{columns}
+endsnippet
