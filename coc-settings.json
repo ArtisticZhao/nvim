@@ -1,110 +1,22 @@
 {
-    "yank.highlight.enable": true,
-    "yank.highlight.duration": 1000,
-    "yank.list.maxsize": 200,
-    "yank.enableCompletion": true,
     "coc.preferences.extensionUpdateCheck": "daily",
+    // suggestion settings
     "suggest.autoTrigger": "always",
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
-    "suggest.completionItemKindLabels": {
-        "class": "\uf0e8",
-        "color": "\ue22b",
-        "constant": "\uf8fe",
-        "default": "\uf29c",
-        "enum": "\uf435",
-        "enumMember": "\uf02b",
-        "event": "\ufacd",
-        "field": "\uf93d",
-        "file": "\uf723",
-        "folder": "\uf115",
-        "function": "\u0192",
-        "interface": "\uf417",
-        "keyword": "\uf1de",
-        "method": "\uf6a6",
-        "module": "\uf40d",
-        "operator": "\uf915",
-        "property": "\ue624",
-        "reference": "\ufa46",
-        "snippet": "\ue60b",
-        "struct": "\ufb44",
-        "text": "\ue612",
-        "typeParameter": "\uf728",
-        "unit": "\uf475",
-        "value": "\uf89f",
-        "variable": "\ue71b"
-    },
-    "coc.source.word.enable": false,
-    "coc.source.word.priority": 100,
-    "coc.source.word.shortcut": "",
-    "coc.source.syntax.shortcut": "",
-    "coc.source.file.ignoreHidden": false,
-    "coc.source.syntax.enable": true,
-    "diagnostic.errorSign": "\uf467",
-    "diagnostic.warningSign": "\uf071",
-    "diagnostic.infoSign": "\uf129",
-    "diagnostic.hintSign": "\uf864",
-    "diagnostic.displayByAle": false,
-    "diagnostic.refreshOnInsertMode": false,
-    "diagnostic.checkCurrentLine": true,
-    "diagnostic.virtualTextPrefix": " ❯❯❯ ",
-    "diagnostic.virtualText": true,
-    "codeLens.enable": true,
-    "list.previousKeymap": "<C-[>",
-    "list.nextKeymap": "<C-]>",
-    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-    "coc.preferences.formatOnSaveFiletypes": [
-        "json"
-    ],
+    // suggest icon
+    "coc.source.syntax.shortcut": "",
+    "coc.source.tag.shortcut": "笠",
+    "snippets.shortcut": "",
+    // coc-highlight
+    "colors.filetypes": ["*"],
+    // coc-snippets
     "snippets.ultisnips.directories": [
         "UltiSnips",
         "$HOME/.config/nvim/myUltiSnips/"
     ],
-    "languageserver": {
-        "ccls": {
-            "command": "ccls",
-            "filetypes": [
-                "c",
-                "cpp",
-                "cuda",
-                "objc",
-                "objcpp"
-            ],
-            "rootPatterns": [
-                ".ccls",
-                "compile_commands.json"
-            ],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls"
-                },
-                "client": {
-                    "snippetSupport": true
-                },
-                "highlight": {
-                    "lsRanges": true
-                }
-            }
-        },
-        "svls": {
-            "command": "svls",
-            "filetypes": [
-                "verilog"
-            ]
-        }
-    },
-    "coc.preferences.jumpCommand": "edit",
-    "explorer.icon.enableNerdfont": true,
-    "python.pythonPath": "python3",
-    "python.formatting.provider": "yapf",
-    "python.linting.flake8Args": [
-        "--max-line-length=120"
-    ],
-    "python.linting.flake8Enabled": true,
-    "python.linting.maxNumberOfProblems": 100,
-    "markdownlint.config": {
-        "line-length": false
-    },
-    "latex.build.executable": "xelatex",
-    "latex.lint.onSave": false
+    // coc-yank
+    "yank.list.maxsize": 20,
+    "yank.enableCompletion": false,
+    "yank.highlight.duration": 1500
 }

@@ -4,19 +4,16 @@
 "           _\ V /  | || |  | |  _ <| |___
 "          (_)\_/  |___|_|  |_|_| \_\\____|
 "
-"
-"
-"
-"   TODO:
-"     - coc-word for comments
 
 " #########################################################################################
 "                              BASIC SETTINGS: no plugins settings
 " #########################################################################################
+
 " ==============================================
 " ============== System settings ===============
 " ==============================================
-" ============== System settings
+
+" ============== system settings ===============
 set novb
 set noeb vb t_vb=
 set encoding=utf-8
@@ -24,7 +21,7 @@ set encoding=utf-8
 set fileencodings=utf-8,cp936
 " cmd color
 let &t_ut=''
-set autochdir
+" set autochdir
 " enable mouse click
 set mouse=a
 
@@ -117,7 +114,7 @@ vnoremap p pgvy
 " find word under cursor use Incsearch plugin
 nmap <c-f> /<c-r><c-w><cr>
 " imap <c-f> <esc>/<c-r><c-w><cr>
-" open a quickfix windwos for the last search
+" open a quickfix windows for the last search
 nmap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 " find selected string with escape mode
 vnoremap <silent> <c-f> :<C-u>call EscapedSearch()<CR>/<C-R>=@/<CR><CR>n
@@ -144,7 +141,9 @@ vnoremap > >gv
 vnoremap < <gv
 " -------------- buffers
 " close buffer
-map Q :bd<cr>
+map Q :Bdelete<cr>
+nnoremap bl :bnext<cr>
+nnoremap bh :bNext<cr>
 " -------------- place holder
 " put a placeholder
 imap <c-p> <++>
