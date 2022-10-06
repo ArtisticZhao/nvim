@@ -7,13 +7,13 @@ call plug#begin('~/.config/nvim/plugged')
 " ==== treesiter: 更好的代码解析
     Plug 'nvim-treesitter/nvim-treesitter'
     Plug 'glepnir/zephyr-nvim'
+    Plug 'nvim-treesitter/nvim-treesitter-context'
 " ==== coc.nvim:  更好的补全
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ==== vision:    花狸狐笑
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
     Plug 'kyazdani42/nvim-web-devicons'                 " Recommended (for coloured icons)
-    Plug 'akinsho/bufferline.nvim'                      " buffer 状态栏
+    Plug 'nvim-lualine/lualine.nvim'                    " statusline
+    Plug 'akinsho/bufferline.nvim'                      " buffer 栏
     Plug 'kyazdani42/nvim-tree.lua'                     " 文件管理器
     Plug 'lukas-reineke/indent-blankline.nvim'          " 缩紧对齐显示
     Plug 'lfv89/vim-interestingwords'                   " 高亮感兴趣的单词
@@ -81,37 +81,49 @@ lua << EOF
         },
     }
 EOF
-" ======================================================================
+" =====================================================================
 
+" ----    Plug 'nvim-treesitter/nvim-treesitter-context'
+lua << EOF
+    require'treesitter-context'.setup{
+        patterns = {
+            verilog = {
+                'always_construct',
+                'hierarchical_instance',
+            }
+        }
+    }
+EOF
+" =====================================================================
 
 " ----    Plug 'vim-airline/vim-airline'
-    let g:airline_powerline_fonts = 1
-    let g:airline_theme='deus'
-    " powerline symbols
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_right_alt_sep = ''
-
-    " change the tabline display format.
-    " this format only show the short dir when filename is not unique
-    let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-    " disable tabline to show buffers
-    let g:airline#extensions#tabline#enabled = 0
-    " disable whitespace check by airline
-    let g:airline#extensions#whitespace#enabled = 0
-    " enable/disable coc integration >
-    let g:airline#extensions#coc#enabled = 1
-    " languageclient error_symbol >
-    let airline#extensions#coc#error_symbol = ''
-    " languageclient warning_symbol >
-    let airline#extensions#coc#warning_symbol = ''
-    " languageclient show_line_numbers >
-    let airline#extensions#coc#show_line_numbers = 1
-    " languageclient open_lnum_symbol >
-    let airline#extensions#coc#open_lnum_symbol = '['
-    " languageclient close_lnum_symbol >
-    let airline#extensions#coc#close_lnum_symbol = ']'
+    " let g:airline_powerline_fonts = 1
+    " let g:airline_theme='deus'
+    " " powerline symbols
+    " let g:airline_left_sep = ''
+    " let g:airline_left_alt_sep = ''
+    " let g:airline_right_sep = ''
+    " let g:airline_right_alt_sep = ''
+    "
+    " " change the tabline display format.
+    " " this format only show the short dir when filename is not unique
+    " let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+    " " disable tabline to show buffers
+    " let g:airline#extensions#tabline#enabled = 0
+    " " disable whitespace check by airline
+    " let g:airline#extensions#whitespace#enabled = 0
+    " " enable/disable coc integration >
+    " let g:airline#extensions#coc#enabled = 1
+    " " languageclient error_symbol >
+    " let airline#extensions#coc#error_symbol = ''
+    " " languageclient warning_symbol >
+    " let airline#extensions#coc#warning_symbol = ''
+    " " languageclient show_line_numbers >
+    " let airline#extensions#coc#show_line_numbers = 1
+    " " languageclient open_lnum_symbol >
+    " let airline#extensions#coc#open_lnum_symbol = '['
+    " " languageclient close_lnum_symbol >
+    " let airline#extensions#coc#close_lnum_symbol = ']'
 " ======================================================================
 
 
@@ -120,6 +132,7 @@ EOF
 lua << EOF
     require("bufferline").setup{
         options = {
+            separator_style = 'slant',
             numbers = function(opts)
                 return string.format('%s', opts.ordinal)
             end,
@@ -145,6 +158,19 @@ EOF
     nnoremap <silent><leader>7 <Cmd>BufferLineGoToBuffer 7<CR>
     nnoremap <silent><leader>8 <Cmd>BufferLineGoToBuffer 8<CR>
     nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
+" ======================================================================
+
+" ----    Plug 'nvim-lualine/lualine.nvim'                    " statusline
+lua << EOF
+    require('lualine').setup{
+        options = {
+            theme = 'autauto',
+            disabled_filetypes = {
+                statusline = {'NvimTree', },
+            }
+        }
+    }
+EOF
 " ======================================================================
 
 " ----    Plug 'kyazdani42/nvim-tree.lua'     " 文件管理器

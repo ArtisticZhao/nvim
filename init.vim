@@ -175,6 +175,10 @@ map <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 map <LEADER>pl :e ~/.config/nvim/plugins.vim<CR>
 " Reload VIMRC
 noremap <LEADER>R :source $MYVIMRC<CR>
+" show highlight group name
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 
 " ==============================================
