@@ -4,6 +4,7 @@
 
 
 call plug#begin('~/.config/nvim/plugged')
+    Plug 'dstein64/vim-startuptime'
 " ==== treesiter: 更好的代码解析
     Plug 'nvim-treesitter/nvim-treesitter'
     Plug 'glepnir/zephyr-nvim'
@@ -164,7 +165,7 @@ EOF
 lua << EOF
     require('lualine').setup{
         options = {
-            theme = 'autauto',
+            theme = 'auto',
             disabled_filetypes = {
                 statusline = {'NvimTree', },
             }
@@ -179,8 +180,18 @@ lua << EOF
     vim.g.loaded = 1
     vim.g.loaded_netrwPlugin = 1
     require("nvim-tree").setup()
+    -- exit vim when nvimtree as the last buffer
+    vim.api.nvim_create_autocmd("BufEnter", {
+      nested = true,
+      callback = function()
+        if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
+          vim.cmd "quit"
+        end
+      end
+    })
 EOF
     nnoremap <leader>e <cmd>NvimTreeToggle<cr>
+
 " ======================================================================
 
 " ----    Plug 'lukas-reineke/indent-blankline.nvim'

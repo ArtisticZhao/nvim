@@ -18,5 +18,14 @@
     // coc-yank
     "yank.list.maxsize": 20,
     "yank.enableCompletion": false,
-    "yank.highlight.duration": 1500
+    "yank.highlight.duration": 1500,
+
+    // language server configurations
+    "languageserver": {
+        "vls":{
+            "command": "vls",
+            "args": ["--force-diagnostics"],
+            "filetypes": ["verilog"]
+        }
+    }
 }

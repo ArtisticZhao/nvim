@@ -12,3 +12,7 @@ brew install neovim
   `python3 -m pip install pynvim --user`
 - ctags  
   `brew install --HEAD universal-ctags/universal-ctags/universal-ctags`
+
+## language server
+
+- [vls](https://github.com/sthenic/vls)

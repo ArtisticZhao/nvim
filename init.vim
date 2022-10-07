@@ -142,8 +142,8 @@ vnoremap < <gv
 " -------------- buffers
 " close buffer
 map Q :Bdelete<cr>
-nnoremap bl :bnext<cr>
-nnoremap bh :bNext<cr>
+nnoremap <leader>l :bnext<cr>
+nnoremap <leader>h :bNext<cr>
 " -------------- place holder
 " put a placeholder
 imap <c-p> <++>
