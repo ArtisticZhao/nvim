@@ -17,6 +17,7 @@ let g:coc_global_extensions = [
             \'coc-syntax',
             \'coc-yank',
             \'coc-snippets',
+            \'@yaegassy/coc-pylsp',
             \]
 
 " ==============================================
