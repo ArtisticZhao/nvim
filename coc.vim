@@ -80,3 +80,12 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
+" =================================================
+" ==================== coc-snippets ===============
+" =================================================
+" Use <C-d> for trigger snippet expand.
+imap <c-d> <Plug>(coc-snippets-expand)
+" Use <C-d> for select text for visual placeholder of snippet.
+vmap <c-d> <Plug>(coc-snippets-select)
+" Use <C-d> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-d>'
