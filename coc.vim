@@ -17,7 +17,7 @@ let g:coc_global_extensions = [
             \'coc-syntax',
             \'coc-yank',
             \'coc-snippets',
-            \'@yaegassy/coc-pylsp',
+            \'coc-pyright',
             \]
 
 " ==============================================
@@ -89,3 +89,5 @@ imap <c-d> <Plug>(coc-snippets-expand)
 vmap <c-d> <Plug>(coc-snippets-select)
 " Use <C-d> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_next = '<c-d>'
+" Use <C-d> for both expand and jump (make expand higher priority.)
+imap <c-d> <Plug>(coc-snippets-expand-jump)

@@ -7,18 +7,22 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'dstein64/vim-startuptime'
 " ==== treesiter: 更好的代码解析
     Plug 'nvim-treesitter/nvim-treesitter'
-    Plug 'glepnir/zephyr-nvim'
     Plug 'nvim-treesitter/nvim-treesitter-context'
+    Plug 'p00f/nvim-ts-rainbow'
+    " 支持treesitter特性的主题
+    Plug 'glepnir/zephyr-nvim'
 " ==== coc.nvim:  更好的补全
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ==== vision:    花狸狐笑
     Plug 'kyazdani42/nvim-web-devicons'                 " Recommended (for coloured icons)
-    Plug 'nvim-lualine/lualine.nvim'                    " statusline
     Plug 'akinsho/bufferline.nvim'                      " buffer 栏
+    Plug 'nvim-lualine/lualine.nvim'                    " statusline
     Plug 'kyazdani42/nvim-tree.lua'                     " 文件管理器
     Plug 'lukas-reineke/indent-blankline.nvim'          " 缩紧对齐显示
     Plug 'lfv89/vim-interestingwords'                   " 高亮感兴趣的单词
     Plug 'folke/todo-comments.nvim'                     " 高亮todo等
+    Plug 'ntpeters/vim-better-whitespace'               " 显示行尾空白符
+    Plug 'MattesGroeger/vim-bookmarks'                  " 书签工具
 " ==== telescope
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
@@ -30,7 +34,12 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'Vonr/align.nvim'
 " ==== enhancement
     Plug 'moll/vim-bbye'                                " 只是关闭buffer但是不推出vim
+    Plug 'akinsho/toggleterm.nvim'                      " 管理终端
+" ==== tags
+    Plug 'preservim/tagbar'                             " tag 显示
+" ==== git
     Plug 'lewis6991/gitsigns.nvim'                      " git集成
+    Plug 'tpope/vim-fugitive'                           " git集成
 " ==== just for verilog
     Plug 'antoinemadec/vim-verilog-instance', {'for': ['verilog']}
 call plug#end()
@@ -80,9 +89,15 @@ lua << EOF
             -- Instead of true it can also be a list of languages
             additional_vim_regex_highlighting = true,
         },
+        rainbow = {
+            enable = true,
+            extended_mode = true,
+            max_file_lines = nil,
+        },
     }
 EOF
 " =====================================================================
+
 
 " ----    Plug 'nvim-treesitter/nvim-treesitter-context'
 lua << EOF
@@ -96,6 +111,7 @@ lua << EOF
     }
 EOF
 " =====================================================================
+
 
 " ----    Plug 'vim-airline/vim-airline'
     " let g:airline_powerline_fonts = 1
@@ -161,6 +177,7 @@ EOF
     nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
 " ======================================================================
 
+
 " ----    Plug 'nvim-lualine/lualine.nvim'                    " statusline
 lua << EOF
     require('lualine').setup{
@@ -173,6 +190,7 @@ lua << EOF
     }
 EOF
 " ======================================================================
+
 
 " ----    Plug 'kyazdani42/nvim-tree.lua'     " 文件管理器
 lua << EOF
@@ -194,6 +212,7 @@ EOF
 
 " ======================================================================
 
+
 " ----    Plug 'lukas-reineke/indent-blankline.nvim'
 lua << EOF
     require("indent_blankline").setup {
@@ -204,6 +223,7 @@ lua << EOF
 EOF
 " ======================================================================
 
+
 " ----    Plug 'lfv89/vim-interestingwords'
     let g:interestingWordsDefaultMappings = 0
     nnoremap <silent> <leader>i :call InterestingWords('n')<cr>
@@ -212,6 +232,7 @@ EOF
     let g:interestingWordsGUIColors = ['#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF']
     let g:interestingWordsTermColors = ['#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF']
 " ======================================================================
+
 
 " ----    Plug 'folke/todo-comments.nvim'
 " TODO:
@@ -227,6 +248,7 @@ EOF
     nnoremap <leader>tl <cmd>:TodoQuickFix<cr>
 " ======================================================================
 
+
 " ----    Plug 'nvim-telescope/telescope.nvim'
     " Find files using Telescope command-line sugar.
     nnoremap <c-p>      <cmd>Telescope find_files<cr>
@@ -235,6 +257,7 @@ EOF
     nnoremap <leader>fb <cmd>Telescope buffers<cr>
     nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " ======================================================================
+
 
 " ----    Plug 'preservim/nerdcommenter'                      " 快速注释
     " Add spaces after comment delimiters by default
@@ -256,6 +279,7 @@ EOF
     xmap <silent> <c-_> :call NERDComment("x", "Toggle")<CR>
     inoremap <silent> <c-_> <esc>:call NERDComment("n", "Toggle")<CR>i
 " ======================================================================
+
 
 " ----    Plug 'gcmt/wildfire.vim'
     map <tab> <Plug>(wildfire-fuel)
@@ -285,6 +309,34 @@ lua << EOF
     vim.keymap.set('x', 'ar', function() require'align'.align_to_string(true, true, true)  end, NS) -- Aligns to a Lua pattern, looking left and with previews
 EOF
 " ======================================================================
+
+
+" ----    Plug 'preservim/tagbar'
+    map <F8> :TagbarToggle<CR>
+    let g:tagbar_ctags_bin = "/opt/homebrew/bin/ctags"
+    let g:tagbar_type_verilog = {
+        \ 'ctagstype': 'verilog',
+        \ 'kinds': [
+            \'m:module',
+            \'i:instance'
+        \]
+    \}
+" ======================================================================
+
+
+" ----    Plug 'akinsho/toggleterm.nvim'
+    " set
+    autocmd TermEnter term://*toggleterm#*
+          \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
+lua << EOF
+    require("toggleterm").setup{
+        open_mapping = [[<c-\>]],
+        start_in_insert = true,
+        terminal_mappings = true,
+    }
+EOF
+" ======================================================================
+
 
 " ----    Plug 'lewis6991/gitsigns.nvim'
 lua << EOF

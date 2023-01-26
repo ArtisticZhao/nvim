@@ -1,5 +1,6 @@
 {
-    "coc.preferences.extensionUpdateCheck": "daily",
+    "http.proxy": "http://127.0.0.1:7890",
+    "coc.preferences.extensionUpdateCheck": "weekly",
     // suggestion settings
     "suggest.autoTrigger": "always",
     "suggest.noselect": true,
@@ -27,5 +28,6 @@
             "args": ["--force-diagnostics"],
             "filetypes": ["verilog"]
         }
-    }
+    },
+    "snippets.ultisnips.pythonPrompt": false
 }
