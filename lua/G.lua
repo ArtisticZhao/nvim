@@ -1,17 +1,5 @@
 local G = {}
 
-G.g = vim.g
-G.b = vim.b
-G.o = vim.o
-G.fn = vim.fn
-G.api = vim.api
-
--- function G.map(maps)
---     for _,map in pairs(maps) do
---         G.api.nvim_set_keymap(map[1], map[2], map[3], map[4])
---     end
--- end
-
 function G.map(key)
   -- ref https://blog.csdn.net/qq_39785418/article/details/123767872
   -- @func: define map function set noremap as default
@@ -58,4 +46,14 @@ function G.eval(c)
     return G.api.nvim_eval(c)
 end
 
+function _G.ReloadConfig()
+  for name,_ in pairs(package.loaded) do
+    if name:match('^user') and not name:match('nvim-tree') then
+      package.loaded[name] = nil
+    end
+  end
+
+  dofile(vim.env.MYVIMRC)
+  vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
+end
 return G
