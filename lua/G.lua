@@ -25,35 +25,14 @@ function G.map(key)
   end
 end
 
-function G.hi(hls)
-    for group,color in pairs(hls) do
-        local fg = color.fg and ' ctermfg=' .. color.fg or ' ctermfg=NONE'
-        local bg = color.bg and ' ctermbg=' .. color.bg or ' ctermbg=NONE'
-        local sp = color.sp and ' cterm=' .. color.sp or ''
-        G.api.nvim_command('highlight ' .. group .. fg .. bg .. sp)
-    end
-end
 
-function G.cmd(cmd)
-    G.api.nvim_command(cmd)
-end
-
-function G.exec(c)
-    G.api.nvim_exec(c)
-end
-
-function G.eval(c)
-    return G.api.nvim_eval(c)
-end
-
-function _G.ReloadConfig()
-  for name,_ in pairs(package.loaded) do
-    if name:match('^user') and not name:match('nvim-tree') then
-      package.loaded[name] = nil
-    end
-  end
+function G.ReloadConfig()
+  package.loaded['G'] = nil
+  package.loaded['profile'] = nil
+  package.loaded['keymap'] = nil
 
   dofile(vim.env.MYVIMRC)
   vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
 end
+vim.cmd('command! ReloadConfig lua require(\'G\').ReloadConfig()') -- register ReloadConfig cmd
 return G

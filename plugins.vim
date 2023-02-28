@@ -41,7 +41,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'lewis6991/gitsigns.nvim'                      " git集成
     Plug 'tpope/vim-fugitive'                           " git集成
 " ==== just for verilog
-    Plug 'antoinemadec/vim-verilog-instance', {'for': ['verilog']}
+    Plug 'antoinemadec/vim-verilog-instance', {'for': ['verilog', 'systemverilog']}
 call plug#end()
 
 source ~/.config/nvim/coc.vim

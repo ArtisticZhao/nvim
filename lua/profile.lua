@@ -12,6 +12,8 @@ vim.o.expandtab   = true -- 将制表符扩展为空格
 vim.o.tabstop     = 4    -- 设置编辑时制表符占用空格数
 vim.o.shiftwidth  = 4    -- 设置格式化时制表符占用空格数
 vim.o.softtabstop = 4    -- 把连续数量的空格视为一个tab
+vim.opt.autoindent = true
+vim.opt.smartindent = true
 
 
 ---- ============== Display =======================
