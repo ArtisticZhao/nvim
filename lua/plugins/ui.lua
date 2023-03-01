@@ -3,6 +3,8 @@
 -- nvim-tree.lua
 -- bufferline.nvim
 -- lualine.nvim
+-- toggleterm.nvim
+-- which-key.nvim
 return {
 --------- nvim-notify   --------- 通知插件
   { "rcarriga/nvim-notify",
@@ -101,6 +103,21 @@ return {
     },
   },
 
+--------- toggleterm.nvim --------
+  { "akinsho/toggleterm.nvim",
+    keys = {
+      { [[<c-\>]], desc = "open term"},
+    },
+    config = function()
+      vim.cmd[[autocmd TermEnter term://*toggleterm#*
+          \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>]]
+      require("toggleterm").setup{
+          open_mapping = [[<c-\>]],
+          start_in_insert = true,
+          terminal_mappings = true,
+    }
+    end,
+  },
 --------- which-key.nvim ---------
   { "folke/which-key.nvim",
     config = function()

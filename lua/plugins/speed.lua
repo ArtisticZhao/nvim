@@ -1,5 +1,7 @@
 -- nerdcommenter
 -- wildfire.vim
+-- vim-sandwich
+-- align.nvim
 return {
 --------- nerdcommenter   --------- 快速注释
   { "preservim/nerdcommenter",
@@ -15,8 +17,10 @@ return {
       {"<s-tab>"},
     },
     config = function()
+      vim.g.wildfire_objects = { "i>", [[i']], [[i"]], [[i)]], "i]", "i}", "ip", "it" }
       vim.cmd[[map <tab> <Plug>(wildfire-fuel)]]
       vim.cmd[[vmap <s-tab> <Plug>(wildfire-water)]]
+      require('G').map{'n', '<enter>', ':a<enter><enter>.<enter>'  }  -- add an empty line
     end,
   },
 --------- vim-sandwich    --------- 更快增删改成对的符号
@@ -24,20 +28,21 @@ return {
     event = { "BufReadPost", "BufNewFile" },
   },
 
+--------- align.nvim      --------- 对齐
   { "Vonr/align.nvim",
     version = false,
     keys = {
-      { "aa", mode = "x", desc = "align to a char" },
+      { "aa", mode = "x", desc = "align to a char"  },
       { "as", mode = "x", desc = "align to 2 chars" },
-      { "aw", mode = "x", desc = "align to a word" },
-      { "ar", mode = "x", desc = "align to string" },
+      { "aw", mode = "x", desc = "align to a word"  },
+      { "ar", mode = "x", desc = "align to string"  },
     },
     config = function()
       -- align_to_char(length, reverse, preview, marks)
       -- align_to_string(is_pattern, reverse, preview, marks)
       -- align(str, reverse, marks)
       -- operator(fn, opts)
-      -- Where:
+      -- Where]
       --      length: integer
       --      reverse: boolean
       --      preview: boolean

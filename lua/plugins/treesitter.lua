@@ -19,6 +19,6 @@ return {
   },
 
   { "glepnir/zephyr-nvim",
-    lazy = true
+    lazy = true,
   },
 }
