@@ -2,3 +2,4 @@ plugged
 .netrwhist
 snips.back
 plug.vim.old
+lazy-lock.json

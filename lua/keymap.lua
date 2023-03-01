@@ -9,6 +9,10 @@ G.map{'n', 'J', '5j'}
 G.map{'n', 'K', '5k'}
 G.map{'n', 'H', '^' }
 G.map{'n', 'L', 'g_'}
+G.map{'v', 'J', '5j'}
+G.map{'v', 'K', '5k'}
+G.map{'v', 'H', '^' }
+G.map{'v', 'L', 'g_'}
 
 G.map{'i', '<c-h>', '<left>' }
 G.map{'i', '<c-j>', '<down>' }
