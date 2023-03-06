@@ -10,7 +10,6 @@
     "coc.source.tag.shortcut": "笠",
     "snippets.shortcut": "",
     // coc-highlight
-    "colors.filetypes": ["*"],
     // coc-snippets
     "snippets.ultisnips.directories": [
         "UltiSnips",
@@ -29,5 +28,7 @@
             "filetypes": ["verilog"]
         }
     },
-    "snippets.ultisnips.pythonPrompt": false
+    "snippets.ultisnips.pythonPrompt": false,
+    // python
+    "python.pythonPath": "python3.10"
 }

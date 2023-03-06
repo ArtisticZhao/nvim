@@ -18,6 +18,17 @@ return {
     end,
   },
 
+  { "nvim-treesitter/nvim-treesitter-context",
+    opts = {
+      patterns = {
+        verilog = {
+          'always_construct',
+          'hierarchical_instance',
+        },
+      },
+    },
+  },
+
   { "glepnir/zephyr-nvim",
     lazy = true,
   },

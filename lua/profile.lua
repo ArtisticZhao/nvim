@@ -45,3 +45,5 @@ vim.opt.foldenable = false
 vim.o.fileencodings = "utf-8,cp936" -- 文件编码, 自动检测GBK
 vim.o.mouse         = "a"           -- 鼠标操作
 vim.opt.virtualedit = 'block'       -- v-mode can select anywhere
+
+vim.g.python3_host_prog = '/opt/homebrew/bin/python3.10'
