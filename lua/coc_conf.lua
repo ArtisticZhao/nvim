@@ -4,7 +4,16 @@
 -- | (_| (_) | (_|_____\__ \  __/ |_| |_| | | | | (_| \__ \
 --  \___\___/ \___|    |___/\___|\__|\__|_|_| |_|\__, |___/
 --                                               |___/
-
+vim.g.coc_global_extensions = {
+  'coc-json',
+  'coc-vimlsp',
+  'coc-highlight',
+  'coc-tag',
+  'coc-syntax',
+  'coc-snippets',
+  'coc-pyright',
+  'coc-lua',
+}
 -- Some servers have issues with backup files, see #649
 vim.opt.backup = false
 vim.opt.writebackup = false
