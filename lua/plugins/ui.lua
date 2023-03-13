@@ -5,6 +5,7 @@
 -- lualine.nvim
 -- toggleterm.nvim
 -- which-key.nvim
+-- startup.nvim
 return {
 --------- nvim-notify   --------- 通知插件
   { "rcarriga/nvim-notify",
@@ -126,4 +127,11 @@ return {
       require("which-key").setup{}
     end,
   },
+--------- startup.nvim ---------
+  { "startup-nvim/startup.nvim",
+    dependencies = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
+    config = function()
+      require"startup".setup({theme = "startify"})
+    end,
+  }
 }
