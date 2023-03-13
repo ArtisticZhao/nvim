@@ -14,9 +14,9 @@ return {
   {
     "ggandor/leap.nvim",
     keys = {
-      { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
-      { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
-      { "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
+      { "m", mode = { "n", "x", "o" }, desc = "Leap forward to" },
+      { "M", mode = { "n", "x", "o" }, desc = "Leap backward to" },
+      { "gm", mode = { "n", "x", "o" }, desc = "Leap from windows" },
     },
     config = function(_, opts)
       local leap = require("leap")
@@ -32,4 +32,17 @@ return {
   { "jiangmiao/auto-pairs",
     event = { "BufReadPre", "InsertEnter", "BufNewFile" },
   },
+----------- undotree -----------
+  { "mbbill/undotree",
+    keys = {
+      { "<leader>ut", "<cmd>UndotreeToggle<cr>", desc = "Undotree" },
+    },
+  },
+----------- vim-visual-multi -----------
+{ "mg979/vim-visual-multi",
+    keys = {
+      { "<c-n>",  desc = "assign visual multi" },
+    },
+  },
+
 }
