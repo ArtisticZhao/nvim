@@ -6,8 +6,8 @@ return {
 --------- nerdcommenter   --------- 快速注释
   { "preservim/nerdcommenter",
     keys = {
-      {"<leader>cc", desc = "comment"},
-      {"<leader>cu", desc = "uncomment"},
+      {"<leader>cc", mode={'n', 'v'}, },
+      {"<leader>cu", mode={'n', 'v'}, },
     },
   },
 --------- wildfire.vim    --------- tab键快速选择textobj

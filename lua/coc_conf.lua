@@ -13,6 +13,7 @@ vim.g.coc_global_extensions = {
   'coc-snippets',
   'coc-pyright',
   'coc-lua',
+  'coc-clangd',
 }
 -- Some servers have issues with backup files, see #649
 vim.opt.backup = false

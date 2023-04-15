@@ -26,6 +26,11 @@ function G.map(key)
 end
 
 
+function G.cmd(cmd)
+  vim.api.nvim_command(cmd)
+end
+
+
 function G.ReloadConfig()
   package.loaded['G'] = nil
   package.loaded['profile'] = nil

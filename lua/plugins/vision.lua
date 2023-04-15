@@ -29,7 +29,12 @@ return {
     end,
   },
 --------- vim-better-whitespace ---------
-  "ntpeters/vim-better-whitespace",
+  { "ntpeters/vim-better-whitespace",
+    evnet = { "BufReadPost", "BufNewFile", },
+    keys = {
+      { "<leader>sw", '<cmd>StripWhitespace<cr>', desc = 'Deleta all white space on tail.' },
+    },
+  },
 
 --------- todo-comments.nvim    ---------
   { "folke/todo-comments.nvim",

@@ -6,7 +6,7 @@ return {
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     opts = {
-      ensure_installed = { "vim", "lua", "verilog", "python", "help", "json" },
+      ensure_installed = { "c",  "cmake", "cpp", "json", "lua", "matlab", "python", "verilog", "help", "vim", },
       highlight = {
         enable = true,
       },

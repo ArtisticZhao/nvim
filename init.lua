@@ -1,10 +1,8 @@
 require('profile')  -- 基础配置
 require('keymap')   -- 按键配置
+require('autocmd')  -- 自动命令
 require('G')
 
------- auto cmd  ------
--- open file with last edit postion
-vim.cmd[[autocmd BufReadPost * normal! g`"]]
 
 ------ lazy.nvim ------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -29,3 +27,4 @@ vim.cmd.colorscheme('zephyr')
 -- highlight group for LineNr
 vim.cmd[[hi LineNr ctermfg=gray guifg=silver]]
 vim.cmd[[hi CursorLineNr ctermfg=blue guifg=#61AFEF cterm=bold gui=bold]]
+vim.cmd[[hi Normal guibg=NONE ctermbg=NONE]]
