@@ -1,7 +1,33 @@
 ###########################################################################
 #                            TextMate Snippets                            #
 ###########################################################################
+# --------------
+# Functions
+# --------------
+global !p
+def printf_expand_args(snip):
+	"""
+	This will look how many placeholders printf has and adds the separated commas
+	at the end.
+	"""
+	
+	# now add so many "," as much as the amount of placeholders
+	amount_placeholders = snip.tabstops[1].current_text.count("%")
 
+	output = ""
+
+	# Add the amount of tabstops
+	for placeholder_index in range(3, amount_placeholders + 3):
+		output += f", ${placeholder_index}"
+	
+	# convert them into tabstops
+	snip.expand_anon(output)
+
+endglobal
+
+# ==============
+# Snippets 
+# ==============
 priority -50
 
 snippet def "#define ..."
@@ -43,16 +69,20 @@ for (${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {
 }
 endsnippet
 
-snippet if "if"
-if (${1:condition}) {
-	${2:expression}
-}$0
-endsnippet
-
 snippet fori "for int loop (fori)"
 for (${4:int} ${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {
 	${VISUAL}$0
 }
+endsnippet
+
+snippet fora "for-loop" b
+for (${1:var}; ${2:condition}; `!p
+if len(t[1]) > 0:
+	snip.rv = t[1].split('=')[0].split()[-1]
+`++) {
+	
+	$0
+} /* for ($1; $2; `!p if len(t[1]) > 0: snip.rv = t[1].split('=')[0].split()[-1]`++) */
 endsnippet
 
 snippet once "Include header once only guard"
@@ -81,8 +111,9 @@ else if (${1:/* condition */}) {
 }
 endsnippet
 
-snippet printf "printf .. (printf)"
-printf("${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
+post_jump "printf_expand_args(snip)"
+snippet "printf" "printf with auto-expand args" wr
+printf("$1\n"$2);
 endsnippet
 
 snippet st "struct"
@@ -133,15 +164,23 @@ endsnippet
 post_jump "if snip.tabstop == 0 : split_line(snip.tabstops[4].current_text)"
 snippet func "Function Header" 
 /******************************************************************************
-* Function:        |$2
-* Description:     |${4:${VISUAL}}
-* Args:            |
-* Return:          |$5
-* Error:           |$6
+* Function:         $1
+* Description:      ${4:${VISUAL}}
+* Where:`!p 
+snip.rv = ""
+snip >> 2
+
+args = get_args(t[2])
+if args:
+	for arg in args:
+		snip.rv += '\n' + '*' + ' '*19 + arg + ' - TODO'
+snip << 2
+`
+* Return:           $5
+* Error:            $6
 *****************************************************************************/
-${1:void} ${2:function_name}($3)
-{
-	${VISUAL}$0
+${1}($2){
+	${0}
 }
 endsnippet
 # vim:ft=snippets:
