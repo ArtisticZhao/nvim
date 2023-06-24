@@ -1,6 +1,7 @@
 require('profile')  -- 基础配置
 require('keymap')   -- 按键配置
 require('autocmd')  -- 自动命令
+require('cmd')      -- 自定义命令
 require('G')
 
 
@@ -23,8 +24,8 @@ require("lazy").setup("plugins")
 
 
 ------ colorscheme ------
-vim.cmd.colorscheme('zephyr')
--- highlight group for LineNr
-vim.cmd[[hi LineNr ctermfg=gray guifg=silver]]
-vim.cmd[[hi CursorLineNr ctermfg=blue guifg=#61AFEF cterm=bold gui=bold]]
-vim.cmd[[hi Normal guibg=NONE ctermbg=NONE]]
+--vim.cmd.colorscheme('zephyr')
+---- highlight group for LineNr
+--vim.cmd[[hi LineNr ctermfg=gray guifg=silver]]
+--vim.cmd[[hi CursorLineNr ctermfg=blue guifg=#61AFEF cterm=bold gui=bold]]
+--vim.cmd[[hi Normal guibg=NONE ctermbg=NONE]]

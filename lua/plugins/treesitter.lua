@@ -1,5 +1,5 @@
 -- nvim-treesitter
--- zephyr-nvim
+-- nvim-treesitter-context
 return {
   { "nvim-treesitter/nvim-treesitter",
     version = false,
@@ -22,7 +22,4 @@ return {
     version = false,
   },
 
-  { "glepnir/zephyr-nvim",
-    lazy = true,
-  },
 }
