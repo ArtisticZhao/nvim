@@ -15,10 +15,6 @@
         "UltiSnips",
         "$HOME/.config/nvim/myUltiSnips/"
     ],
-    // coc-yank
-    "yank.list.maxsize": 20,
-    "yank.enableCompletion": false,
-    "yank.highlight.duration": 1500,
 
     // language server configurations
     "languageserver": {
