@@ -10,6 +10,7 @@ return {
         'coc-json',
         'coc-vimlsp',
         'coc-highlight',
+        'coc-yank',
         'coc-tag',
         'coc-syntax',
         'coc-snippets',
