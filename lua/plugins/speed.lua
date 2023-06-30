@@ -9,7 +9,18 @@ return {
       {"<leader>cc", mode={'n', 'v'}, },
       {"<leader>cu", mode={'n', 'v'}, },
     },
+    config = function ()
+      -- Add spaces after comment delimiters by default
+      vim.g.NERDSpaceDelims = 1
+      -- Allow commenting and inverting empty lines (useful when commenting a region)
+      vim.g.NERDCommentEmptyLines = 1
+      -- Align line-wise comment delimiters flush left instead of following code indentation
+      vim.g.NERDDefaultAlign = 'left'
+      -- Enable NERDCommenterToggle to check all selected lines is commented or not 
+      vim.g.NERDToggleCheckAllLines = 1
+    end
   },
+  
 --------- wildfire.vim    --------- tab键快速选择textobj
   { "gcmt/wildfire.vim",
     keys = {
