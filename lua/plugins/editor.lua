@@ -2,8 +2,9 @@ return {
   { "nvim-lua/plenary.nvim", lazy = true },
 ----------- telescope.nvim -----------
   { "nvim-telescope/telescope.nvim",
+    tag = '0.1.1',
+    dependencies = { 'nvim-lua/plenary.nvim' },
     cmd = "Telescope",
-    version = false,
     keys = {
       { "<c-p>", "<cmd>Telescope find_files<cr>", desc = "find files" },
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "find in files" },
@@ -39,7 +40,7 @@ return {
     },
   },
 ----------- vim-visual-multi -----------
-{ "mg979/vim-visual-multi",
+  { "mg979/vim-visual-multi",
     keys = {
       { "<c-n>",  desc = "assign visual multi" },
     },

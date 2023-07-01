@@ -37,6 +37,8 @@ G.map{'v', 'p', 'pgvy' }  -- Don't lose clipboard when pasting
 
 
 -------------------- search       -------------------
+-- 关闭搜索高亮
+G.map{ 'n', '<leader><enter>', '<cmd>nohlsearch<enter>' }
 -- open search quickfix
 G.map{ 'n', '<leader>/', '<cmd>execute \'vimgrep /\'.@/.\'/g %\'<enter><cmd>copen<enter>', {silent = true} }
 -- remap search direction
@@ -45,7 +47,8 @@ G.map{ 'n', 'N', '?<CR>zz', {silent = true} }  -- search prev
 -- next/prev fx Fx
 G.map{ 'n', '-', ','  }
 G.map{ 'n', '=', ';'  }
-G.map{ 'n', '<leader><enter>', '<cmd>nohlsearch<enter>' }
+G.map{ 'v', '-', ','  }
+G.map{ 'v', '=', ';'  }
 
 
 --------------------  Indentation   -----------------
@@ -57,9 +60,9 @@ G.map{ 'v', '>', '>gv'}
 
 
 --------------------  Buffers       -----------------
-G.map{ 'n', 'Q' , '<cmd>bd<enter>' }  -- close buffer
-G.map{ 'n', ']b', '<cmd>bn<enter>' }  -- next buffer
-G.map{ 'n', '[b', '<cmd>bN<enter>' }  -- prev buffer
+G.map{ 'n', 'Q' , '<cmd>Bdelete<enter>' } -- close buffer
+G.map{ 'n', ']b', '<cmd>bn<enter>' }      -- next buffer
+G.map{ 'n', '[b', '<cmd>bN<enter>' }      -- prev buffer
 
 
 --------------------  split windows -----------------
