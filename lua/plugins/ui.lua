@@ -68,6 +68,10 @@ return {
       require("neo-tree").setup({
         -- Close Neo-tree if it is the last window left in the tab
         close_if_last_window = true,
+        source_selector = {
+            winbar = true,
+            statusline = false,
+        },
       })
     end
   },
@@ -146,6 +150,7 @@ return {
   },
 --------- startup.nvim ---------
   { "startup-nvim/startup.nvim",
+    dir = "~/projects/startup.nvim",
     dependencies = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
     config = function()
       require"startup".setup({theme = "startify"})
