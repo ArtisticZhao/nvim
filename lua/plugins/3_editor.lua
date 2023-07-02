@@ -9,12 +9,30 @@
 return {
 ----------- leap.nvim -----------
   { "tpope/vim-repeat" },
-  -- { "ggandor/leap.nvim",
-  --   dependencies = { "tpope/vim-repeat" },
-  --   config = function ()
-  --    require('leap').add_default_mappings()
-  --   end
-  -- },
+  { "ggandor/leap.nvim",
+    dependencies = { "tpope/vim-repeat" },
+    keys = {
+      {'m', '<Plug>(leap-forward-to)', mode = {'x', 'o', 'n'}, desc = "leap forward"},
+      {'M', '<Plug>(leap-backward-to)', mode = {'x', 'o', 'n'}, desc = "leap forward"},
+    },
+    config = function ()
+      require('leap').add_default_mappings()
+      require('leap').opts.highlight_unlabeled_phase_one_targets = true
+    end
+  },
+  { "ggandor/flit.nvim",
+    dependencies = { "ggandor/leap.nvim", "tpope/vim-repeat" },
+    keys = {
+      {'f', mode = {'n', 'x', 'o'}},
+      {'F', mode = {'n', 'x', 'o'}},
+      {'t', mode = {'n', 'x', 'o'}},
+      {'T', mode = {'n', 'x', 'o'}},
+    },
+    opts = {
+      -- disable find in multiline
+      multiline = false
+    },
+  },
 
 ----------- undotree -----------
   { "mbbill/undotree",
@@ -51,12 +69,12 @@ return {
 --------- wildfire.vim    --------- tab键快速选择textobj
   { "gcmt/wildfire.vim",
     keys = {
-      {"<tab>", "<Plug>(wildfire-fuel)", desc = "wildfire select textobj"},
-      {"<s-tab>", "<Plug>(wildfire-water)", desc = "wildfire select textobj"},
+      {"<tab>", "<Plug>(wildfire-fuel)", mode = {'n', 'x', 'o'}, desc = "wildfire select textobj"},
+      {"<s-tab>", "<Plug>(wildfire-water)", mode = {'n', 'x', 'o'}, desc = "wildfire select textobj"},
       {"<leader><tab>", "<Plug>(wildfire-quick-select)", desc = "wildfire quick select textobj"},
     },
     config = function()
-      vim.g.wildfire_objects = { "i>", "i'", 'i"', "i)", "i]", "i}", "ip", "it" }
+      vim.g.wildfire_objects = { "i'", 'i"', "i)", "i]", "i}", "ip", "it" }
     end,
   },
 
