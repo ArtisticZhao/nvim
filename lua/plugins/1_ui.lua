@@ -7,6 +7,9 @@
 -- toggleterm.nvim
 -- which-key.nvim
 -- startup.nvim
+-- plenary.nvim
+-- telescope.nvim
+
 return {
 --------- nvim-notify   --------- 通知插件
   { "rcarriga/nvim-notify",
@@ -42,7 +45,7 @@ return {
   "MunifTanjim/nui.nvim",
   { "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
-    requires = { 
+    requires = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
@@ -81,16 +84,16 @@ return {
   { "akinsho/bufferline.nvim",
     lazy = false,
     keys = {
-      { "<leader>1", '<cmd>lua require("bufferline").go_to(1, true)<cr>' },
-      { "<leader>2", '<cmd>lua require("bufferline").go_to(2, true)<cr>' },
-      { "<leader>3", '<cmd>lua require("bufferline").go_to(3, true)<cr>' },
-      { "<leader>4", '<cmd>lua require("bufferline").go_to(4, true)<cr>' },
-      { "<leader>5", '<cmd>lua require("bufferline").go_to(5, true)<cr>' },
-      { "<leader>6", '<cmd>lua require("bufferline").go_to(6, true)<cr>' },
-      { "<leader>7", '<cmd>lua require("bufferline").go_to(7, true)<cr>' },
-      { "<leader>8", '<cmd>lua require("bufferline").go_to(8, true)<cr>' },
-      { "<leader>9", '<cmd>lua require("bufferline").go_to(9, true)<cr>' },
-      { "<leader>$", '<cmd>lua require("bufferline").go_to(-1, true)<cr>' },
+      { "<leader>1", '<cmd>lua require("bufferline").go_to(1, true)<cr>', desc = "Go to buffer 1" },
+      { "<leader>2", '<cmd>lua require("bufferline").go_to(2, true)<cr>', desc = "Go to buffer 2" },
+      { "<leader>3", '<cmd>lua require("bufferline").go_to(3, true)<cr>', desc = "Go to buffer 3" },
+      { "<leader>4", '<cmd>lua require("bufferline").go_to(4, true)<cr>', desc = "Go to buffer 4" },
+      { "<leader>5", '<cmd>lua require("bufferline").go_to(5, true)<cr>', desc = "Go to buffer 5" },
+      { "<leader>6", '<cmd>lua require("bufferline").go_to(6, true)<cr>', desc = "Go to buffer 6" },
+      { "<leader>7", '<cmd>lua require("bufferline").go_to(7, true)<cr>', desc = "Go to buffer 7" },
+      { "<leader>8", '<cmd>lua require("bufferline").go_to(8, true)<cr>', desc = "Go to buffer 8" },
+      { "<leader>9", '<cmd>lua require("bufferline").go_to(9, true)<cr>', desc = "Go to buffer 9" },
+      { "<leader>$", '<cmd>lua require("bufferline").go_to(-1, true)<cr>', desc = "Go to last buffer" },
     },
     opts = {
       options = {
@@ -155,5 +158,17 @@ return {
     config = function()
       require"startup".setup({theme = "startify"})
     end,
-  }
+  },
+  { "nvim-lua/plenary.nvim", lazy = true },
+----------- telescope.nvim -----------
+  { "nvim-telescope/telescope.nvim",
+    tag = '0.1.1',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    cmd = "Telescope",
+    keys = {
+      { "<c-p>", "<cmd>Telescope find_files<cr>", desc = "find files" },
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "find in files" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "find buffers" },
+    },
+  },
 }

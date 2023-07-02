@@ -90,6 +90,6 @@ G.map{'n', '`', '~' }                               -- change uppercase
 G.map{'v', '`', '~' }                               -- change uppercase
 G.map{'n', '<enter>', ':a<enter><enter>.<enter>'  } -- add an empty line
 G.map{'n', '<leader>sc', "<cmd>set spell!<enter>" } -- toggle spell check
-G.map{'n', '<leader><tab>', "<cmd>%ret! 4<enter>" } -- replace tab with space
+G.map{'n', '<leader>s<tab>', "<cmd>%ret! 4<enter>", desc = "replace tab to 4 space"} -- replace tab with space
 G.map{'n', '<leader>R', "<cmd>ReloadConfig<enter>"} -- reload configurations
 G.map{'n', '<leader>fig', ":r !figlet"}             -- call figlet

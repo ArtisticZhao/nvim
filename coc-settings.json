@@ -10,6 +10,7 @@
     "coc.source.tag.shortcut": "笠",
     "snippets.shortcut": "",
     // coc-highlight
+    "colors.enable": true,
     // coc-snippets
     "snippets.ultisnips.directories": [
         "UltiSnips",

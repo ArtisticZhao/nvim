@@ -5,6 +5,7 @@ return {
     lazy = false,
     config = function()
       G.map{'n', '<F4>', '<cmd>CocCommand clangd.switchSourceHeader<cr>'}
+      vim.cmd[[autocmd CursorHold * silent call CocActionAsync('highlight')]]
 
       vim.g.coc_global_extensions = {
         'coc-json',
@@ -17,6 +18,7 @@ return {
         'coc-pyright',
         'coc-lua',
         'coc-clangd',
+        'coc-pairs',
       }
       -- Some servers have issues with backup files, see #649
       vim.opt.backup = false
