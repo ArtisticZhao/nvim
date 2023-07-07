@@ -26,7 +26,7 @@ vim.opt.scrolloff      = 5
 vim.opt.wrap           = false
 vim.opt.showcmd        = true
 ---- 空白字符显示
-vim.opt.showbreak = ↪
+vim.opt.showbreak = '↪'
 vim.opt.listchars = { space='⋅', nbsp='␣', eol='↲', trail='•', extends='»', precedes='«', tab='→  ' }
 vim.opt.list      = true
 

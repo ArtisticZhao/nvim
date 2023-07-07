@@ -5,8 +5,20 @@ return {
     version = false,
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSUpdate", "TSUpdateSync", "TSInstall" },
     opts = {
-      ensure_installed = { "c",  "cmake", "cpp", "json", "lua", "matlab", "python", "verilog", "help", "vim", },
+      ensure_installed = {
+        "c",
+        "cmake",
+        "cpp",
+        "json",
+        "lua",
+        "matlab",
+        "python",
+        "verilog",
+        "vim",
+        "vimdoc",
+      },
       highlight = {
         enable = true,
       },
