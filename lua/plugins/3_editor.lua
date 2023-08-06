@@ -34,6 +34,23 @@ return {
     },
   },
 
+----------- yanky -----------
+  { "gbprod/yanky.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("yanky").setup({
+        highlight = {
+          on_put = true,
+          on_yank = true,
+          timer = 500,
+        },
+      })
+      vim.keymap.set("n", "<leader>y", ":Telescope yank_history<CR>")
+      vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+    require("telescope").load_extension("yank_history")
+    end
+  },
 ----------- undotree -----------
   { "mbbill/undotree",
     keys = {

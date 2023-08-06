@@ -83,4 +83,11 @@ return {
       WARN = { icon = " ", color = "warning", alt = { "WARNING", "WARN" } },
     },
   },
+--------- nvim-colorizer.lua    ---------
+  { "norcalli/nvim-colorizer.lua",
+    ft = 'lua',
+    opts = {
+      "lua",
+    },
+  },
 }

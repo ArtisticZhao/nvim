@@ -39,8 +39,10 @@ vim.opt.wrapscan   = true   -- 循环搜索
 
 
 ---- ============== folding =======================
-vim.opt.foldmethod = "indent"
-vim.opt.foldenable = false
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr= "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = false  -- open all fold, when open a new file.
+vim.opt.foldlevel = 99    -- a high value to makesure the zc only close 1 level with the buffer first fold.
 
 
 ---- ============== MISC    =======================
