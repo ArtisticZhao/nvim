@@ -40,6 +40,10 @@ return {
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       require("yanky").setup({
+        -- keep cursor postion
+        preserve_cursor_position = {
+          enabled = true,
+        },
         highlight = {
           on_put = true,
           on_yank = true,
@@ -47,7 +51,9 @@ return {
         },
       })
       vim.keymap.set("n", "<leader>y", ":Telescope yank_history<CR>")
-      vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+      vim.keymap.set("n", "p", "<Plug>(YankyPutAfter)")
+      vim.keymap.set("x", "p", "<Plug>(YankyPutAfter)gvy")
+      vim.keymap.set({"n", "x"}, "y", "<Plug>(YankyYank)")
     require("telescope").load_extension("yank_history")
     end
   },
@@ -118,5 +124,10 @@ return {
       { "aw", '<cmd>lua require("align").align_to_string(false, true, true)<cr>', mode = "x", desc = "align to a word"  },
       { "ar", '<cmd>lua require("align").align_to_string(true, true, true)<cr>', mode = "x", desc = "align to string"  },
     },
+  },
+--------- align.nvim      --------- 对齐
+  { 'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {},
   },
 }
