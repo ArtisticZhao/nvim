@@ -54,7 +54,7 @@ return {
       vim.keymap.set("n", "p", "<Plug>(YankyPutAfter)")
       vim.keymap.set("x", "p", "<Plug>(YankyPutAfter)gvy")
       vim.keymap.set({"n", "x"}, "y", "<Plug>(YankyYank)")
-    require("telescope").load_extension("yank_history")
+      require("telescope").load_extension("yank_history")
     end
   },
 ----------- undotree -----------
