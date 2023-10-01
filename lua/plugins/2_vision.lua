@@ -33,6 +33,7 @@ return {
 --------- indent-blankline.nvim --------- 缩进对齐显示
   { "lukas-reineke/indent-blankline.nvim",
     event = { "BufReadPost", "BufNewFile" },
+    main = "ibl",
     opts = {
       char = "│",
       filetype_exclude = { "help", "NvimTree", },
