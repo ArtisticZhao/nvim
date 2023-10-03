@@ -7,30 +7,23 @@
 -- align.nvim
 
 return {
------------ leap.nvim -----------
-  { "tpope/vim-repeat" },
-  { "ggandor/leap.nvim",
-    dependencies = { "tpope/vim-repeat" },
-    keys = {
-      {'m', '<Plug>(leap-forward-to)', mode = {'x', 'o', 'n'}, desc = "leap forward"},
-      {'M', '<Plug>(leap-backward-to)', mode = {'x', 'o', 'n'}, desc = "leap forward"},
-    },
-    config = function ()
-      require('leap').add_default_mappings()
-      require('leap').opts.highlight_unlabeled_phase_one_targets = true
-    end
-  },
-  { "ggandor/flit.nvim",
-    dependencies = { "ggandor/leap.nvim", "tpope/vim-repeat" },
-    keys = {
-      {'f', mode = {'n', 'x', 'o'}},
-      {'F', mode = {'n', 'x', 'o'}},
-      {'t', mode = {'n', 'x', 'o'}},
-      {'T', mode = {'n', 'x', 'o'}},
-    },
+----------- flash -----------
+  { "folke/flash.nvim",
+    event = "VeryLazy",
     opts = {
-      -- disable find in multiline
-      multiline = false
+      label = {
+        -- show the label before the match
+        after = false,
+        before = true,
+      },
+    },
+    -- stylua: ignore
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      -- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
 
@@ -40,6 +33,16 @@ return {
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       require("yanky").setup({
+        ring = {
+          history_length = 100,
+          storage = "shada",
+          sync_with_numbered_registers = true,
+          cancel_event = "update",
+          ignore_registers = { "_" },
+        },
+        system_clipboard = {
+          sync_with_ring = true,
+        },
         -- keep cursor postion
         preserve_cursor_position = {
           enabled = true,
@@ -50,10 +53,16 @@ return {
           timer = 500,
         },
       })
-      vim.keymap.set("n", "<leader>y", ":Telescope yank_history<CR>")
+      -- yank highlight
+      vim.keymap.set({"n", "x"}, "y", "<Plug>(YankyYank)")
+      -- yank ring
+      vim.keymap.set("n", "<leader>yn", "<Plug>(YankyCycleForward)")
+      vim.keymap.set("n", "<leader>yp", "<Plug>(YankyCycleBackward)")
+      -- yank history
+      vim.keymap.set("n", "<leader>yh", ":Telescope yank_history<CR>")
+      -- put highlight
       vim.keymap.set("n", "p", "<Plug>(YankyPutAfter)")
       vim.keymap.set("x", "p", "<Plug>(YankyPutAfter)gvy")
-      vim.keymap.set({"n", "x"}, "y", "<Plug>(YankyYank)")
       require("telescope").load_extension("yank_history")
     end
   },

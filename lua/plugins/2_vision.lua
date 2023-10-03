@@ -1,10 +1,10 @@
 -- mhartington/oceanic-next
 -- glepnir/zephyr-nvim
-
 -- indent-blankline.nvim
 -- vim-interestingwords
 -- vim-better-whitespace
 -- todo-comments.nvim
+-- RRethy/vim-illuminate
 
 
 return {
@@ -83,6 +83,11 @@ return {
     opts = {
       WARN = { icon = " ", color = "warning", alt = { "WARNING", "WARN" } },
     },
+  },
+
+--------- RRethy/vim-illuminate    ---------
+  { "RRethy/vim-illuminate",
+    event = { "BufReadPost", "BufNewFile", },
   },
 --------- nvim-colorizer.lua    ---------
   { "norcalli/nvim-colorizer.lua",
