@@ -39,10 +39,12 @@ vim.opt.wrapscan   = true   -- 循环搜索
 
 
 ---- ============== folding =======================
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr= "nvim_treesitter#foldexpr()"
-vim.opt.foldenable = false  -- open all fold, when open a new file.
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr= "nvim_treesitter#foldexpr()"
+vim.o.foldcolumn = '1' -- '0' is not bad
 vim.opt.foldlevel = 99    -- a high value to makesure the zc only close 1 level with the buffer first fold.
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
 
 ---- ============== MISC    =======================

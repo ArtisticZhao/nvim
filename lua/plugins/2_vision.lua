@@ -1,11 +1,11 @@
 -- mhartington/oceanic-next
 -- glepnir/zephyr-nvim
 -- indent-blankline.nvim
--- vim-interestingwords
+-- interestingwords.nvim
 -- vim-better-whitespace
 -- todo-comments.nvim
--- RRethy/vim-illuminate
-
+-- vim-illuminate
+-- nvim-colorizer.lua     色彩标签
 
 return {
 --------- zephyr.nvim ---------
@@ -22,7 +22,7 @@ return {
 --------- OceanicNext ---------
   { "mhartington/oceanic-next",
     config = function()
-      vim.cmd.colorscheme 'OceanicNext'
+      vim.cmd.colorscheme "OceanicNext"
       vim.cmd[[hi Normal guibg=NONE ctermbg=NONE]]
       vim.cmd[[hi LineNr guibg=NONE ctermbg=NONE]]
       vim.cmd[[hi SignColumn guibg=NONE ctermbg=NONE]]
@@ -32,17 +32,38 @@ return {
 
 --------- indent-blankline.nvim --------- 缩进对齐显示
   { "lukas-reineke/indent-blankline.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     event = { "BufReadPost", "BufNewFile" },
-    main = "ibl",
-    opts = {
-      char = "│",
-      filetype_exclude = { "help", "NvimTree", },
-      show_trailing_blankline_indent = false,
-      show_current_context = false,
-    },
+    config = function ()
+      local highlight = {
+        "RainbowRed",
+        "RainbowYellow",
+        "RainbowBlue",
+        "RainbowOrange",
+        "RainbowGreen",
+        "RainbowViolet",
+        "RainbowCyan",
+      }
+      local hooks = require "ibl.hooks"
+      -- create the highlight groups in the highlight setup hook, so they are reset
+      -- every time the colorscheme changes
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+      end)
+
+      vim.g.rainbow_delimiters = { highlight = highlight }
+      require("ibl").setup { scope = { highlight = highlight } }
+      hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+    end,
   },
 
---------- vim-interestingwords ---------
+--------- interestingwords.nvim ---------
   { "Mr-LLLLL/interestingwords.nvim",
     keys = {
       { '<leader>i', desc = "Interstringwords" },
@@ -52,7 +73,7 @@ return {
       { '<leader>M', desc = "Cancel all search interestingwords" },
     },
     opts = {
-      colors = { '#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF', '#aeee00', '#b88823', '#ffa724', '#ff2c4b' },
+      colors = { "#8CCBEA", '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF', '#aeee00', '#b88823', '#ffa724', '#ff2c4b' },
       search_count = true,
       navigation = true,
       search_key = "<leader>m",

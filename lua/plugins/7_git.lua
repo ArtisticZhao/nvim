@@ -17,12 +17,11 @@ return {
           vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
         end
         -- stylua: ignore start
-        map("n", "]h", gs.next_hunk, "Next Hunk")
-        map("n", "[h", gs.prev_hunk, "Prev Hunk")
-        map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
-        map("n", "<leader>ghd", gs.diffthis, "Diff This")
-        map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
-
+        map("n", "]g", gs.next_hunk, "Next Hunk")
+        map("n", "[g", gs.prev_hunk, "Prev Hunk")
+        map("n", "<leader>gl", "<CMD>Gitsigns toggle_current_line_blame<CR>", "Git toggle line blame")
+        map('n', '<leader>gp', gs.preview_hunk, "Preview hunk")
+        map("n", "<leader>gb", function() gs.blame_line({ full = true }) end, "Preview Blame Line")
 
         -- set color
         vim.cmd [[

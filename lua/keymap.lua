@@ -1,5 +1,4 @@
 local G = require('G')
-
 ---- set space as leader key
 vim.g.mapleader = " "
 
@@ -61,8 +60,9 @@ G.map{ 'v', '>', '>gv'}
 
 --------------------  Buffers       -----------------
 G.map{ 'n', 'Q' , '<cmd>Bdelete<enter>' } -- close buffer
-G.map{ 'n', ']b', '<cmd>bn<enter>' }      -- next buffer
-G.map{ 'n', '[b', '<cmd>bN<enter>' }      -- prev buffer
+-- G.map{ 'n', '<leader>q' , '<CMD>w <bar> %bd <bar> e# <bar> bd# <CR>', desc = "close other buffers" } -- close buffer
+G.map{ 'n', ']b', '<cmd>bn<enter>', desc = "Next buffer" }      -- next buffer
+G.map{ 'n', '[b', '<cmd>bN<enter>', desc = "Previous buffer" }      -- prev buffer
 
 
 --------------------  split windows -----------------
@@ -77,12 +77,12 @@ G.map{'n', '<leader>j', '<c-w>j' }
 G.map{'n', '<leader>k', '<c-w>k' }
 G.map{'n', '<leader>l', '<c-w>l' }
 -- change split windows
-G.map{'n', '<leader>s=', '<c-w>='             }  -- 等分窗口
-G.map{'n', '<leader>sr', '<c-w><c-r>'         }  -- 交换窗口
-G.map{'n', '<c-up>'    , '<cmd>res +5<enter>' }  -- 增加窗口高度
-G.map{'n', '<c-down>'  , '<cmd>res -5<enter>' }  -- 减少窗口高度
-G.map{'n', '<c-left>'  , '<c-w>10>'           }  -- 增加窗口宽度 
-G.map{'n', '<c-right>' , '<c-w>10<'           }  -- 减少窗口宽度 
+G.map{'n', '<leader>s=', '<c-w>=',     desc = "equalize splited windows" }  -- 等分窗口
+G.map{'n', '<leader>sr', '<c-w><c-r>', desc = "switch splited windows" }  -- 交换窗口
+-- G.map{'n', '<c-up>'    , '<cmd>res +5<enter>', desc = "" }  -- 增加窗口高度
+-- G.map{'n', '<c-down>'  , '<cmd>res -5<enter>', desc = "" }  -- 减少窗口高度
+-- G.map{'n', '<c-left>'  , '<c-w>10>',           desc = ""           }  -- 增加窗口宽度
+-- G.map{'n', '<c-right>' , '<c-w>10<',           desc = ""           }  -- 减少窗口宽度
 
 
 --------------------  MISC --------------------------

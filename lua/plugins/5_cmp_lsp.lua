@@ -5,6 +5,56 @@ local has_words_before = function()
 end
 
 return {
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+    keys = {
+      { "<leader>xx", mode = "n",
+        function() require("trouble").open("document_diagnostics") end,
+        desc = "Open diagnostics documents"
+      },
+      { "<leader>xw", mode = "n",
+        function() require("trouble").open("workspace_diagnostics") end,
+        desc = "Open diagnostics workspace"
+      },
+      { "]d", mode = "n",
+        function() require("trouble").next({skip_groups = true, jump = true}) end,
+        desc = "Jump Next diagnostics"
+      },
+      { "[d", mode = "n",
+        function() require("trouble").previous({skip_groups = true, jump = true}) end,
+        desc = "Jump Previous diagnostics"
+      },
+    },
+  },
+
+  {
+    'stevearc/aerial.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = {
+       "nvim-treesitter/nvim-treesitter",
+       "nvim-tree/nvim-web-devicons"
+    },
+    keys = {
+      { "<leader>a", mode = "n", "<cmd>AerialToggle!<CR>", desc = "Toggle Aerial" },
+    },
+    config = function ()
+      require('aerial').setup({
+        -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+        on_attach = function(bufnr)
+          -- Jump forwards/backwards with '{' and '}'
+          vim.keymap.set('n', '[a', '<cmd>AerialPrev<CR>', {buffer = bufnr, desc = "Previous Aerial"})
+          vim.keymap.set('n', ']a', '<cmd>AerialNext<CR>', {buffer = bufnr, desc = "Next Aerial"})
+        end
+      })
+    end,
+  },
   -- LSP
   { 'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
@@ -22,7 +72,7 @@ return {
       -- -- (Optional) configure lua language server
       -- local lua_opts = lsp_zero.nvim_lua_ls()
       -- require('lspconfig').lua_ls.setup(lua_opts)
-      -- 
+      --
       -- lsp_zero.setup_servers({'pyright', 'clangd'})
     end,
   },

@@ -1,33 +1,108 @@
--- leap.nvim
+-- neogen
+-- flash.nvim
+-- yanky.nvim
 -- undotree
 -- vim-visual-multi
 -- nerdcommenter
--- wildfire.vim
+-- wildfire.nvim
 -- vim-sandwich
 -- align.nvim
+-- nvim-autopairs
 
 return {
------------ flash -----------
+----------- nvim-ufo ----------- folder
+  { 'kevinhwang91/nvim-ufo',
+    dependencies = { 'kevinhwang91/promise-async', "nvim-treesitter/nvim-treesitter", },
+    keys = {
+      { "zR", mode ="n", function() require('ufo').openAllFolds() end, desc = "open all folds" },
+      { "zM", mode = "n", function() require('ufo').closeAllFolds() end, desc = "close all folds" },
+    },
+    config = function ()
+    local handler = function(virtText, lnum, endLnum, width, truncate)
+      local newVirtText = {}
+      local suffix = (' 󰁂 %d '):format(endLnum - lnum)
+      local sufWidth = vim.fn.strdisplaywidth(suffix)
+      local targetWidth = width - sufWidth
+      local curWidth = 0
+      for _, chunk in ipairs(virtText) do
+        local chunkText = chunk[1]
+        local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+        if targetWidth > curWidth + chunkWidth then
+          table.insert(newVirtText, chunk)
+        else
+          chunkText = truncate(chunkText, targetWidth - curWidth)
+          local hlGroup = chunk[2]
+          table.insert(newVirtText, {chunkText, hlGroup})
+          chunkWidth = vim.fn.strdisplaywidth(chunkText)
+          -- str width returned from truncate() may less than 2nd argument, need padding
+          if curWidth + chunkWidth < targetWidth then
+            suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+          end
+          break
+        end
+        curWidth = curWidth + chunkWidth
+      end
+      table.insert(newVirtText, {suffix, 'MoreMsg'})
+      return newVirtText
+    end
+      require('ufo').setup({
+        provider_selector = function(bufnr, filetype, buftype)
+          return {'treesitter', 'indent'}
+        end,
+        fold_virt_text_handler = handler,
+      })
+    end
+  },
+----------- neogen -----------
+  { "danymat/neogen",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    keys = {
+      { "<F3>", mode = "n", "<CMD>Neogen<CR>", desc = "Neogen doxygen comments." },
+    },
+    config = function ()
+      require('neogen').setup({ snippet_engine = "luasnip" })
+    end
+  },
+----------- flash.nvim -----------
   { "folke/flash.nvim",
     event = "VeryLazy",
     opts = {
+      modes = {
+         -- options used when flash is activated through
+        -- `f`, `F`, `t`, `T`, `;` and `,` motions
+        char = {
+          -- show jump labels
+          jump_labels = false,
+          -- set to `false` to use the current line only
+          multi_line = false,
+          highlight = { backdrop = false },
+        },
+      },
+      highlight = {
+        -- show a backdrop with hl FlashBackdrop
+        backdrop = false,
+      },
       label = {
+        style = "overlay", ---@type "eol" | "overlay" | "right_align" | "inline"
         -- show the label before the match
         after = false,
         before = true,
+        -- Enable this to use rainbow colors to highlight labels
+        -- Can be useful for visualizing Treesitter ranges.
+        rainbow = {
+          enabled = true,
+          -- number between 1 and 9
+          shade = 5,
+        },
       },
     },
     -- stylua: ignore
     keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      -- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      { "m", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
     },
   },
 
------------ yanky -----------
+----------- yanky.nvim -----------
   { "gbprod/yanky.nvim",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = { "nvim-telescope/telescope.nvim" },
@@ -99,17 +174,30 @@ return {
   },
 
 --------- wildfire.vim    --------- tab键快速选择textobj
-  { "gcmt/wildfire.vim",
-    keys = {
-      {"<tab>", "<Plug>(wildfire-fuel)", mode = {'n', 'x', 'o'}, desc = "wildfire select textobj"},
-      {"<s-tab>", "<Plug>(wildfire-water)", mode = {'n', 'x', 'o'}, desc = "wildfire select textobj"},
-      {"<leader><tab>", "<Plug>(wildfire-quick-select)", desc = "wildfire quick select textobj"},
-    },
+  -- { "gcmt/wildfire.vim",
+  --   keys = {
+  --     {"<tab>", "<Plug>(wildfire-fuel)", mode = {'n', 'x', 'o'}, desc = "wildfire select textobj"},
+  --     {"<s-tab>", "<Plug>(wildfire-water)", mode = {'n', 'x', 'o'}, desc = "wildfire select textobj"},
+  --     {"<leader><tab>", "<Plug>(wildfire-quick-select)", desc = "wildfire quick select textobj"},
+  --   },
+  --   config = function()
+  --     vim.g.wildfire_objects = { "i'", 'i"', "i)", "i]", "i}", "ip", "it" }
+  --   end,
+  -- },
+  { "sustech-data/wildfire.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
-      vim.g.wildfire_objects = { "i'", 'i"', "i)", "i]", "i}", "ip", "it" }
+      require("wildfire").setup({
+        keymaps = {
+          init_selection = "<TAB>",
+          node_incremental = "<TAB>",
+          node_decremental = "<S-TAB>",
+        },
+        filetype_exclude = { "qf" }, --keymaps will be unset in excluding filetypes
+      })
     end,
   },
-
 --------- vim-sandwich    --------- 更快增删改成对的符号
   { "machakann/vim-sandwich",
     event = { "BufReadPost", "BufNewFile" },
@@ -134,7 +222,7 @@ return {
       { "ar", '<cmd>lua require("align").align_to_string(true, true, true)<cr>', mode = "x", desc = "align to string"  },
     },
   },
---------- align.nvim      --------- 对齐
+--------- nvim-autopairs      --------- 自动补全括号
   { 'windwp/nvim-autopairs',
     event = "InsertEnter",
     opts = {},
