@@ -4,6 +4,7 @@
 -- neo-tree.nvim
 -- bufferline.nvim
 -- lualine.nvim
+-- barbecue.nvim
 -- toggleterm.nvim
 -- which-key.nvim
 -- startup.nvim
@@ -128,6 +129,19 @@ return {
     },
   },
 
+--------- barbecue.nvim --------
+  { "utilyre/barbecue.nvim",
+    name = "barbecue",
+    version = "*",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons", -- optional dependency
+    },
+    opts = {
+      -- configurations go here
+    },
+  },
+
 --------- toggleterm.nvim --------
   { "akinsho/toggleterm.nvim",
     keys = {
@@ -162,7 +176,6 @@ return {
     end,
   },
 
-  { "nvim-lua/plenary.nvim", lazy = true },
 ----------- telescope.nvim -----------
   { "nvim-telescope/telescope.nvim",
     tag = '0.1.1',
