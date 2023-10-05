@@ -36,43 +36,48 @@ return {
     lazy = false,
     priority = 1000,
     config = function ()
-      -- colorscheme tokyonight-night
-      vim.cmd.colorscheme "tokyonight-night"
+      vim.cmd.colorscheme "tokyonight"
       vim.cmd[[hi LineNr ctermfg=gray guifg=silver]]
       vim.cmd[[hi CursorLineNr ctermfg=blue guifg=#61AFEF cterm=bold gui=bold]]
+      vim.cmd[[highlight Visual guibg=#5f87af gui=none guifg=NONE]]
+      vim.cmd[[hi def IlluminatedWordText gui=underline]]
+      vim.cmd[[hi def IlluminatedWordRead gui=underline]]
+      vim.cmd[[hi def IlluminatedWordWrite gui=underline]]
     end
   },
 
 --------- indent-blankline.nvim --------- 缩进对齐显示
   { "lukas-reineke/indent-blankline.nvim",
+    enable=false,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     event = { "BufReadPost", "BufNewFile" },
     config = function ()
-      local highlight = {
-        "RainbowRed",
-        "RainbowYellow",
-        "RainbowBlue",
-        "RainbowOrange",
-        "RainbowGreen",
-        "RainbowViolet",
-        "RainbowCyan",
-      }
-      local hooks = require "ibl.hooks"
-      -- create the highlight groups in the highlight setup hook, so they are reset
-      -- every time the colorscheme changes
-      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
-        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
-      end)
-
-      vim.g.rainbow_delimiters = { highlight = highlight }
-      require("ibl").setup { scope = { highlight = highlight } }
-      hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+      require("ibl").setup()
+      -- local highlight = {
+      --   "RainbowRed",
+      --   "RainbowYellow",
+      --   "RainbowBlue",
+      --   "RainbowOrange",
+      --   "RainbowGreen",
+      --   "RainbowViolet",
+      --   "RainbowCyan",
+      -- }
+      -- local hooks = require "ibl.hooks"
+      -- -- create the highlight groups in the highlight setup hook, so they are reset
+      -- -- every time the colorscheme changes
+      -- -- hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+      -- --   vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+      -- --   vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+      -- --   vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+      -- --   vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+      -- --   vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+      -- --   vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+      -- --   vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+      -- -- end)
+      --
+      -- vim.g.rainbow_delimiters = { highlight = highlight }
+      -- require("ibl").setup { scope = { highlight = highlight } }
+      -- hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
     end,
   },
 
@@ -122,7 +127,11 @@ return {
 --------- RRethy/vim-illuminate    ---------
   { "RRethy/vim-illuminate",
     event = { "BufReadPost", "BufNewFile", },
+    after = "folke/tokyonight.nvim",
+    config = function ()
+    end
   },
+
 --------- nvim-colorizer.lua    ---------
   { "norcalli/nvim-colorizer.lua",
     ft = 'lua',

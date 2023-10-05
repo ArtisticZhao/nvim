@@ -193,8 +193,19 @@ return {
   },
 
 --------- vim-sandwich    --------- 更快增删改成对的符号
-  { "machakann/vim-sandwich",
-    event = { "BufReadPost", "BufNewFile" },
+  -- { "machakann/vim-sandwich",
+  --   event = { "BufReadPost", "BufNewFile" },
+  -- },
+
+--------- nvim-surround    --------- 更快增删改成对的符号
+  { "kylechui/nvim-surround",
+      version = "*", -- Use for stability; omit to use `main` branch for the latest features
+      event = "VeryLazy",
+      config = function()
+          require("nvim-surround").setup({
+              -- Configuration here, or leave empty to use defaults
+          })
+      end
   },
 
 --------- align.nvim      --------- 对齐
