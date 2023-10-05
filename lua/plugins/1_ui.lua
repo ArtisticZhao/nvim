@@ -56,18 +56,19 @@ return {
       { "<leader>e", "<cmd>NeoTreeFocusToggle<cr>", desc = "neo-tree" },
     },
     config = function ()
+      local icon = require('G').icon()
       -- Unless you are still migrating, remove the deprecated commands from v1.x
       vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
       -- If you want icons for diagnostic errors, you'll need to define them somewhere:
       vim.fn.sign_define("DiagnosticSignError",
-        {text = " ", texthl = "DiagnosticSignError"})
+        {text = icon.error, texthl = "DiagnosticSignError"})
       vim.fn.sign_define("DiagnosticSignWarn",
-        {text = " ", texthl = "DiagnosticSignWarn"})
+        {text = icon.warn, texthl = "DiagnosticSignWarn"})
       vim.fn.sign_define("DiagnosticSignInfo",
-        {text = " ", texthl = "DiagnosticSignInfo"})
+        {text = icon.info, texthl = "DiagnosticSignInfo"})
       vim.fn.sign_define("DiagnosticSignHint",
-        {text = "", texthl = "DiagnosticSignHint"})
+        {text = icon.hint, texthl = "DiagnosticSignHint"})
 
       require("neo-tree").setup({
         -- Close Neo-tree if it is the last window left in the tab
@@ -178,7 +179,7 @@ return {
 
 ----------- telescope.nvim -----------
   { "nvim-telescope/telescope.nvim",
-    tag = '0.1.1',
+    branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim' },
     cmd = "Telescope",
     keys = {
@@ -188,4 +189,25 @@ return {
     },
   },
 
+----------- nvim-scrollbar -----------
+  { "petertriho/nvim-scrollbar",
+    dependencies = { 'lewis6991/gitsigns.nvim', 'folke/tokyonight.nvim', },
+    config = function ()
+      local colors = require("tokyonight.colors").setup()
+      require("scrollbar").setup({
+          handle = {
+              color = colors.bg_highlight,
+          },
+          marks = {
+              Search = { color = colors.orange },
+              Error = { color = colors.error },
+              Warn = { color = colors.warning },
+              Info = { color = colors.info },
+              Hint = { color = colors.hint },
+              Misc = { color = colors.purple },
+          }
+      })
+      require("scrollbar.handlers.gitsigns").setup()
+    end,
+  },
 }

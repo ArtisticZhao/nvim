@@ -80,6 +80,7 @@ return {
     },
     config = function()
       local lsp_zero = require('lsp-zero')
+      local G = require('G')
       lsp_zero.on_attach(function(client, bufnr)
         vim.keymap.set('n', 'gd',        '<cmd>lua vim.lsp.buf.definition()<cr>',        {buffer = bufnr, desc = "Jumps to the definition"})
         vim.keymap.set('n', 'gD',        '<cmd>lua vim.lsp.buf.declaration()<cr>',       {buffer = bufnr, desc = "Jumps to the declaration"})
@@ -104,12 +105,7 @@ return {
         --   }
         -- }, bufnr)
       end)
-      lsp_zero.set_sign_icons({
-        error = '✘',
-        warn = '▲',
-        hint = '⚑',
-        info = '»'
-      })
+      lsp_zero.set_sign_icons(G.icon())
       lsp_zero.extend_lspconfig()
     end,
   },

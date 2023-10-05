@@ -1,5 +1,14 @@
 local G = {}
 
+function G.icon()
+  return {
+        error = '✘ ',
+        warn = '▲ ',
+        info = ' ',
+        hint = ' '
+      }
+end
+
 function G.map(key)
   -- ref https://blog.csdn.net/qq_39785418/article/details/123767872
   -- @func: define map function set noremap as default
