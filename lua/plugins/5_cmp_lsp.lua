@@ -6,6 +6,15 @@ end
 
 return {
   {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {
+      hint_prefix = "󰙎 ",
+    },
+    config = function(_, opts) require'lsp_signature'.setup(opts) end
+  },
+
+  {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
@@ -22,14 +31,14 @@ return {
         function() require("trouble").open("workspace_diagnostics") end,
         desc = "Open diagnostics workspace"
       },
-      { "]d", mode = "n",
-        function() require("trouble").next({skip_groups = true, jump = true}) end,
-        desc = "Jump Next diagnostics"
-      },
-      { "[d", mode = "n",
-        function() require("trouble").previous({skip_groups = true, jump = true}) end,
-        desc = "Jump Previous diagnostics"
-      },
+      -- { "]d", mode = "n",
+      --   function() require("trouble").next({skip_groups = true, jump = true}) end,
+      --   desc = "Jump Next diagnostics"
+      -- },
+      -- { "[d", mode = "n",
+      --   function() require("trouble").previous({skip_groups = true, jump = true}) end,
+      --   desc = "Jump Previous diagnostics"
+      -- },
     },
   },
 
@@ -39,7 +48,7 @@ return {
     -- Optional dependencies
     dependencies = {
        "nvim-treesitter/nvim-treesitter",
-       "nvim-tree/nvim-web-devicons"
+       "nvim-tree/nvim-web-devicons",
     },
     keys = {
       { "<leader>a", mode = "n", "<cmd>AerialToggle!<CR>", desc = "Toggle Aerial" },
@@ -59,21 +68,42 @@ return {
   { 'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
     lazy = true,
+    dependencies = {
+       "ray-x/lsp_signature.nvim",
+    },
     config = function()
       local lsp_zero = require('lsp-zero')
-
       lsp_zero.on_attach(function(client, bufnr)
-        -- see :help lsp-zero-keybindings
-        -- to learn the available actions
-        lsp_zero.default_keymaps({buffer = bufnr})
+        vim.keymap.set('n', 'gd',        '<cmd>lua vim.lsp.buf.definition()<cr>',        {buffer = bufnr, desc = "Jumps to the definition"})
+        vim.keymap.set('n', 'gD',        '<cmd>lua vim.lsp.buf.declaration()<cr>',       {buffer = bufnr, desc = "Jumps to the declaration"})
+        vim.keymap.set('n', 'gI',        '<cmd>lua vim.lsp.buf.implementation()<cr>',    {buffer = bufnr, desc = "Lists all the implementations"})
+        vim.keymap.set('n', 'go',        '<cmd>lua vim.lsp.buf.type_definition()<cr>',   {buffer = bufnr, desc = "Jump definition of type"})
+        vim.keymap.set('n', 'gr',        '<cmd>lua vim.lsp.buf.references()<cr>',        {buffer = bufnr, desc = "Lists all the references"})
+        vim.keymap.set('n', 'gs',        '<cmd>lua vim.lsp.buf.signature_help()<cr>',    {buffer = bufnr, desc = "Displays signature help"})
+        vim.keymap.set('n', '<F2>',      '<cmd>lua vim.lsp.buf.rename()<cr>',            {buffer = bufnr, desc = "Lsp rename"})
+        vim.keymap.set('n', '<F3>',      '<cmd>lua vim.lsp.buf.code_action()<cr>',       {buffer = bufnr, desc = "Code action"})
+        vim.keymap.set('x', '<F3>',      '<cmd>lua vim.lsp.buf.range_code_action()<cr>', {buffer = bufnr, desc = "Code action"})
+        vim.keymap.set('n', 'gI',        '<cmd>lua vim.lsp.buf.implementation()<cr>',    {buffer = bufnr, desc = "Lists all the implementations"})
+        vim.keymap.set('n', '<leader>d', '<cmd>lua vim.lsp.buf.hover()<cr>',             {buffer = bufnr, desc = "Displays hover information"})
+        vim.keymap.set('n', 'gl',        '<cmd>lua vim.diagnostic.open_float()<cr>',     {buffer = bufnr, desc = "Show diagnostic"})
+        vim.keymap.set('n', '[d',        '<cmd>lua vim.diagnostic.goto_prev()<cr>',      {buffer = bufnr, desc = "Jump Next diagnostics"})
+        vim.keymap.set('n', ']d',        '<cmd>lua vim.diagnostic.goto_next()<cr>',      {buffer = bufnr, desc = "Jump Previous diagnostics"})
+        -- -- lsp_signature
+        -- require "lsp_signature".on_attach({
+        --   bind = true, -- This is mandatory, otherwise border config won't get registered.
+        --   hint_prefix = "󰙎 ",
+        --   handler_opts = {
+        --     border = "rounded"
+        --   }
+        -- }, bufnr)
       end)
-
+      lsp_zero.set_sign_icons({
+        error = '✘',
+        warn = '▲',
+        hint = '⚑',
+        info = '»'
+      })
       lsp_zero.extend_lspconfig()
-      -- -- (Optional) configure lua language server
-      -- local lua_opts = lsp_zero.nvim_lua_ls()
-      -- require('lspconfig').lua_ls.setup(lua_opts)
-      --
-      -- lsp_zero.setup_servers({'pyright', 'clangd'})
     end,
   },
 
@@ -106,11 +136,30 @@ return {
           end,
           clangd = function ()
             require('lspconfig').clangd.setup({
-              cmd = { "clangd", "-header-insertion=never" },
+              cmd = { "clangd",
+                      "--header-insertion=never",
+                      "--all-scopes-completion",
+                      "--background-index",
+                      "--clang-tidy",
+                      "--header-insertion=iwyu",
+                      "--completion-style=detailed",
+                      "--function-arg-placeholders",
+                      "--fallback-style=llvm",
+              },
+            })
+            vim.keymap.set('n', '<F4>', '<cmd>ClangdSwitchSourceHeader<cr>', {desc = "Switch Source Header"})
+          end,
+          matlab_ls = function ()
+            require('lspconfig').matlab_ls.setup({
+              settings = {
+                matlab = {
+                  single_file_support = true,
+                  installPath = "/Applications/MATLAB_R2022b.app/"
+                }
+              }
             })
           end,
           pyright = function()
-            print("in pyright")
             require('lspconfig').pyright.setup({
               pyright = {
                 completion = {
@@ -122,6 +171,16 @@ return {
           end,
         },
       }
+      -- require'lspconfig'.matlab_ls.setup {
+      --   settings = {
+      --     matlab = {
+      --       capabilities = require("cmp_nvim_lsp").default_capabilities(),
+      --       single_file_support = true,
+      --       installPath = "/Applications/MATLAB_R2022b.app",
+      --       matlabConnectionTiming = "onStart",
+      --     }
+      --   }
+      -- }
     end,
   },
 
@@ -141,7 +200,6 @@ return {
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-calc",
       "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
       "onsails/lspkind.nvim",
 
       -- complete from snippets
@@ -200,7 +258,6 @@ return {
         -- source config
         sources = cmp.config.sources({
             { name = "nvim_lsp" },
-            { name = 'nvim_lsp_signature_help' },
             { name = "buffer" },
             { name = 'luasnip' },
           }, {
@@ -241,6 +298,8 @@ return {
         formatting = {
           format = lspkind.cmp_format({
             mode = 'symbol_text',
+            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
             menu = ({
               buffer = "[Buffer]",
               nvim_lsp = "[LSP]",

@@ -20,14 +20,27 @@ return {
 -- },
 
 --------- OceanicNext ---------
-  { "mhartington/oceanic-next",
-    config = function()
-      vim.cmd.colorscheme "OceanicNext"
-      vim.cmd[[hi Normal guibg=NONE ctermbg=NONE]]
-      vim.cmd[[hi LineNr guibg=NONE ctermbg=NONE]]
-      vim.cmd[[hi SignColumn guibg=NONE ctermbg=NONE]]
-      vim.cmd[[hi EndOfBuffer guibg=NONE ctermbg=NONE]]
-     end,
+  -- { "mhartington/oceanic-next",
+  --   config = function()
+  --     vim.cmd.colorscheme "OceanicNext"
+  --     vim.cmd[[hi Normal guibg=NONE ctermbg=NONE]]
+  --     vim.cmd[[hi LineNr guibg=NONE ctermbg=NONE]]
+  --     vim.cmd[[hi SignColumn guibg=NONE ctermbg=NONE]]
+  --     vim.cmd[[hi EndOfBuffer guibg=NONE ctermbg=NONE]]
+  --    end,
+  -- },
+
+--------- tokyonight.nvim ---------
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function ()
+      -- colorscheme tokyonight-night
+      vim.cmd.colorscheme "tokyonight-night"
+      vim.cmd[[hi LineNr ctermfg=gray guifg=silver]]
+      vim.cmd[[hi CursorLineNr ctermfg=blue guifg=#61AFEF cterm=bold gui=bold]]
+    end
   },
 
 --------- indent-blankline.nvim --------- 缩进对齐显示
