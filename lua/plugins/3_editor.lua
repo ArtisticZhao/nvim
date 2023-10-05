@@ -53,6 +53,7 @@ return {
       })
     end
   },
+
 ----------- neogen -----------
   { "danymat/neogen",
     dependencies = "nvim-treesitter/nvim-treesitter",
@@ -63,6 +64,7 @@ return {
       require('neogen').setup({ snippet_engine = "luasnip" })
     end
   },
+
 ----------- flash.nvim -----------
   { "folke/flash.nvim",
     event = "VeryLazy",
@@ -141,6 +143,7 @@ return {
       require("telescope").load_extension("yank_history")
     end
   },
+
 ----------- undotree -----------
   { "mbbill/undotree",
     keys = {
@@ -174,16 +177,6 @@ return {
   },
 
 --------- wildfire.vim    --------- tab键快速选择textobj
-  -- { "gcmt/wildfire.vim",
-  --   keys = {
-  --     {"<tab>", "<Plug>(wildfire-fuel)", mode = {'n', 'x', 'o'}, desc = "wildfire select textobj"},
-  --     {"<s-tab>", "<Plug>(wildfire-water)", mode = {'n', 'x', 'o'}, desc = "wildfire select textobj"},
-  --     {"<leader><tab>", "<Plug>(wildfire-quick-select)", desc = "wildfire quick select textobj"},
-  --   },
-  --   config = function()
-  --     vim.g.wildfire_objects = { "i'", 'i"', "i)", "i]", "i}", "ip", "it" }
-  --   end,
-  -- },
   { "sustech-data/wildfire.nvim",
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
@@ -198,6 +191,7 @@ return {
       })
     end,
   },
+
 --------- vim-sandwich    --------- 更快增删改成对的符号
   { "machakann/vim-sandwich",
     event = { "BufReadPost", "BufNewFile" },
@@ -222,9 +216,11 @@ return {
       { "ar", '<cmd>lua require("align").align_to_string(true, true, true)<cr>', mode = "x", desc = "align to string"  },
     },
   },
+
 --------- nvim-autopairs      --------- 自动补全括号
   { 'windwp/nvim-autopairs',
     event = "InsertEnter",
     opts = {},
   },
+
 }

@@ -1,12 +1,18 @@
+-- lsp_signature.nvim
+-- trouble.nvim
+-- aerial.nvim
 
-local has_words_before = function()
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
+-- lsp-zero.nvim
+-- nvim-lspconfig
+-- mason-lspconfig.nvim
+-- mason.nvim
+
+-- nvim-cmp
+-- LuaSnip
 
 return {
-  {
-    "ray-x/lsp_signature.nvim",
+--------- lsp_signature.nvim   ---------
+  { "ray-x/lsp_signature.nvim",
     event = "VeryLazy",
     opts = {
       hint_prefix = "󰙎 ",
@@ -14,8 +20,8 @@ return {
     config = function(_, opts) require'lsp_signature'.setup(opts) end
   },
 
-  {
-    "folke/trouble.nvim",
+--------- trouble.nvim   ---------
+  { "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       -- your configuration comes here
@@ -42,8 +48,8 @@ return {
     },
   },
 
-  {
-    'stevearc/aerial.nvim',
+--------- aerial.nvim   ---------
+  { 'stevearc/aerial.nvim',
     opts = {},
     -- Optional dependencies
     dependencies = {
@@ -64,7 +70,8 @@ return {
       })
     end,
   },
-  -- LSP
+
+--------- lsp-zero.nvim   ---------
   { 'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
     lazy = true,
@@ -107,13 +114,14 @@ return {
     end,
   },
 
+--------- nvim-lspconfig   ---------
   { 'neovim/nvim-lspconfig',
     dependencies = {
       {'hrsh7th/cmp-nvim-lsp'},
     },
   },
 
-
+--------- mason-lspconfig.nvim   ---------
   { "williamboman/mason-lspconfig.nvim",
     dependencies = {
       {'VonHeikemen/lsp-zero.nvim'},
@@ -124,6 +132,7 @@ return {
         ensure_installed = {
           "lua_ls",
           "clangd",
+          "jsonls",
           "pyright",
           "matlab_ls",
         },
@@ -184,6 +193,7 @@ return {
     end,
   },
 
+--------- mason.nvim   ---------
   { "williamboman/mason.nvim",
     build = ":MasonUpdate", -- :MasonUpdate updates registry contents
     cmd = "Mason",
@@ -192,6 +202,7 @@ return {
     end,
   },
 
+--------- nvim-cmp   ---------
   { 'hrsh7th/nvim-cmp',
     dependencies = {
       "hrsh7th/cmp-buffer",
@@ -207,6 +218,10 @@ return {
       "L3MON4D3/LuaSnip",
     },
     config = function()
+      local has_words_before = function()
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      end
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       local lsp_zero = require('lsp-zero')
@@ -338,6 +353,7 @@ return {
     end,
   },
 
+--------- LuaSnip   ---------
   { "L3MON4D3/LuaSnip",
     version = "2.*",
     -- install jsregexp (optional!).
@@ -363,6 +379,7 @@ return {
       -- load vscode like snippets
       -- be sure to load this first since it overwrites the snippets table.
       require("luasnip.loaders.from_vscode").lazy_load()
+      require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/snippets_vsc" } })
     end
   },
 }

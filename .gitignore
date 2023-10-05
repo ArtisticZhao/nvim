@@ -3,3 +3,4 @@ lazy
 snips.back
 plug.vim.old
 lazy-lock.json
+.luarc.json

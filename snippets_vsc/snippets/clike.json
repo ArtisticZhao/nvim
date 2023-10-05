@@ -1,0 +1,15 @@
+{
+    "file header": {
+        "prefix": "fh",
+        "body": [
+          "/**",
+          " * @file      $TM_FILENAME",
+          " * @authors   ${2:Author}",
+          " * @copyright ${3:Copyright holder}",
+          " *",
+          " * @brief     ${4:description}",
+          " */$0"
+        ],
+        "description": "file header comments"
+    }
+}

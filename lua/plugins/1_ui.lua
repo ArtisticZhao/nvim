@@ -40,6 +40,7 @@ return {
       })
     end
   },
+
 --------- neo-tree.nvim --------- 目录树
   "MunifTanjim/nui.nvim",
   { "nvim-neo-tree/neo-tree.nvim",
@@ -142,6 +143,7 @@ return {
     }
     end,
   },
+
 --------- which-key.nvim ---------
   { "folke/which-key.nvim",
     config = function()
@@ -150,6 +152,7 @@ return {
       require("which-key").setup{}
     end,
   },
+
 --------- startup.nvim ---------
   { "startup-nvim/startup.nvim",
     dir = "~/projects/startup.nvim",
@@ -158,6 +161,7 @@ return {
       require"startup".setup({theme = "startify"})
     end,
   },
+
   { "nvim-lua/plenary.nvim", lazy = true },
 ----------- telescope.nvim -----------
   { "nvim-telescope/telescope.nvim",
@@ -170,4 +174,5 @@ return {
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "find buffers" },
     },
   },
+
 }
