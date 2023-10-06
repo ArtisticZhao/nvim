@@ -1,8 +1,11 @@
 function CWD()
   local dir = vim.fn.expand('%:p:h')
   vim.api.nvim_command('cd ' .. dir)
-  -- print('Changed working directory to: ' .. dir)
   require("notify")('Changed working directory to: ' .. dir)
 end
 
 vim.api.nvim_command('command! -nargs=0 CWD lua CWD()')
+
+vim.api.nvim_create_user_command('GBK', 'set fileending=cp936', {})
+vim.api.nvim_create_user_command('Win', 'set ff=dos', {})
+vim.api.nvim_create_user_command('Linux', 'set ff=unix', {})
