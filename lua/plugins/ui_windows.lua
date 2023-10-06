@@ -8,9 +8,13 @@ return {
 --------- dashboard-nvim ---------
   { 'glepnir/dashboard-nvim',
     event = 'VimEnter',
-    dependencies = { {'nvim-tree/nvim-web-devicons'}},
+    dependencies = { {'nvim-tree/nvim-web-devicons'} },
     opts = {
       shortcut_type = 'number',
+      config = {
+        project = { enable = false, },
+        week_header = { enable = true, },
+      },
     },
   },
 
