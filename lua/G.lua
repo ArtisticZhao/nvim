@@ -39,6 +39,32 @@ function G.cmd(cmd)
   vim.api.nvim_command(cmd)
 end
 
+function G.isZTE()
+    local path_sep = package.config:sub(1,1)
+    local username
+    if path_sep == '\\' then  -- Windows
+        username = os.getenv("USERNAME")
+    else  -- Unix-like
+        local handle = io.popen("whoami")
+        if handle then
+            username = handle:read("*a")
+            handle:close()
+            -- 去除末尾的换行符
+            username = username:gsub("\n", "")
+        end
+    end
+    if username then
+        -- 判断是否包含八个连续的数字
+        if username:match('%d%d%d%d%d%d%d%d') ~= nil then
+            return true
+        end
+    end
+    return false
+end
+
+function G.get_git_mirror()
+  return "hub.njuu.cf"
+end
 
 function G.ReloadConfig()
   package.loaded['G'] = nil
