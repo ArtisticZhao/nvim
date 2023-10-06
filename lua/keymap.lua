@@ -26,6 +26,11 @@ G.map{'i', '<c-s>', '<esc>:w<enter>' }
 G.map{'x', '<c-s>', '<esc>:w<enter>' }
 G.map{'v', '<c-s>', '<esc>:w<enter>' }
 
+-------------------- code move --------------------
+G.map{'n', '<M-Up>', ':m-2<CR>', desc = "move current line up 1 line" }
+G.map{'v', '<M-Up>', ':m-2<CR>gv', desc = "move current line up 1 line" }
+G.map{'n', '<M-Down>', ':m+1<CR>', desc = "move current line down 1 line" }
+G.map{'v', '<M-Down>', ':m+1<CR>gv', desc = "move current line down 1 line" }
 
 -------------------- copy & paste -------------------
 G.map{'v', 'Y', '"+y'  }
