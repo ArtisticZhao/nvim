@@ -23,11 +23,6 @@ return {
 --------- trouble.nvim   ---------
   { "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
     keys = {
       { "<leader>xx", mode = "n",
         function() require("trouble").open("document_diagnostics") end,
@@ -37,14 +32,6 @@ return {
         function() require("trouble").open("workspace_diagnostics") end,
         desc = "Open diagnostics workspace"
       },
-      -- { "]d", mode = "n",
-      --   function() require("trouble").next({skip_groups = true, jump = true}) end,
-      --   desc = "Jump Next diagnostics"
-      -- },
-      -- { "[d", mode = "n",
-      --   function() require("trouble").previous({skip_groups = true, jump = true}) end,
-      --   desc = "Jump Previous diagnostics"
-      -- },
     },
   },
 
@@ -89,21 +76,13 @@ return {
         vim.keymap.set('n', 'gr',        '<cmd>lua vim.lsp.buf.references()<cr>',        {buffer = bufnr, desc = "Lists all the references"})
         vim.keymap.set('n', 'gs',        '<cmd>lua vim.lsp.buf.signature_help()<cr>',    {buffer = bufnr, desc = "Displays signature help"})
         vim.keymap.set('n', '<F2>',      '<cmd>lua vim.lsp.buf.rename()<cr>',            {buffer = bufnr, desc = "Lsp rename"})
-        vim.keymap.set('n', '<F3>',      '<cmd>lua vim.lsp.buf.code_action()<cr>',       {buffer = bufnr, desc = "Code action"})
-        vim.keymap.set('x', '<F3>',      '<cmd>lua vim.lsp.buf.range_code_action()<cr>', {buffer = bufnr, desc = "Code action"})
+        -- vim.keymap.set('n', '<F3>',      '<cmd>lua vim.lsp.buf.code_action()<cr>',       {buffer = bufnr, desc = "Code action"})
+        -- vim.keymap.set('x', '<F3>',      '<cmd>lua vim.lsp.buf.range_code_action()<cr>', {buffer = bufnr, desc = "Code action"})
         vim.keymap.set('n', 'gI',        '<cmd>lua vim.lsp.buf.implementation()<cr>',    {buffer = bufnr, desc = "Lists all the implementations"})
         vim.keymap.set('n', '<leader>d', '<cmd>lua vim.lsp.buf.hover()<cr>',             {buffer = bufnr, desc = "Displays hover information"})
         vim.keymap.set('n', 'gl',        '<cmd>lua vim.diagnostic.open_float()<cr>',     {buffer = bufnr, desc = "Show diagnostic"})
         vim.keymap.set('n', '[d',        '<cmd>lua vim.diagnostic.goto_prev()<cr>',      {buffer = bufnr, desc = "Jump Next diagnostics"})
         vim.keymap.set('n', ']d',        '<cmd>lua vim.diagnostic.goto_next()<cr>',      {buffer = bufnr, desc = "Jump Previous diagnostics"})
-        -- -- lsp_signature
-        -- require "lsp_signature".on_attach({
-        --   bind = true, -- This is mandatory, otherwise border config won't get registered.
-        --   hint_prefix = "󰙎 ",
-        --   handler_opts = {
-        --     border = "rounded"
-        --   }
-        -- }, bufnr)
       end)
       lsp_zero.set_sign_icons(G.icon())
       lsp_zero.extend_lspconfig()
@@ -124,7 +103,7 @@ return {
     },
     config = function()
       local lsp_zero = require('lsp-zero')
-      require("mason-lspconfig").setup {
+      local opts = {
         ensure_installed = {
           "lua_ls",
           "clangd",
@@ -176,16 +155,10 @@ return {
           end,
         },
       }
-      -- require'lspconfig'.matlab_ls.setup {
-      --   settings = {
-      --     matlab = {
-      --       capabilities = require("cmp_nvim_lsp").default_capabilities(),
-      --       single_file_support = true,
-      --       installPath = "/Applications/MATLAB_R2022b.app",
-      --       matlabConnectionTiming = "onStart",
-      --     }
-      --   }
-      -- }
+      if require('G').isZTE() then
+        opts.ensure_installed = {}
+      end
+      require("mason-lspconfig").setup(opts)
     end,
   },
 
