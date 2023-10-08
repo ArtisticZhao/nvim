@@ -9,6 +9,11 @@ function G.icon()
       }
 end
 
+function G.noremap(mode, key, func, desc)
+  local opts = { noremap = true, silent = true, desc = desc }
+  vim.keymap.set(mode, key, func, opts)
+end
+
 function G.map(key)
   -- ref https://blog.csdn.net/qq_39785418/article/details/123767872
   -- @func: define map function set noremap as default

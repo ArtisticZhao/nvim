@@ -73,22 +73,19 @@ return {
 
 --------- align.nvim      --------- 对齐
   { "Vonr/align.nvim",
-    -- align_to_char(length, reverse, preview, marks)
-    -- align_to_string(is_pattern, reverse, preview, marks)
-    -- align(str, reverse, marks)
-    -- operator(fn, opts)
-    -- Where:
-    --      length: integer
-    --      reverse: boolean
-    --      preview: boolean
-    --      marks: table (e.g. {1, 0, 23, 15})
-    --      str: string (can be plaintext or Lua pattern if is_pattern is true)
-    keys = {
-      { "aa", mode = "x", '<cmd>lua require("align").align_to_char(1, true)<cr>',             desc = "align to a char"  },
-      { "aw", mode = "x", '<cmd>lua require("align").align_to_string(false, true, true)<cr>', desc = "align to a word"  },
-      { "ar", mode = "x", '<cmd>lua require("align").align_to_string(true, true, true)<cr>',  desc = "align to string"  },
-      { "as", mode = "x", '<cmd>lua require("align").align_to_char(2, true, true)<cr>',       desc = "align to 2 chars" },
-    },
+    branch = "v2",
+    init = function()
+      local map = require('G').noremap
+      map('x', 'aa',
+        function() require('align').align_to_char({ length = 1 }) end,
+        "align to a char")
+      map('x', 'ad',
+        function() require('align').align_to_char({ length = 2 }) end,
+        "align to 2 chars")
+      map('x', 'as',
+        function() require('align').align_to_string({ preview = true, regex = false }) end,
+        "align to string")
+    end,
   },
 
 --------- nvim-autopairs      --------- 自动补全括号

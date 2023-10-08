@@ -206,10 +206,6 @@ return {
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
-            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-            -- they way you will only jump inside the snippet region
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
             elseif has_words_before() then
               cmp.complete()
             else
@@ -220,24 +216,23 @@ return {
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
             else
               fallback()
             end
           end, { "i", "s" }),
 
           ['<CR>'] = cmp.mapping.confirm({select = false}),
+
           -- Ctrl+Space to trigger completion menu
           ['<C-Space>'] = cmp.mapping.complete(),
 
           -- Navigate between snippet placeholder
-          ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-          ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+          ['<C-d>'] = cmp_action.luasnip_jump_forward(),
+          ['<C-e>'] = cmp_action.luasnip_jump_backward(),
 
           -- Scroll up and down in the completion documentation
-          ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-d>'] = cmp.mapping.scroll_docs(4),
+          ['<C-k>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-j>'] = cmp.mapping.scroll_docs(4),
         }),
         -- source config
         sources = cmp.config.sources({
@@ -287,7 +282,7 @@ return {
             menu = ({
               buffer = "[Buffer]",
               nvim_lsp = "[LSP]",
-              luasnip = "[LuaSnip]",
+              luasnip = "[Snip]",
               nvim_lua = "[Lua]",
               latex_symbols = "[Latex]",
             }),
@@ -330,25 +325,14 @@ return {
     dependencies = { "rafamadriz/friendly-snippets" },
     config = function ()
       local luasnip = require("luasnip")
-      -- luasnip.config.set_config({
-      --   enable_autosnippets = true,
-      --   store_selection_keys = "`",
-      -- })
-      -- enable undo, for enable autosnippet
-      -- local auto_expand = luasnip.expand_auto
-      -- luasnip.expand_auto = function (...)
-      --   vim.o.undolevels = vim.o.undolevels
-      --   auto_expand(...)
-      -- end
       -- keymaps
-
       vim.keymap.set({"i", "s"}, "<C-d>", function() luasnip.expand_or_jump() end, {silent = true})
       vim.keymap.set({"i", "s"}, "<C-e>", function() luasnip.jump(-1) end, {silent = true})
 
       -- load vscode like snippets
       -- be sure to load this first since it overwrites the snippets table.
       require("luasnip.loaders.from_vscode").lazy_load()
-      require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/snippets_vsc" } })
+      require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets_vsc" } })
     end
   },
 }
