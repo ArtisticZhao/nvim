@@ -20,15 +20,16 @@ return {
 
 --------- neo-tree.nvim --------- 目录树
   { "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
+    branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
     },
-    cmd = { "Neotree", "NeoTreeFocusToggle", },
+    cmd = { "Neotree", },
     keys = {
-      { "<leader>e", "<cmd>NeoTreeFocusToggle<cr>", desc = "neo-tree" },
+      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "neo-tree" },
+      { "<leader>E", "<cmd>Neotree reveal toggle<cr>", desc = "neo-tree" },
     },
     config = function ()
       local icon = require('G').icon()
@@ -113,7 +114,7 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     cmd = "Telescope",
     keys = {
-      { "<c-p>", "<cmd>Telescope find_files<cr>", desc = "find files" },
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "find files" },
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "find in files" },
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "find buffers" },
     },

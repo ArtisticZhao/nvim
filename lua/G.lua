@@ -50,10 +50,17 @@ function G.cmd(cmd)
   vim.api.nvim_command(cmd)
 end
 
-function G.isZTE()
+function G.isWin()
     local path_sep = package.config:sub(1,1)
-    local username
     if path_sep == '\\' then  -- Windows
+      return true
+    end
+    return false
+end
+
+function G.isZTE()
+    local username
+    if G.isWin() then  -- Windows
         username = os.getenv("USERNAME")
     else  -- Unix-like
         local handle = io.popen("whoami")
@@ -72,10 +79,6 @@ function G.isZTE()
     end
     return false
 end
-
--- function G.get_git_mirror()
---   return "hub.njuu.cf"
--- end
 
 function G.ReloadConfig()
   package.loaded['G'] = nil

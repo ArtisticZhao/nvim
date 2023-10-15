@@ -2,7 +2,6 @@ require('profile')  -- 基础配置
 require('keymap')   -- 按键配置
 require('autocmd')  -- 自动命令
 require('cmd')      -- 自定义命令
-require('G')
 
 
 ------ lazy.nvim ------
@@ -19,7 +18,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup('plugins')
+local G = require('G')
+local lazy_opts = {}
+if G.isZTE() then
+  lazy_opts.concurrency = 1 -- install one plugin one time.
+  lazy_opts.git = { url_format = "https://hub.njuu.cf/%s.git", }
+end
+require('lazy').setup('plugins', lazy_opts)
 -- vim.lsp.set_log_level("debug")
 
 
