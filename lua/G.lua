@@ -40,9 +40,28 @@ function G.map(key)
 end
 
 
+--- @berief get OS type
+--- @returns 'mac' 'wsl' 'win' linux'
 function G.whichOS()
-  if ( vim.loop.os_uname().sysname == "Darwin" ) then
+  local uname = vim.loop.os_uname().sysname
+
+  -- 检查是否在 WSL 下运行
+  if uname == "Linux" then
+    local handle = io.popen("cat /proc/version")
+    if handle then
+      local result = handle:read("*a")
+      handle:close()
+      if result:match("Microsoft") then
+        return 'wsl'
+      else
+        return 'linux'
+      end
+    end
+  elseif uname == "Darwin" then
     return 'mac'
+  else
+    vim.notify("failed to detect system type!", vim.log.levels.ERROR)
+    return 'other'
   end
 end
 
@@ -50,17 +69,31 @@ function G.cmd(cmd)
   vim.api.nvim_command(cmd)
 end
 
-function G.isWin()
-    local path_sep = package.config:sub(1,1)
-    if path_sep == '\\' then  -- Windows
-      return true
-    end
-    return false
-end
 
 function G.isZTE()
     local username
-    if G.isWin() then  -- Windows
+    local the_os = G.whichOS()
+    if the_os == 'wsl' then -- WSL process
+      -- work on wsl, decide by git user.email
+      local handle = io.popen("git config --global user.email")
+      if handle then
+        local result = handle:read("*a")
+        handle:close()
+        local git_email =  result:match( "^%s*(.-)%s*$" )  -- 去掉前后的空白字符
+        if git_email then
+          if git_email:match('zte.com.cn') ~= nil then
+            return true
+          end
+          return false
+        else
+          vim.notify("isZTE cannot detect by WSL git config!", vim.log.levels.ERROR)
+          return false
+        end
+      else
+        vim.notify("isZTE cannot detect by WSL git config!", vim.log.levels.ERROR)
+        return false
+      end
+    elseif the_os == 'win' then  -- Windows
         username = os.getenv("USERNAME")
     else  -- Unix-like
         local handle = io.popen("whoami")
