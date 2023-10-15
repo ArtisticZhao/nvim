@@ -40,6 +40,12 @@ function G.map(key)
 end
 
 
+function G.whichOS()
+  if ( vim.loop.os_uname().sysname == "Darwin" ) then
+    return 'mac'
+  end
+end
+
 function G.cmd(cmd)
   vim.api.nvim_command(cmd)
 end
@@ -67,9 +73,9 @@ function G.isZTE()
     return false
 end
 
-function G.get_git_mirror()
-  return "hub.njuu.cf"
-end
+-- function G.get_git_mirror()
+--   return "hub.njuu.cf"
+-- end
 
 function G.ReloadConfig()
   package.loaded['G'] = nil

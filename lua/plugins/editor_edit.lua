@@ -6,6 +6,7 @@
 -- align.nvim         |  quick aligning
 -- nvim-autopairs     |  auto pair
 -- undotree           |  undo tree
+-- im-select          |  auto switch input method.
 
 return {
 --------- nerdcommenter   --------- 快速注释
@@ -102,4 +103,15 @@ return {
     },
   },
 
+--------- im-select   ---------
+  { "keaising/im-select.nvim",
+    config = function()
+      local opts = {}
+      if require('G').whichOS() == 'mac' then
+          opts.default_im_select  = "com.apple.keylayout.ABC"
+          opts.default_command = 'im-select'
+      end
+      require("im_select").setup(opts)
+    end,
+  },
 }
