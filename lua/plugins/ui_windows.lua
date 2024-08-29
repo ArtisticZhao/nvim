@@ -3,6 +3,7 @@
 -- toggleterm.nvim   |  terminal window
 -- which-key.nvim    |  key register helper window
 -- nvim-notify       |  notification display window
+-- telescope.nvim    |  search everything
 
 return {
 --------- dashboard-nvim ---------
@@ -115,8 +116,11 @@ return {
     cmd = "Telescope",
     keys = {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "find files" },
+      { "<c-p>", "<cmd>Telescope find_files<cr>", desc = "find files" },
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "find in files" },
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "find buffers" },
+      { "<leader>fk", "<cmd>lua require('telescope.builtin').keymaps()<cr>", desc = "find keymaps" },
+      { "<leader>ft", "<cmd>lua require('telescope.builtin').treesitter()<cr>", desc = "find treesitter" },
     },
   },
 
