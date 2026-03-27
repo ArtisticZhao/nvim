@@ -13,6 +13,15 @@ return {
     opts = {
       shortcut_type = 'number',
       config = {
+        shortcut = {
+          {
+            desc = ' Scratch',
+            group = 'Label',
+            action = 'Scratch',
+            key = 'e',
+          },
+        },
+        mru = { enable = true, limit = 9, },
         project = { enable = false, },
         week_header = { enable = true, },
       },
@@ -58,6 +67,10 @@ return {
           follow_current_file = {
             enabled = true,
             leave_dirs_open = false,
+          },
+          filtered_items = {
+            visible = true,
+            hide_gitignored = false,
           },
           group_empty_dirs = true,
           use_libuv_file_watcher = true,

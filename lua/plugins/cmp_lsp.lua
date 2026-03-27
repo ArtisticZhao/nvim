@@ -84,8 +84,8 @@ return {
         vim.keymap.set('n', 'gI',        '<cmd>lua vim.lsp.buf.implementation()<cr>',    {buffer = bufnr, desc = "Lists all the implementations"})
         vim.keymap.set('n', '<leader>d', '<cmd>lua vim.lsp.buf.hover()<cr>',             {buffer = bufnr, desc = "Displays hover information"})
         vim.keymap.set('n', 'gl',        '<cmd>lua vim.diagnostic.open_float()<cr>',     {buffer = bufnr, desc = "Show diagnostic"})
-        vim.keymap.set('n', '[d',        '<cmd>lua vim.diagnostic.goto_prev()<cr>',      {buffer = bufnr, desc = "Jump Next diagnostics"})
-        vim.keymap.set('n', ']d',        '<cmd>lua vim.diagnostic.goto_next()<cr>',      {buffer = bufnr, desc = "Jump Previous diagnostics"})
+        vim.keymap.set('n', '[d',        '<cmd>lua vim.diagnostic.goto_prev()<cr>',      {buffer = bufnr, desc = "Jump Previous diagnostics"})
+        vim.keymap.set('n', ']d',        '<cmd>lua vim.diagnostic.goto_next()<cr>',      {buffer = bufnr, desc = "Jump Next diagnostics"})
       end)
       lsp_zero.set_sign_icons(G.icon())
       lsp_zero.extend_lspconfig()
@@ -117,7 +117,6 @@ return {
         handlers = {
           lsp_zero.default_setup,
           lua_ls = function()
-            -- (Optional) configure lua language server
             local lua_opts = lsp_zero.nvim_lua_ls()
             require('lspconfig').lua_ls.setup(lua_opts)
           end,

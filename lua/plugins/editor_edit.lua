@@ -87,7 +87,7 @@ return {
         filetype_exclude = {
           "qf",
           "help",
-          "neo%-tree",
+          "neo-tree",
           "TelescopePrompt",
           "trouble",
           "dashboard",
