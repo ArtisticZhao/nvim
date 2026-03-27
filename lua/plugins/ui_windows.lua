@@ -54,6 +54,14 @@ return {
             winbar = true,
             statusline = false,
         },
+        filesystem = {
+          follow_current_file = {
+            enabled = true,
+            leave_dirs_open = false,
+          },
+          group_empty_dirs = true,
+          use_libuv_file_watcher = true,
+        },
       })
     end
   },
@@ -79,7 +87,18 @@ return {
     config = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
-      require("which-key").setup{}
+      require("which-key").setup({
+        preset = "modern",
+        spec = {
+          { "<leader>f", group = "find" },
+          { "<leader>g", group = "git" },
+          { "<leader>s", group = "split / settings" },
+          { "<leader>t", group = "todo" },
+          { "<leader>u", group = "ui / undo" },
+          { "<leader>x", group = "diagnostics" },
+          { "<leader>y", group = "yank" },
+        },
+      })
     end,
   },
 
@@ -97,6 +116,8 @@ return {
     opts = {
       render = "wrapped-compact",
       timeout = 5000,
+      stages = "fade_in_slide_out",
+      top_down = false,
       max_height = function()
         return math.floor(vim.o.lines * 0.75)
       end,

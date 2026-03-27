@@ -18,13 +18,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local G = require('G')
-local lazy_opts = {}
-if G.isZTE() then
-  lazy_opts.concurrency = 1 -- install one plugin one time.
-  lazy_opts.git = { url_format = "https://hub.njuu.cf/%s.git", }
-end
-require('lazy').setup('plugins', lazy_opts)
+require('lazy').setup('plugins')
 -- vim.lsp.set_log_level("debug")
 
 

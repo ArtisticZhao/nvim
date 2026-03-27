@@ -70,12 +70,32 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("wildfire").setup({
+        surrounds = {
+          { "(", ")" },
+          { "{", "}" },
+          { "<", ">" },
+          { "[", "]" },
+          { '"', '"' },
+          { "'", "'" },
+          { "`", "`" },
+        },
         keymaps = {
           init_selection = "<TAB>",
           node_incremental = "<TAB>",
           node_decremental = "<S-TAB>",
         },
-        filetype_exclude = { "qf" }, --keymaps will be unset in excluding filetypes
+        filetype_exclude = {
+          "qf",
+          "help",
+          "neo%-tree",
+          "TelescopePrompt",
+          "trouble",
+          "dashboard",
+          "lazy",
+          "mason",
+          "notify",
+          "toggleterm",
+        }, -- keymaps will be unset in excluding filetypes
       })
     end,
   },

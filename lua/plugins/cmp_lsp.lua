@@ -23,15 +23,18 @@ return {
 --------- trouble.nvim   ---------
   { "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      focus = false,
+      follow = true,
+      auto_preview = true,
+    },
     keys = {
-      { "<leader>xx", mode = "n",
-        function() require("trouble").open("document_diagnostics") end,
-        desc = "Open diagnostics documents"
-      },
-      { "<leader>xw", mode = "n",
-        function() require("trouble").open("workspace_diagnostics") end,
-        desc = "Open diagnostics workspace"
-      },
+      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
+      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
+      { "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)" },
+      { "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP List (Trouble)" },
+      { "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
+      { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
     },
   },
 
@@ -155,9 +158,6 @@ return {
           end,
         },
       }
-      if require('G').isZTE() then
-        opts.ensure_installed = {}
-      end
       require("mason-lspconfig").setup(opts)
     end,
   },

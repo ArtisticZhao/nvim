@@ -69,50 +69,6 @@ function G.cmd(cmd)
   vim.api.nvim_command(cmd)
 end
 
-
-function G.isZTE()
-    local username
-    local the_os = G.whichOS()
-    if the_os == 'wsl' then -- WSL process
-      -- work on wsl, decide by git user.email
-      local handle = io.popen("git config --global user.email")
-      if handle then
-        local result = handle:read("*a")
-        handle:close()
-        local git_email =  result:match( "^%s*(.-)%s*$" )  -- 去掉前后的空白字符
-        if git_email then
-          if git_email:match('zte.com.cn') ~= nil then
-            return true
-          end
-          return false
-        else
-          vim.notify("isZTE cannot detect by WSL git config!", vim.log.levels.ERROR)
-          return false
-        end
-      else
-        vim.notify("isZTE cannot detect by WSL git config!", vim.log.levels.ERROR)
-        return false
-      end
-    elseif the_os == 'win' then  -- Windows
-        username = os.getenv("USERNAME")
-    else  -- Unix-like
-        local handle = io.popen("whoami")
-        if handle then
-            username = handle:read("*a")
-            handle:close()
-            -- 去除末尾的换行符
-            username = username:gsub("\n", "")
-        end
-    end
-    if username then
-        -- 判断是否包含八个连续的数字
-        if username:match('%d%d%d%d%d%d%d%d') ~= nil then
-            return true
-        end
-    end
-    return false
-end
-
 function G.ReloadConfig()
   package.loaded['G'] = nil
   package.loaded['profile'] = nil
