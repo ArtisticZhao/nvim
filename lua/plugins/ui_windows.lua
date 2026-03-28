@@ -59,6 +59,38 @@ return {
       require("neo-tree").setup({
         -- Close Neo-tree if it is the last window left in the tab
         close_if_last_window = true,
+        default_component_configs = {
+          indent = {
+            with_markers = true,
+            indent_marker = "│",
+            last_indent_marker = "└",
+            with_expanders = true,
+            expander_collapsed = "+",
+            expander_expanded = "-",
+          },
+          icon = {
+            folder_closed = "[D]",
+            folder_open = "[O]",
+            folder_empty = "[E]",
+            default = "   ",
+          },
+          modified = {
+            symbol = "[+]",
+          },
+          git_status = {
+            symbols = {
+              added = "A",
+              deleted = "D",
+              modified = "M",
+              renamed = "R",
+              untracked = "?",
+              ignored = "I",
+              unstaged = "M",
+              staged = "S",
+              conflict = "C",
+            },
+          },
+        },
         source_selector = {
             winbar = true,
             statusline = false,
